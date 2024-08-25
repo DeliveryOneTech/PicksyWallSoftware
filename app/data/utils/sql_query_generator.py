@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class SqlQueryGenerator:
     @staticmethod
     def get_create_table_query(table_name: str, properties: dict) -> str:
@@ -8,7 +11,7 @@ class SqlQueryGenerator:
         return query
 
     @staticmethod
-    def get_insert_query(table_name: str, data: dict) -> str:
+    def get_insert_query(table_name: str, data: dict) -> tuple[str, list[Any]]:
         columns = ', '.join(data.keys())
         placeholders = ', '.join(['?' for _ in data])
         values = list(data.values())
@@ -16,7 +19,7 @@ class SqlQueryGenerator:
         return query, values
 
     @staticmethod
-    def get_update_query(table_name: str, data: dict, id_column: str, id_value: object) -> str:
+    def get_update_query(table_name: str, data: dict, id_column: str, id_value: object) -> tuple[str, list[object]]:
         set_clause = ', '.join([f"{key} = ?" for key in data.keys()])
         values = list(data.values()) + [id_value]
         query = f"UPDATE {table_name} SET {set_clause} WHERE {id_column} = ?"
@@ -28,11 +31,11 @@ class SqlQueryGenerator:
         return query
 
     @staticmethod
-    def get_delete_query(table_name: str, id_column: str, id_value: object) -> str:
+    def get_delete_query(table_name: str, id_column: str, id_value: object) -> tuple[str, list[object]]:
         query = f"DELETE FROM {table_name} WHERE {id_column} = ?"
         return query, [id_value]
 
     @staticmethod
-    def get_select_query(table_name: str, id_column: str, id_value: object) -> str:
+    def get_select_query(table_name: str, id_column: str, id_value: object) -> tuple[str, list[object]]:
         query = f"SELECT * FROM {table_name} WHERE {id_column} = ?"
         return query, [id_value]

@@ -30,6 +30,10 @@ class LocalDbContext:
         self.cursor.execute(SystemLog.get_create_table_sql_query())
         self.connection.commit()
 
+    def run_query(self, query):
+        self.cursor.execute(query)
+        self.connection.commit()
+
 
 class SingletonLocalDbContext:
     __instance = None

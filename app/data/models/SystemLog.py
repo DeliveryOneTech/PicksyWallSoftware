@@ -1,7 +1,5 @@
 from datetime import datetime
 from app.data.models.DbModel import DbModel
-from app.data.enums.log_level import LogLevel
-from app.data.enums.log_type import LogType
 from app.data.utils.sql_query_generator import SqlQueryGenerator
 
 
@@ -10,8 +8,8 @@ class SystemLog(DbModel):
 
     def __init__(self,
                  message: str,
-                 logLevel: LogLevel,
-                 logType: LogType,
+                 logLevel: int,
+                 logType: int,
                  createdDateTime: datetime,
                  id: int = None):
         super().__init__(id)
@@ -25,8 +23,8 @@ class SystemLog(DbModel):
         return {
             'id': 'INTEGER PRIMARY KEY',
             'message': 'TEXT',
-            'logLevel': 'TEXT',
-            'logType': 'TEXT',
+            'logLevel': 'INTEGER',
+            'logType': 'INTEGER',
             'createdDateTime': 'TEXT'
         }
 
