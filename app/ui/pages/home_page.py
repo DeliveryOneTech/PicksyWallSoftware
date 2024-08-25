@@ -1,5 +1,6 @@
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QWidget, QGridLayout, QHBoxLayout, QVBoxLayout
+from app.lib.system_logger import SingletonSystemLogger
 from app.styles import Styles
 from app.ui.components.main_button_component import MainButtonComponent
 from app.ui.components.picksy_wall_date_time_header_component import PicksyWallDateTimeHeaderComponent
@@ -12,6 +13,8 @@ class HomePage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
+        self.singleton_system_logger = SingletonSystemLogger()
+        self.singleton_system_logger.log()
 
         header = PicksyWallDateTimeHeaderComponent()
         footer = PicksyWallFooterComponent()

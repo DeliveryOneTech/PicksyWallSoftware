@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QVBoxLayout
+
+from app.lib.system_logger import SingletonSystemLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.lib.enums.page_number import PageNumber
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
@@ -10,6 +12,9 @@ from app.ui.components.picksy_wall_title_header_component import PicksyWallTitle
 class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
+        self.singleton_system_logger = SingletonSystemLogger()
+        self.singleton_system_logger.log()
+
         self.stacked_widget = stacked_widget
 
         main_layout = QVBoxLayout(self)

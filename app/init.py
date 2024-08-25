@@ -16,6 +16,6 @@ def run() -> int:
     window.show()
 
     logger = SingletonSystemLogger()
-    logger.log("Application is started...")
+    logger.log("Application is started.")
 
     return sys.exit(app.exec())

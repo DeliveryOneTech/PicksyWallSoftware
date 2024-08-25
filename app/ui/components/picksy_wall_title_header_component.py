@@ -46,7 +46,6 @@ class PicksyWallTitleHeaderComponent(QtWidgets.QWidget):
         self.picksy_wall_header_back_button.setStyleSheet(Styles.btn_back())
 
         self.picksy_wall_header_title_label.setScaledContents(True)
-        self.picksy_wall_header_title_label.setFixedSize(400, 100)
         self.picksy_wall_header_title_label.setAlignment(QtCore.Qt.AlignCenter)
         self.picksy_wall_header_title_label.setText("Picksy Wall")
 
