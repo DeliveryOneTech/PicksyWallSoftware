@@ -1,0 +1,25 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>assets/arrow-down.svg</file>
+    <file>assets/arrow-left.svg</file>
+    <file>assets/arrow-right.svg</file>
+    <file>assets/arrow-up.svg</file>
+    <file>assets/check-circle-fill.svg</file>
+    <file>assets/check-lg.svg</file>
+    <file>assets/credit-card.svg</file>
+    <file>assets/info-circle-fill.svg</file>
+    <file>assets/package.svg</file>
+    <file>assets/qr-code.svg</file>
+    <file>assets/receive-icon.png</file>
+    <file>assets/reject-icon.png</file>
+    <file>assets/send-icon.png</file>
+    <file>assets/shield-fill-check.svg</file>
+    <file>assets/spellcheck.svg</file>
+    <file>assets/white-arrow-left.svg</file>
+    <file>assets/white-d1-logo.png</file>
+  </qresource>
+  <qresource prefix="logos">
+    <file>assets/gray-d1-logo.png</file>
+    <file>assets/white-d1-logo.png</file>
+  </qresource>
+</RCC>
