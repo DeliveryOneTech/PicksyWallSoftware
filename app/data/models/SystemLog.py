@@ -2,12 +2,35 @@ from datetime import datetime
 from app.data.models.DbModel import DbModel
 from app.data.enums.log_level import LogLevel
 from app.data.enums.log_type import LogType
+from app.data.utils.sql_query_generator import SqlQueryGenerator
 
 
 class SystemLog(DbModel):
-    def __init__(self, _id: int, logLevel: LogLevel, logType: LogType, message: str, createdDateTime: datetime):
-        super().__init__("SystemLog", _id)
+    table_name = 'SystemLog'
+
+    def __init__(self,
+                 message: str,
+                 logLevel: LogLevel,
+                 logType: LogType,
+                 createdDateTime: datetime,
+                 id: int = None):
+        super().__init__(id)
         self.logLevel = logLevel
         self.logType = logType
         self.message = message
         self.createdDateTime = createdDateTime
+
+    @staticmethod
+    def get_column_name_and_sql_type_dict_for_table():
+        return {
+            'id': 'INTEGER PRIMARY KEY',
+            'message': 'TEXT',
+            'logLevel': 'TEXT',
+            'logType': 'TEXT',
+            'createdDateTime': 'TEXT'
+        }
+
+    @staticmethod
+    def get_create_table_sql_query() -> str:
+        return SqlQueryGenerator.get_create_table_query(SystemLog.table_name,
+                                                        SystemLog.get_column_name_and_sql_type_dict_for_table())

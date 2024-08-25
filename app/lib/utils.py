@@ -1,7 +1,7 @@
 import json
 import logging
 import os
-
+import datetime
 from app.lib.system_logger import SingletonSystemLogger
 
 
@@ -72,3 +72,7 @@ class Utils:
         if create_if_not_exist and not os.path.exists(path):
             os.makedirs(path)
         return path
+
+    @staticmethod
+    def get_current_date_time_str() -> str:
+        return datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")

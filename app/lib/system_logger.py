@@ -49,7 +49,7 @@ class SystemLogger:
         log_level_str = logging.getLevelName(level)
         class_name = frame.f_globals.get('__name__')
         function_name = frame.f_code.co_name
-        message = f"{current_date_time} {str.upper(log_level_str)} - {class_name}.{function_name}"
+        message = f"{current_date_time.strftime('%Y-%m-%d %H:%M:%S')} {str.upper(log_level_str)} - {class_name}.{function_name}"
         if log:
             message += f" ::: {log}"
 
