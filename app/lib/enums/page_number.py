@@ -1,0 +1,8 @@
+from enum import Enum
+
+
+class PageNumber(Enum):
+    HOME = 0
+    SEND_TO_CARGO_IDENTITY_NUMBER_INPUT = 1
+    SEND_TO_REJECT_IDENTITY_NUMBER_INPUT = 2
+    RECEIVE_PACKAGE_AUTHENTICATION = 3
