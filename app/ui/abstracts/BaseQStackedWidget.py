@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QStackedWidget
-from app.lib.enums.page_number import PageNumber
+from app.ui.enums.page_number import PageNumber
 
 
 class BaseQStackedWidget(QStackedWidget):

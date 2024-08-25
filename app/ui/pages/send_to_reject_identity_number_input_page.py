@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QVBoxLayout
 
 from app.lib.system_logger import SingletonSystemLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
-from app.lib.enums.page_number import PageNumber
+from app.ui.enums.page_number import PageNumber
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
 from app.ui.components.numeric_otp_inputs_component import NumericOTPInputsComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent

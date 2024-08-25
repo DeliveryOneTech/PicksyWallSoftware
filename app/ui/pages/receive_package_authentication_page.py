@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QHBoxLayout, QSpacerItem, QSizePolicy
-from app.lib.enums.page_number import PageNumber
+from app.ui.enums.page_number import PageNumber
 from app.lib.system_logger import SingletonSystemLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent

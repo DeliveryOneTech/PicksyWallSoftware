@@ -1,7 +1,7 @@
 from datetime import datetime
 from app.data.models.DbModel import DbModel
-from app.lib.enums.log_level import LogLevel
-from app.lib.enums.log_type import LogType
+from app.data.enums.log_level import LogLevel
+from app.data.enums.log_type import LogType
 
 
 class SystemLog(DbModel):

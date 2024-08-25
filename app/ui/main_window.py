@@ -1,12 +1,11 @@
-import app.ui.utils.resource
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.pages.home_page import HomePage
-from app.lib.enums.page_number import PageNumber
+from app.ui.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget
 from app.ui.pages.receive_package_authentication_page import ReceivePackageAuthenticationPage
 from app.ui.pages.send_to_cargo_identity_number_input_page import SendToCargoIdentityNumberInputPage
 from app.ui.pages.send_to_reject_identity_number_input_page import SendToRejectIdentityNumberInputPage
-
+from app.ui.utils import resource
 
 class MainWindow(QMainWindow):
     def __init__(self):

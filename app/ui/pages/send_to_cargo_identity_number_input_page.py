@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from app.lib.enums.page_number import PageNumber
+from app.ui.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QVBoxLayout
 
 from app.lib.system_logger import SingletonSystemLogger
