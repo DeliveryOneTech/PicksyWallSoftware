@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets
+from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
 from app.ui.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QVBoxLayout
 from app.lib.console_logger import SingletonConsoleLogger
@@ -12,6 +13,8 @@ from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
+        self.active_wizard_index = 1
+
         self.singleton_system_logger = SingletonConsoleLogger()
         self.singleton_system_logger.log()
 
@@ -34,6 +37,16 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         '''
         begin - content
         '''
+        self.wizard_component = WizardComponent(
+            "send_to_cargo_identity_number_input_step_",
+            [
+                WizardItemViewModel(1, "Kimlik No Doğrulama"),
+                WizardItemViewModel(2, "Müşteri Bilgileri"),
+            ])
+        v_box.addWidget(self.wizard_component)
+        self.wizard_component.emit_current_index_changed()
+        self.wizard_component.current_index_changed.connect(lambda index: self.on_change_wizard_index(index))
+
         # Spacing for content
         v_box.addSpacing(50)
 
@@ -64,6 +77,9 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
 
         main_layout.addLayout(v_box)
         self.setLayout(main_layout)
+
+    def on_change_wizard_index(self, index):
+        self.active_wizard_index = index
 
     def on_shown(self):
         self.otp_input_box.clear_inputs()
