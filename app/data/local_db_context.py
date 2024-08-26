@@ -23,7 +23,7 @@ class LocalDbContext:
 
         try:
             self.create_tables_if_not_exists()
-            singleton_system_logger.log("Tables created.")
+            singleton_system_logger.log("Created tables if not exists.")
         except sqlite3.Error as e:
             raise e
 
