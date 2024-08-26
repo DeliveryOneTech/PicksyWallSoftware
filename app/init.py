@@ -12,14 +12,11 @@ def run() -> int:
     Returns:
         int: The exit status code.
     """
-    db_logger = SingletonLogService()
-    logger = SingletonConsoleLogger()
-
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
 
-    logger.log("Application is started.")
-    db_logger.create_system_log("Application is started.")
+    SingletonConsoleLogger().log("Application is started.")
+    SingletonLogService().create_system_log("Application is started.")
 
     return sys.exit(app.exec())
