@@ -60,7 +60,6 @@ class Styles:
             text-align: center;
             text-decoration: none;
             font-size: 16px;
-            margin-left: 80px;
             border-radius: 10px;
             font: 16pt "MS Shell Dlg 2";            
         }

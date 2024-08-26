@@ -64,7 +64,10 @@ class HomePage(QWidget):
 
         # begin footer
         if footer:
-            footer.hide_back_button()
+            footer.on_click_service_button.connect(
+                lambda: self.stacked_widget.go_by_page_number(PageNumber.HOME,
+                                                              PageNumber.SERVICE_USER_AUTHENTICATION)
+            )
             v_box.addWidget(footer)
         # end footer
 
