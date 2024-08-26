@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication
 import sys
 from app.ui.main_window import MainWindow
-from app.lib.system_logger import SingletonSystemLogger
+from app.lib.console_logger import SingletonConsoleLogger
 from app.services.log_service import SingletonLogService
 
 
@@ -13,7 +13,7 @@ def run() -> int:
         int: The exit status code.
     """
     db_logger = SingletonLogService()
-    logger = SingletonSystemLogger()
+    logger = SingletonConsoleLogger()
 
     app = QApplication(sys.argv)
     window = MainWindow()

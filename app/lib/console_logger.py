@@ -3,7 +3,7 @@ from app.lib.console_printer import ConsolePrinter as Print
 import logging
 
 
-class SystemLogger:
+class ConsoleLogger:
     def __init__(self):
         self.__logger = logging.getLogger()
         self.__logger.setLevel(logging.DEBUG)
@@ -57,10 +57,10 @@ class SystemLogger:
         return message
 
 
-class SingletonSystemLogger(SystemLogger):
+class SingletonConsoleLogger(ConsoleLogger):
     __instance = None
 
     def __new__(cls):
-        if SingletonSystemLogger.__instance is None:
-            SingletonSystemLogger.__instance = SystemLogger()
-        return SingletonSystemLogger.__instance
+        if SingletonConsoleLogger.__instance is None:
+            SingletonConsoleLogger.__instance = ConsoleLogger()
+        return SingletonConsoleLogger.__instance

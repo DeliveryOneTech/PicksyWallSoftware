@@ -2,7 +2,7 @@ import logging
 import os.path
 import sqlite3
 from app.data.models.Log import Log
-from app.lib.system_logger import SingletonSystemLogger
+from app.lib.console_logger import SingletonConsoleLogger
 from app.data.abstracts.local_db_cursor import LocalDbCursor
 from app.data.abstracts.local_db_connection import LocalDbConnection
 
@@ -12,7 +12,7 @@ class LocalDbContext:
         db_name = 'local.db'
         db_path = os.path.join("./", db_name)
 
-        singleton_system_logger = SingletonSystemLogger()
+        singleton_system_logger = SingletonConsoleLogger()
 
         try:
             self.connection = LocalDbConnection(db_path, check_same_thread=False, timeout=10)
@@ -38,7 +38,7 @@ class LocalDbContext:
 
 class SingletonLocalDbContext:
     __instance = None
-    __singleton_local_db_context = SingletonSystemLogger()
+    __singleton_local_db_context = SingletonConsoleLogger()
 
     @staticmethod
     def getInstance():
