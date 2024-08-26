@@ -63,7 +63,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         otp_widget.setLayout(otp_widget_layout)
         # OTP Input
         self.otp_input_box = NumericOTPInputsComponent(11, "send_to_cargo_identity_number_input_")
-        self.otp_input_box.set_submit_function(lambda: print("custom submit method: ", self.otp_input_box.get_value()))
+        self.otp_input_box.set_submit_function(lambda: self.singleton_console_logger.log(self.otp_input_box.get_value()))
         otp_widget_layout.addWidget(self.otp_input_box)
         # Spacing for content
         otp_widget_layout.addSpacing(50)

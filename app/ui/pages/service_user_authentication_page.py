@@ -42,7 +42,7 @@ class ServiceUserAuthenticationPage(QWidget):
         self.password_input.setPlaceholderText("*" * 7)
         self.password_input.setFixedWidth(650)
         self.password_input.setAlignment(Qt.AlignHCenter)
-        self.password_input.returnPressed.connect(lambda: print("custom submit method: ", self.password_input.text()))
+        self.password_input.returnPressed.connect(lambda: self.singleton_console_logger.log(self.password_input.text()))
         h_box.addWidget(self.password_input)
         spacer2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         h_box.addItem(spacer2)

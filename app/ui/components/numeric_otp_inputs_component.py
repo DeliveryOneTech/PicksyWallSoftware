@@ -89,8 +89,6 @@ class NumericOTPInputsComponent(QtWidgets.QWidget):
         elif event.key() == Qt.Key_Return:
             if self.submit_function:
                 self.submit_function()
-            else:
-                print(self.get_value())
         elif len(current_input.text()) > 0:
             self.__focus_next_input(input_name)
             next_input_name = self.name_prefix + str(int(input_name.split("_")[-1]) + 1)

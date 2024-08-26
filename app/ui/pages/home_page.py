@@ -64,6 +64,7 @@ class HomePage(QWidget):
 
         # begin footer
         if footer:
+            footer.set_service_and_other_button_width(self.send_button.width())
             footer.on_click_service_button.connect(
                 lambda: self.stacked_widget.go_by_page_number(PageNumber.HOME,
                                                               PageNumber.SERVICE_USER_AUTHENTICATION)

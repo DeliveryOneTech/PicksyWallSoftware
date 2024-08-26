@@ -51,12 +51,12 @@ class Styles:
         """
 
     @staticmethod
-    def home_page_others_button():
+    def home_secondary_button():
         return """
         QPushButton {
             background-color: #BFBFBF;
             color: white;
-            padding: 15px 32px;
+            padding: 15px;
             text-align: center;
             text-decoration: none;
             font-size: 16px;

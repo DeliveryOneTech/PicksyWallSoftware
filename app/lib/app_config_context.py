@@ -1,5 +1,8 @@
+import logging
 import os
 import json
+
+from app.lib.console_logger import SingletonConsoleLogger
 from app.mutexs.app_config_context_mutex import SingletonAppConfigContextMutex
 
 
@@ -13,7 +16,7 @@ class AppConfigContext:
             with open("./appconfig.json") as f:
                 return json.load(f)
         except Exception as e:
-            print(e)
+            SingletonConsoleLogger().log(e, logging.ERROR)
             return None
         finally:
             self.app_config_context_mutex.unlock()
@@ -49,7 +52,7 @@ class AppConfigContext:
 
             return True, None
         except Exception as e:
-            print(e)
+            SingletonConsoleLogger().log(e, logging.ERROR)
             return False, str(e)
         finally:
             self.app_config_context_mutex.unlock()
@@ -76,7 +79,7 @@ class AppConfigContext:
 
             return True, None
         except Exception as e:
-            print(e)
+            SingletonConsoleLogger().log(e, logging.ERROR)
             return False, str(e)
         finally:
             self.app_config_context_mutex.unlock()

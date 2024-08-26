@@ -1,4 +1,6 @@
+import logging
 from PyQt5.QtCore import QMutex
+from app.lib.console_logger import SingletonConsoleLogger
 
 
 class AppConfigContextMutex:
@@ -31,4 +33,4 @@ class SingletonAppConfigContextMutex:
             else:
                 SingletonAppConfigContextMutex.__instance = AppConfigContextMutex()
         except Exception as e:
-            print(e.args)
+            SingletonConsoleLogger().log(e, logging.ERROR)

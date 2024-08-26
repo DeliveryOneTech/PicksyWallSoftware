@@ -44,13 +44,18 @@ class PicksyWallFooterComponent(QtWidgets.QWidget):
         self.picksy_wall_footer_service_button.setText("Servis")
         self.picksy_wall_footer_service_button.setMinimumHeight(64)
         self.picksy_wall_footer_service_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        self.picksy_wall_footer_service_button.setStyleSheet(Styles.home_page_others_button())
+        self.picksy_wall_footer_service_button.setStyleSheet(Styles.home_secondary_button())
 
         self.picksy_wall_footer_other_button.setText("Diğer")
         self.picksy_wall_footer_other_button.setMinimumHeight(64)
         self.picksy_wall_footer_other_button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
-        self.picksy_wall_footer_other_button.setStyleSheet(Styles.home_page_others_button())
+        self.picksy_wall_footer_other_button.setStyleSheet(Styles.home_secondary_button())
 
         self.picksy_wall_footer_brand_image_label.setPixmap(ui_utils.get_pixmap(":/logos/assets/gray-d1-logo.png"))
         self.picksy_wall_footer_brand_image_label.setScaledContents(True)
         self.picksy_wall_footer_brand_image_label.setFixedSize(500, 100)
+
+    def set_service_and_other_button_width(self, width):
+        width += 70
+        self.picksy_wall_footer_service_button.setFixedWidth(width)
+        self.picksy_wall_footer_other_button.setFixedWidth(width)
