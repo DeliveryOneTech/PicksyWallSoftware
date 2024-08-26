@@ -13,8 +13,8 @@ class HomePage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
-        self.singleton_system_logger = SingletonConsoleLogger()
-        self.singleton_system_logger.log()
+        self.singleton_console_logger = SingletonConsoleLogger()
+        self.singleton_console_logger.log()
 
         header = PicksyWallDateTimeHeaderComponent()
         footer = PicksyWallFooterComponent()

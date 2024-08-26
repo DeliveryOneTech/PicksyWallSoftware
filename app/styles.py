@@ -149,3 +149,25 @@ class Styles:
         }
         """
 
+    @staticmethod
+    def green_box():
+        return """
+        background-color: #4CAF50;
+        border: 1px solid gray;
+        border-radius: 20px;
+        padding: 10px;
+        color: white;
+        font: 14pt "MS Shell Dlg 2";
+        """
+
+    @staticmethod
+    def gray_box():
+        return """
+        background-color: #BFBFBF;
+        border: 1px solid #4CAF50;
+        border-radius: 20px;
+        padding: 10px;
+        color: white;
+        font: 14pt "MS Shell Dlg 2";
+        """
+

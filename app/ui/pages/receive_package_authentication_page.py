@@ -10,8 +10,8 @@ from app.ui.components.picksy_wall_title_header_component import PicksyWallTitle
 class ReceivePackageAuthenticationPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
-        self.singleton_system_logger = SingletonConsoleLogger()
-        self.singleton_system_logger.log()
+        self.singleton_console_logger = SingletonConsoleLogger()
+        self.singleton_console_logger.log()
 
         self.v_box = QVBoxLayout()
 
