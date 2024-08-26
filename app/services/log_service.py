@@ -1,3 +1,4 @@
+from datetime import datetime
 from app.data.enums.log_level import LogLevel
 from app.data.enums.log_type import LogType
 from app.data.local_db_context import SingletonLocalDbContext
@@ -10,30 +11,38 @@ class LogService:
     def __init__(self):
         self.__local_db_context = SingletonLocalDbContext.getInstance()
 
-    def get_system_logs(self):
+    def get_all_logs(self):
         query = SqlQueryGenerator.get_select_all_query(Log.table_name)
         self.__local_db_context.run_query(query)
         return self.__local_db_context.cursor.fetchall()
 
-    def get_system_log(self, system_log_id):
-        query, values = SqlQueryGenerator.get_select_query(Log.table_name, 'id', system_log_id)
+    def get_log(self, log_id):
+        query, values = SqlQueryGenerator.get_select_query(Log.table_name, 'id', log_id)
         self.__local_db_context.cursor.execute(query)
         return self.__local_db_context.cursor.fetchone()
 
-    def create_system_log(self, message, logLevel=LogLevel.INFO, logType=LogType.SYSTEM_LOG,
-                          createdDateTime=None) -> object:
+    def create_system_log(self, message, logLevel=LogLevel.INFO) -> object:
         """
         Creates a system log.
         :param message:
         :param logLevel:
-        :param logType:
-        :param createdDateTime:
         :return: -> lastrowid
         """
-        if createdDateTime is None:
-            createdDateTime = Utils.get_current_date_time_str()
-        system_log = Log(message, logLevel.value, logType.value, createdDateTime)
+        system_log = Log(message, logLevel.value, LogType.SYSTEM_LOG.value, datetime.now())
         query, values = SqlQueryGenerator.get_insert_query(Log.table_name, system_log.__dict__)
+        self.__local_db_context.cursor.execute(query, values)
+        self.__local_db_context.connection.commit()
+        return self.__local_db_context.cursor.lastrowid
+
+    def create_mqtt_log(self, message, logLevel=LogLevel.INFO) -> object:
+        """
+        Creates a mqtt log.
+        :param message:
+        :param logLevel:
+        :return: -> lastrowid
+        """
+        mqtt_log = Log(message, logLevel.value, LogType.MQTT_LOG.value, datetime.now())
+        query, values = SqlQueryGenerator.get_insert_query(Log.table_name, mqtt_log.__dict__)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
