@@ -1,5 +1,5 @@
 import sqlite3
-from app.data.mutexs.local_db_mutex import SingletonLocalDbConnectionMutex
+from app.mutexs.local_db_mutex import SingletonLocalDbConnectionMutex
 
 
 class LocalDbConnection(sqlite3.Connection):

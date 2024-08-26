@@ -1,7 +1,6 @@
 from PyQt5 import QtWidgets
 from app.ui.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QVBoxLayout
-
 from app.lib.system_logger import SingletonSystemLogger
 from app.ui.components.approve_with_checkbox_input_component import ApproveWithCheckboxInputComponent
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent

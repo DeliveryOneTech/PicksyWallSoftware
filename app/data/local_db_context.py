@@ -1,9 +1,10 @@
 import logging
 import os.path
 import sqlite3
-from app.data.models.SystemLog import SystemLog
-from app.data.mutexs.local_db_connection import LocalDbConnection
+from app.data.models.Log import Log
 from app.lib.system_logger import SingletonSystemLogger
+from app.data.abstracts.local_db_cursor import LocalDbCursor
+from app.data.abstracts.local_db_connection import LocalDbConnection
 
 
 class LocalDbContext:
@@ -15,7 +16,7 @@ class LocalDbContext:
 
         try:
             self.connection = LocalDbConnection(db_path, check_same_thread=False, timeout=10)
-            self.cursor = self.connection.cursor()
+            self.cursor = LocalDbCursor(self.connection)
             singleton_system_logger.log("Connection & Cursor created.")
         except sqlite3.Error as e:
             raise e
@@ -27,7 +28,7 @@ class LocalDbContext:
             raise e
 
     def create_tables_if_not_exists(self):
-        self.cursor.execute(SystemLog.get_create_table_sql_query())
+        self.cursor.execute(Log.get_create_table_sql_query())
         self.connection.commit()
 
     def run_query(self, query):

@@ -1,5 +1,5 @@
 import sqlite3
-from app.data.mutexs.local_db_mutex import SingletonLocalDbCursorMutex
+from app.mutexs.local_db_mutex import SingletonLocalDbCursorMutex
 
 
 class LocalDbCursor(sqlite3.Cursor):

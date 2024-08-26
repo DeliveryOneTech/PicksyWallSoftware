@@ -3,8 +3,8 @@ from app.data.models.DbModel import DbModel
 from app.data.utils.sql_query_generator import SqlQueryGenerator
 
 
-class SystemLog(DbModel):
-    table_name = 'SystemLog'
+class Log(DbModel):
+    table_name = 'Logs'
 
     def __init__(self,
                  message: str,
@@ -30,5 +30,5 @@ class SystemLog(DbModel):
 
     @staticmethod
     def get_create_table_sql_query() -> str:
-        return SqlQueryGenerator.get_create_table_query(SystemLog.table_name,
-                                                        SystemLog.get_column_name_and_sql_type_dict_for_table())
+        return SqlQueryGenerator.get_create_table_query(Log.table_name,
+                                                        Log.get_column_name_and_sql_type_dict_for_table())
