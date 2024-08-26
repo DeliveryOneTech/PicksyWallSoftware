@@ -39,10 +39,10 @@ class LogService:
         return self.__local_db_context.cursor.lastrowid
 
 
-class SingletonSystemLogService(LogService):
+class SingletonLogService(LogService):
     __instance = None
 
     def __new__(cls):
-        if SingletonSystemLogService.__instance is None:
-            SingletonSystemLogService.__instance = LogService()
-        return SingletonSystemLogService.__instance
+        if SingletonLogService.__instance is None:
+            SingletonLogService.__instance = LogService()
+        return SingletonLogService.__instance
