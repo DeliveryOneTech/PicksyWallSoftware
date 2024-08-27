@@ -4,6 +4,7 @@ import json
 from app.lib.utils import Utils
 from app.data.enums.log_level import LogLevel
 from app.services.log_service import LogService
+from app.lib.console_logger import SingletonConsoleLogger
 
 data = Utils.read_all_app_config()["IoTConfiguration"]
 ENDPOINT = data['Endpoint']
@@ -22,8 +23,10 @@ class MqttContext:
         self.client_bootstrap = io.ClientBootstrap(self.event_loop_group, self.host_resolver)
         self.mqtt_connection = self.create_connection()
         self.mqtt_connection.on_publish = self.on_publish
+        
+        self.console_logger = SingletonConsoleLogger()
 
-        print("Connecting to {} with client ID '{}'...".format(
+        self.console_logger.log("Connecting to {} with client ID '{}'...".format(
             ENDPOINT, CLIENT_ID))
 
         # Make the connect() call
@@ -32,7 +35,7 @@ class MqttContext:
         self.connect_future.result()
 
         self.logService.create_mqtt_log(LogLevel.INFO, "MQTT baglantisi baslatildi")
-        print("Mqtt Connected!")
+        self.console_logger.log("Mqtt Connected!")
 
     def create_connection(self):
         try:
@@ -48,7 +51,7 @@ class MqttContext:
                 clean_session=False,
                 keep_alive_secs=6)
         except Exception as e:
-            print(e)
+            self.console_logger.log(e)
             self.logService.create_mqtt_log(LogLevel.ERROR, f"MQTT baglantisi kurulamadi :: {e}")
 
     def reconnect(self):
@@ -60,9 +63,9 @@ class MqttContext:
             self.connect_future = self.mqtt_connection.connect()
             self.connect_future.result()
             self.logService.create_mqtt_log(LogLevel.INFO, "MQTT baglantisi yeniden kuruldu")
-            print("Mqtt Reconnected!")
+            self.console_logger.log("Mqtt Reconnected!")
         except Exception as e:
-            print(e)
+            self.console_logger.log(e)
             self.logService.create_mqtt_log(LogLevel.ERROR, f"MQTT baglantisi yeniden kurulamadi :: {e}")
 
     def publish(self, topic, message):
@@ -73,12 +76,12 @@ class MqttContext:
                 qos=mqtt.QoS.AT_LEAST_ONCE)
             self.on_publish(topic, message)
         except Exception as e:
-            print("Error : {}".format(e))
+            self.console_logger.log("Error : {}".format(e))
             self.logService.create_mqtt_log(LogLevel.ERROR, f"MQTT publish islemi basarisiz :: {e}")
             return
 
     def on_publish(self, topic, payload, **kwargs):
-        print("Published message from topic '{}': {}".format(topic, payload))
+        self.console_logger.log("Published message from topic '{}': {}".format(topic, payload))
         self.logService.create_mqtt_log(LogLevel.INFO,
                                         "Published Message To Topic : {} , Payload : {}".format(topic, payload))
 
@@ -87,7 +90,7 @@ class MqttContext:
         if self.isSubscribed(topic) is False:
             self.subscribedTopics.append(topic)
             # subscribe to topic
-            print("Subscribing to topic '{}'...".format(topic))
+            self.console_logger.log("Subscribing to topic '{}'...".format(topic))
             subscribe_future, packet_id = self.mqtt_connection.subscribe(
                 topic=topic,
                 qos=mqtt.QoS.AT_LEAST_ONCE,
@@ -103,28 +106,28 @@ class MqttContext:
 
     def on_message_received(self, topic, payload, **kwargs):
         # called when a message is received
-        # print but background color is yellow
-        print("\033[33mReceived message from topic '{}': {}".format(topic, payload))
+        # self.console_logger.log but background color is yellow
+        self.console_logger.log("\033[33mReceived message from topic '{}': {}".format(topic, payload))
 
     def disconnect(self):
         disconnect_future = self.mqtt_connection.disconnect()
         disconnect_future.result()
         self.subscribedTopics = []
         self.logService.create_mqtt_log(LogLevel.INFO, "MQTT baglantisi kapatildi")
-        print("Mqtt Disconnected!")
+        self.console_logger.log("Mqtt Disconnected!")
 
     def unSubscribe(self, topic):
         # if topic in subscribedTopics, unsubscribe it
         if self.isSubscribed(topic) is True:
             self.subscribedTopics.remove(topic)
-            print("Unsubscribing from topic '{}'...".format(topic))
+            self.console_logger.log("Unsubscribing from topic '{}'...".format(topic))
             unsubscribe_future, packet_id = self.mqtt_connection.unsubscribe(
                 topic=topic)
             unsubscribe_result = unsubscribe_future.result()
-            print("Unsubscribed: {}".format(unsubscribe_result))
+            self.console_logger.log("Unsubscribed: {}".format(unsubscribe_result))
             self.logService.create_mqtt_log(LogLevel.INFO, "Aboneligi sonlanan topic : {}".format(topic))
         else:
-            print("Topic '{}' is not subscribed".format(topic))
+            self.console_logger.log("Topic '{}' is not subscribed".format(topic))
 
     def un_subscribe_all(self, topics):
         unsubscribe_futures = []
@@ -147,7 +150,7 @@ class SingletonMqttContext:
                 SingletonMqttContext()
             return SingletonMqttContext.__instance
         except Exception as e:
-            print(e)
+            self.console_logger.log(e)
 
     def __init__(self):
         try:
@@ -156,4 +159,4 @@ class SingletonMqttContext:
             else:
                 SingletonMqttContext.__instance = MqttContext()
         except Exception as e:
-            print(e)
+            self.console_logger.log(e)
