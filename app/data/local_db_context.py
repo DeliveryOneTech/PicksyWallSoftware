@@ -1,7 +1,7 @@
 import logging
 import os.path
 import sqlite3
-from app.data.models.Log import Log
+from app.data.models.log import Log
 from app.lib.console_logger import SingletonConsoleLogger
 from app.data.abstracts.local_db_cursor import LocalDbCursor
 from app.data.abstracts.local_db_connection import LocalDbConnection

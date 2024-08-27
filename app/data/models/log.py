@@ -1,5 +1,5 @@
 from datetime import datetime
-from app.data.models.DbModel import DbModel
+from app.data.abstracts.db_model import DbModel
 from app.data.utils.sql_query_generator import SqlQueryGenerator
 
 
