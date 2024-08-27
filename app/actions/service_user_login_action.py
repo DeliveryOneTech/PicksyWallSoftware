@@ -1,6 +1,6 @@
 from PyQt5.QtCore import pyqtSignal
 from app.actions.abstracts.d1_action import D1Action
-from app.lib.d1_result_model import D1Result
+from app.lib.d1_result import D1Result
 
 
 class ServiceUserLoginAction(D1Action):
