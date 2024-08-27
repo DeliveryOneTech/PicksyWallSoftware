@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QObject, pyqtSignal
 from abc import abstractmethod
-from app.actions.models.action_result_model import ActionResultModel
+from app.lib.d1_result_model import D1ResultModel
 
 
 class D1Action(QObject):
@@ -13,7 +13,7 @@ class D1Action(QObject):
 
     @property
     @abstractmethod
-    def result_signal(self) -> pyqtSignal(ActionResultModel): pass
+    def result_signal(self) -> pyqtSignal(D1ResultModel): pass
 
     @abstractmethod
     def execute(self, *args, **kwargs): pass
