@@ -1,4 +1,4 @@
-class D1ResultModel:
+class D1Result:
     success: bool = False
     message: str = None
     data: object = None
