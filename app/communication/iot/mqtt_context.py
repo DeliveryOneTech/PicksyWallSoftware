@@ -1,3 +1,5 @@
+import logging
+
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 import json
@@ -23,7 +25,7 @@ class MqttContext:
         self.client_bootstrap = io.ClientBootstrap(self.event_loop_group, self.host_resolver)
         self.mqtt_connection = self.create_connection()
         self.mqtt_connection.on_publish = self.on_publish
-        
+
         self.console_logger = SingletonConsoleLogger()
 
         self.console_logger.log("Connecting to {} with client ID '{}'...".format(
@@ -51,7 +53,7 @@ class MqttContext:
                 clean_session=False,
                 keep_alive_secs=6)
         except Exception as e:
-            self.console_logger.log(e)
+            self.console_logger.log(e, logging.ERROR)
             self.logService.create_mqtt_log(LogLevel.ERROR, f"MQTT baglantisi kurulamadi :: {e}")
 
     def reconnect(self):
@@ -65,7 +67,7 @@ class MqttContext:
             self.logService.create_mqtt_log(LogLevel.INFO, "MQTT baglantisi yeniden kuruldu")
             self.console_logger.log("Mqtt Reconnected!")
         except Exception as e:
-            self.console_logger.log(e)
+            self.console_logger.log(e, logging.ERROR)
             self.logService.create_mqtt_log(LogLevel.ERROR, f"MQTT baglantisi yeniden kurulamadi :: {e}")
 
     def publish(self, topic, message):
@@ -76,7 +78,7 @@ class MqttContext:
                 qos=mqtt.QoS.AT_LEAST_ONCE)
             self.on_publish(topic, message)
         except Exception as e:
-            self.console_logger.log("Error : {}".format(e))
+            self.console_logger.log("Error : {}".format(e), logging.ERROR)
             self.logService.create_mqtt_log(LogLevel.ERROR, f"MQTT publish islemi basarisiz :: {e}")
             return
 
@@ -150,7 +152,7 @@ class SingletonMqttContext:
                 SingletonMqttContext()
             return SingletonMqttContext.__instance
         except Exception as e:
-            self.console_logger.log(e)
+            SingletonConsoleLogger().log(e, logging.ERROR)
 
     def __init__(self):
         try:
@@ -159,4 +161,4 @@ class SingletonMqttContext:
             else:
                 SingletonMqttContext.__instance = MqttContext()
         except Exception as e:
-            self.console_logger.log(e)
+            SingletonConsoleLogger().log(e, logging.ERROR)
