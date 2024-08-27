@@ -1,5 +1,4 @@
 import logging
-
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 import json
