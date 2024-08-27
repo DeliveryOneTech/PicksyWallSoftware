@@ -1,14 +1,15 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QIntValidator
 from app.styles import Styles
 
 
 class NumericOTPInputsComponent(QtWidgets.QWidget):
+    submit_button_clicked = pyqtSignal()
+
     def __init__(self, otp_length: int, name_prefix: str = "otp_input_"):
         super().__init__()
         self.name_prefix = name_prefix
-        self.submit_function = None
 
         h_otp_input_box = QtWidgets.QHBoxLayout()
         h_otp_input_box.setSpacing(15)
@@ -87,8 +88,7 @@ class NumericOTPInputsComponent(QtWidgets.QWidget):
                 previous_input.setText("")
                 previous_input.setFocus()
         elif event.key() == Qt.Key_Return:
-            if self.submit_function:
-                self.submit_function()
+            self.submit_button_clicked.emit()
         elif len(current_input.text()) > 0:
             self.__focus_next_input(input_name)
             next_input_name = self.name_prefix + str(int(input_name.split("_")[-1]) + 1)

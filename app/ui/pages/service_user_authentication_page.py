@@ -15,14 +15,14 @@ class ServiceUserAuthenticationPage(QWidget):
 
         self.v_box = QVBoxLayout()
 
-        header = PicksyWallTitleHeaderComponent(
-            back_button_on_click_handler=lambda: stacked_widget.go_by_page_number(
-                PageNumber.RECEIVE_PACKAGE_AUTHENTICATION, PageNumber.HOME)
-        )
+        header = PicksyWallTitleHeaderComponent()
         footer = None
 
         # Header
         if header:
+            header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
+                PageNumber.SERVICE_USER_AUTHENTICATION, PageNumber.HOME
+            ))
             header.set_title("Servis Personeli Şifresini Giriniz.")
             self.v_box.addWidget(header)
 

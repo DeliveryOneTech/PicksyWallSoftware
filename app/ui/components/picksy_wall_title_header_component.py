@@ -5,10 +5,11 @@ from app.styles import Styles
 
 
 class PicksyWallTitleHeaderComponent(QtWidgets.QWidget):
-    def __init__(self, back_button_on_click_handler):
+    back_button_clicked = QtCore.pyqtSignal()
+
+    def __init__(self):
         super().__init__()
         self.setupUi(self)
-        self.back_button_on_click_handler = back_button_on_click_handler
 
     def setupUi(self, picksy_wall_title_header):
         picksy_wall_title_header.setObjectName("picksy_wall_title_header")
@@ -35,7 +36,7 @@ class PicksyWallTitleHeaderComponent(QtWidgets.QWidget):
 
         self.setContentsMargins(0, 0, 0, 0)
 
-        self.picksy_wall_header_back_button.mousePressEvent = lambda event: self.back_button_on_click_handler()
+        self.picksy_wall_header_back_button.mousePressEvent = lambda event: self.back_button_clicked.emit()
 
         self.retranslateUi()
 

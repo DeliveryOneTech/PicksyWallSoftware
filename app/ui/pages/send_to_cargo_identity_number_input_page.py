@@ -29,14 +29,14 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         main_layout = QVBoxLayout(self)
         v_box = QVBoxLayout()
 
-        self.header = PicksyWallTitleHeaderComponent(
-            back_button_on_click_handler=lambda: self.stacked_widget.go_by_page_number(
-                PageNumber.SEND_TO_CARGO_IDENTITY_NUMBER_INPUT, PageNumber.HOME)
-        )
+        self.header = PicksyWallTitleHeaderComponent()
         footer = None
 
         # Header
         if self.header:
+            self.header.back_button_clicked.connect(lambda: self.stacked_widget.go_by_page_number(
+                PageNumber.SEND_TO_CARGO_IDENTITY_NUMBER_INPUT, PageNumber.HOME
+            ))
             self.header.set_title(self.step_1_title)
             v_box.addWidget(self.header)
 
@@ -63,7 +63,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         otp_widget.setLayout(otp_widget_layout)
         # OTP Input
         self.otp_input_box = NumericOTPInputsComponent(11, "send_to_cargo_identity_number_input_")
-        self.otp_input_box.set_submit_function(lambda: self.singleton_console_logger.log(self.otp_input_box.get_value()))
+        self.otp_input_box.submit_button_clicked.connect(lambda: self.singleton_console_logger.log(self.otp_input_box.get_value()))
         otp_widget_layout.addWidget(self.otp_input_box)
         # Spacing for content
         otp_widget_layout.addSpacing(50)
