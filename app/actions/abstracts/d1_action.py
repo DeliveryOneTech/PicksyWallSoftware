@@ -13,10 +13,14 @@ class D1Action(QObject):
 
     @property
     @abstractmethod
+    def is_thread_executed(self) -> bool: pass
+
+    @property
+    @abstractmethod
     def result_signal(self) -> pyqtSignal(D1Result): pass
 
     @abstractmethod
     def execute(self, *args, **kwargs): pass
 
-    @abstractmethod
-    def run_in_thread(self, *args, **kwargs): pass
+    # @abstractmethod
+    # def run_in_thread(self, *args, **kwargs): pass
