@@ -1,5 +1,5 @@
 from PyQt5.QtCore import QThread
-from app.actions.abstracts.d1_action import D1Action
+from app.workers.abstracts.d1_action import D1Action
 from app.lib.console_logger import SingletonConsoleLogger
 from enum import Enum
 

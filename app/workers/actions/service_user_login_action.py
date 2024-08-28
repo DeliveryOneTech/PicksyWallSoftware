@@ -1,6 +1,6 @@
 from PyQt5.QtCore import pyqtSignal
-from app.actions.abstracts.d1_action import D1Action
-from app.actions.thread_manager import ThreadName
+from app.workers.abstracts.d1_action import D1Action
+from app.workers.thread_manager import ThreadName
 from app.lib.d1_result import D1Result
 
 

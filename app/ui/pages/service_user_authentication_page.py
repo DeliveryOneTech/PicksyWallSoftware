@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QHBoxLayout, QSpacerItem, QSizePolicy
-from app.actions.service_user_login_action import ServiceUserLoginAction
+from app.workers.actions.service_user_login_action import ServiceUserLoginAction
 from app.ui.enums.page_number import PageNumber
 from app.lib.console_logger import SingletonConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
