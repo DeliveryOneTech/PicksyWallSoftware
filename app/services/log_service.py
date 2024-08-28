@@ -46,6 +46,19 @@ class LogService:
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
 
+    def create_ui_log(self, message, logLevel=LogLevel.INFO) -> object:
+        """
+        Creates a ui log.
+        :param message:
+        :param logLevel:
+        :return: -> lastrowid
+        """
+        ui_log = Log(message, logLevel.value, LogType.UI_LOG.value, datetime.now())
+        query, values = SqlQueryGenerator.get_insert_query(Log.table_name, ui_log.__dict__)
+        self.__local_db_context.cursor.execute(query, values)
+        self.__local_db_context.connection.commit()
+        return self.__local_db_context.cursor.lastrowid
+
 
 class SingletonLogService(LogService):
     __instance = None
