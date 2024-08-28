@@ -6,7 +6,7 @@ from app.lib.console_logger import SingletonConsoleLogger
 
 class InitSubscribers:
     def __init__(self):
-        self.mqtt_client = SingletonMqttContext.getInstance()
+        self.mqtt_client = SingletonMqttContext()
         self.console_logger = SingletonConsoleLogger()
 
         device_id = Utils.get_value_from_app_config('DeviceId')
