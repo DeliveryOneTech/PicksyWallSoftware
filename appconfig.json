@@ -1,4 +1,12 @@
 {
-    "ApplicationName": "PicksyWall Software",
-    "Version": "1.0.0"
+  "ApplicationName": "PicksyWall Software",
+  "Version": "1.0.0",
+  "DeviceId": 1,
+  "IoTConfiguration": {
+    "Endpoint": "",
+    "ClientId": "",
+    "PathToCertificate": "",
+    "PathToPrivateKey": "",
+    "PathToAmazonRootCA": ""
+  }
 }
