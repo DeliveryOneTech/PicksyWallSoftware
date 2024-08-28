@@ -139,23 +139,10 @@ class MqttContext:
         self.subscribedTopics = []
 
 
-class SingletonMqttContext:
+class SingletonMqttContext(MqttContext):
     __instance = None
 
-    @staticmethod
-    def getInstance():
-        try:
-            if SingletonMqttContext.__instance is None:
-                SingletonMqttContext()
-            return SingletonMqttContext.__instance
-        except Exception as e:
-            SingletonConsoleLogger().log(e, logging.ERROR)
-
-    def __init__(self):
-        try:
-            if SingletonMqttContext.__instance is not None:
-                raise Exception("This class is a singleton!")
-            else:
-                SingletonMqttContext.__instance = MqttContext()
-        except Exception as e:
-            SingletonConsoleLogger().log(e, logging.ERROR)
+    def __new__(cls):
+        if SingletonMqttContext.__instance is None:
+            SingletonMqttContext.__instance = MqttContext()
+        return SingletonMqttContext.__instance
