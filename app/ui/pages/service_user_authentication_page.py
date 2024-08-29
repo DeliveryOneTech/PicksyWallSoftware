@@ -1,12 +1,10 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QHBoxLayout, QSpacerItem, QSizePolicy
-from app.workers.actions.service_user_login_action import ServiceUserLoginAction
 from app.ui.enums.page_number import PageNumber
 from app.lib.console_logger import SingletonConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent
-from app.ui.utils.ui_utils import lock_ui, unlock_ui
 
 
 class ServiceUserAuthenticationPage(QWidget):
@@ -28,13 +26,6 @@ class ServiceUserAuthenticationPage(QWidget):
             self.header.set_title("Servis Personeli Şifresini Giriniz.")
             self.v_box.addWidget(self.header)
 
-        login_action = ServiceUserLoginAction()
-        login_action.result_signal.connect(lambda result: (
-            stacked_widget.go_by_page_number(PageNumber.SERVICE_USER_AUTHENTICATION, PageNumber.HOME) if result.success
-            else None
-        ))
-        login_action.is_loading_signal.connect(lambda is_loading: lock_ui(self) if is_loading else unlock_ui(self))
-
         '''
         begin - content
         '''
@@ -51,7 +42,7 @@ class ServiceUserAuthenticationPage(QWidget):
         self.password_input.setPlaceholderText("*" * 7)
         self.password_input.setFixedWidth(650)
         self.password_input.setAlignment(Qt.AlignHCenter)
-        self.password_input.returnPressed.connect(lambda: login_action.run_in_thread(self.password_input.text()))
+        self.password_input.returnPressed.connect(lambda: self.singleton_console_logger.log(self.password_input.text()))
         h_box.addWidget(self.password_input)
         spacer2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         h_box.addItem(spacer2)
