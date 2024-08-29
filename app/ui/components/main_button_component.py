@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QVBoxLayout, QLabel, QFrame, QDialog, QGraphicsDropS
 from PyQt5.QtGui import QPixmap, QFont
 from PyQt5.QtCore import Qt, QTimer
 from app.styles import Styles
+from app.ui.components.ballon_dialog_component import BalloonDialog
 
 
 class MainButtonComponent(QFrame):
@@ -51,33 +52,13 @@ class MainButtonComponent(QFrame):
         self.setLayout(layout)
 
     def show_dialog(self):
-        dialog = QDialog()
-        dialog.setWindowTitle("Info")
-        dialog.setWindowFlag(Qt.FramelessWindowHint)
-        dialog.setStyleSheet("""
-            background-color: white;
-            QLabel {
-                padding: 5px;
-                text-align: center;
-            }
-        """)
+        # Dialogu oluştur ve göster
+        dialog = BalloonDialog(self.tooltip)
 
-        # butonun üstüne tam oturması
+        # Pozisyon hesaplama
         x_coord = self.mapToGlobal(self.rect().topLeft()).x()
         y_coord = self.mapToGlobal(self.rect().topLeft()).y()
-        dialog.move(x_coord + 20, y_coord)
-        btn_width = self.width() - 40
-        dialog.setFixedSize(btn_width, 100)
+        dialog_width = self.width() - 40
+        dialog.setFixedSize(dialog_width, 150)
 
-        label = QLabel(self.tooltip)
-        font = label.font()
-        font.setPointSize(12)
-        label.setFont(font)
-        label.setWordWrap(True)
-        dialog_layout = QVBoxLayout()
-        dialog_layout.addWidget(label)
-        dialog.setLayout(dialog_layout)
-
-        dialog.show()
-        QTimer.singleShot(5000, dialog.close)
-        dialog.exec_()
+        dialog.show_with_position(x_coord + 20, y_coord + 80)
