@@ -7,11 +7,17 @@ from app.lib.console_logger import SingletonConsoleLogger
 from app.services.log_service import SingletonLogService
 
 
-def on_close_app():
+def __on_close_app():
     SingletonInitSubscribers().unsubscribe_all()
     SingletonMqttContext().disconnect()
     SingletonConsoleLogger().log("Application is closing.")
     SingletonLogService().create_system_log("Application is closing.")
+
+
+def __on_start_app():
+    SingletonInitSubscribers()
+    SingletonConsoleLogger().log("Application is started.")
+    SingletonLogService().create_system_log("Application is started.")
 
 
 def run() -> int:
@@ -25,9 +31,7 @@ def run() -> int:
     window = MainWindow()
     window.show()
 
-    SingletonInitSubscribers()
-    SingletonConsoleLogger().log("Application is started.")
-    SingletonLogService().create_system_log("Application is started.")
+    __on_start_app()
 
-    app.aboutToQuit.connect(on_close_app)
+    app.aboutToQuit.connect(__on_close_app)
     return sys.exit(app.exec())

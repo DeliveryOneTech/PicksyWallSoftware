@@ -1,4 +1,5 @@
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
+from app.ui.pages.application_loading_page import ApplicationLoadingPage
 from app.ui.pages.home_page import HomePage
 from app.ui.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QMainWindow, QVBoxLayout, QWidget
@@ -7,6 +8,7 @@ from app.ui.pages.send_to_cargo_identity_number_input_page import SendToCargoIde
 from app.ui.pages.send_to_reject_identity_number_input_page import SendToRejectIdentityNumberInputPage
 from app.ui.pages.service_user_authentication_page import ServiceUserAuthenticationPage
 from app.ui.utils import resource
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -31,12 +33,15 @@ class MainWindow(QMainWindow):
             stacked_widget.addWidget(
                 ReceivePackageAuthenticationPage(stacked_widget)
             )
-
             stacked_widget.addWidget(
                 ServiceUserAuthenticationPage(stacked_widget)
             )
+            stacked_widget.addWidget(
+                ApplicationLoadingPage(stacked_widget)
+            )
 
-            stacked_widget.go_by_page_number(PageNumber.HOME, PageNumber.HOME)
+            stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING,
+                                             PageNumber.APPLICATION_LOADING)
 
         except Exception as e:
             print(e)

@@ -7,6 +7,7 @@ from enum import Enum
 class ThreadName(Enum):
     SERVICE_USER_LOGIN_ACTION = "ServiceUserLoginAction"
     CHECK_USER_IDENTITY_NUMBER_ACTION = "CheckUserIdentityNumberAction"
+    INIT_APPLICATION_ACTION = "InitApplicationAction"
 
 
 class ThreadManager:
