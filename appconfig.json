@@ -1,12 +1,12 @@
 {
   "ApplicationName": "PicksyWall Software",
   "Version": "1.0.0",
-  "DeviceId": 1,
+  "DeviceId": 1000,
   "IoTConfiguration": {
-    "Endpoint": "",
-    "ClientId": "",
-    "PathToCertificate": "",
-    "PathToPrivateKey": "",
-    "PathToAmazonRootCA": ""
+    "Endpoint": "a16uv0muh4cgj4-ats.iot.eu-central-1.amazonaws.com",
+    "ClientId": "ms_development_picksypro",
+    "PathToCertificate": "./environment_files/dev_iot_certificates/ms-certificate.pem.crt",
+    "PathToPrivateKey": "./environment_files/dev_iot_certificates/ms-private.pem.key",
+    "PathToAmazonRootCA": "./environment_files/dev_iot_certificates/AmazonRootCA1.pem"
   }
 }

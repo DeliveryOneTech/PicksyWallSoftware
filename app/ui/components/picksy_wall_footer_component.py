@@ -56,6 +56,5 @@ class PicksyWallFooterComponent(QtWidgets.QWidget):
         self.picksy_wall_footer_brand_image_label.setFixedSize(500, 100)
 
     def set_service_and_other_button_width(self, width):
-        width += 70
         self.picksy_wall_footer_service_button.setFixedWidth(width)
         self.picksy_wall_footer_other_button.setFixedWidth(width)
