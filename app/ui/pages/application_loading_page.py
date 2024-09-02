@@ -57,9 +57,9 @@ class ApplicationLoadingPage(QWidget):
         self.animation.setDuration(1000)  # Duration for one pulse cycle
 
         # Set animation keyframes: from fully visible to partially transparent and back
-        self.animation.setStartValue(1.0)  # Fully visible
+        self.animation.setStartValue(0.9)
         self.animation.setKeyValueAt(0.9, 0.4)
-        self.animation.setEndValue(0.6)
+        self.animation.setEndValue(0.9)
 
         # Set easing curve and infinite loop
         self.animation.setEasingCurve(QEasingCurve.InOutQuad)
