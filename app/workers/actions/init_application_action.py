@@ -16,6 +16,6 @@ class InitApplicationAction(D1Action):
     def execute(self):
         self.is_loading_signal.emit(True)
         import time
-        time.sleep(5)
+        time.sleep(10)
         self.result_signal.emit(D1Result(True, "Init process completed."))
         self.is_loading_signal.emit(False)
