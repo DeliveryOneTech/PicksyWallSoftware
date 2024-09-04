@@ -3,7 +3,7 @@ class Styles:
     def button():
         return """
         QPushButton {
-            background-color: #4CAF50;
+            background-color: #60892E;
             border: none;
             color: white;
             padding: 15px 32px;
@@ -68,7 +68,7 @@ class Styles:
     @staticmethod
     def btn_main():
         return """
-            background-color: #4CAF50;
+            background-color: #60892E;
             border-radius: 10px;
             padding: 10px;
             color: white;
@@ -106,7 +106,7 @@ class Styles:
     def btn_success():
         return """
         QPushButton {
-            background-color: #4CAF50;
+            background-color: #60892E;
             color: white;
             padding: 15px 32px;
             text-align: center;
@@ -151,7 +151,7 @@ class Styles:
     @staticmethod
     def green_box():
         return """
-        background-color: #4CAF50;
+        background-color: #60892E;
         border: 1px solid gray;
         border-radius: 20px;
         padding: 10px;
@@ -163,7 +163,7 @@ class Styles:
     def gray_box():
         return """
         background-color: #BFBFBF;
-        border: 1px solid #4CAF50;
+        border: 1px solid #60892E;
         border-radius: 20px;
         padding: 10px;
         color: white;
