@@ -15,7 +15,7 @@ class ApplicationLoadingPage(QWidget):
         self.singleton_console_logger = SingletonConsoleLogger()
         self.singleton_console_logger.log()
 
-        init_application_action, self.init_application_thread = InitApplicationAction().run_in_thread(True, True)
+        init_application_action, self.init_application_thread = InitApplicationAction().run_in_thread(True)
         init_application_action.result_signal.connect(self.handle_init_application_action_result_signal)
         thread_manager = SingletonThreadManager()
         thread_manager.add_thread_action_pair(init_application_action, self.init_application_thread)
