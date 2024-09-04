@@ -31,8 +31,7 @@ class ThreadManager:
             if action.is_thread_executed:
                 self.console_logger.log(thread)
                 if thread.isRunning():
-                    thread.quit()
-                    thread.wait()
+                    self.kill_thread(thread)
                 threads_to_kill.append(thread)
                 actions_to_kill.append(action)
 
@@ -42,12 +41,37 @@ class ThreadManager:
         for thread in threads_to_kill:
             self.__active_threads.remove(thread)
 
+    def remove_redundant_thread_action_pairs(self):
+        for action, thread in zip(self.__active_actions, self.__active_threads):
+            if not thread.isRunning():
+                self.__active_actions.remove(action)
+                self.__active_threads.remove(thread)
+
     def find_worker_and_thread_pair_by_thread_name(self, thread_name: str):
         for worker, thread in zip(self.__active_actions, self.__active_threads):
             if worker.thread_name == thread_name:
                 return worker, thread
 
         return None, None
+
+    def get_active_threads(self):
+        return self.__active_threads
+
+    def get_active_actions(self):
+        return self.__active_actions
+
+    @staticmethod
+    def kill_thread(thread: QThread):
+        thread.quit()
+        thread.wait()
+
+    @property
+    def active_threads_count(self):
+        return len(self.__active_threads)
+
+    @property
+    def active_actions_count(self):
+        return len(self.__active_actions)
 
 
 class SingletonThreadManager(ThreadManager):

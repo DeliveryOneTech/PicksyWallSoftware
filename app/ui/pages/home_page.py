@@ -1,3 +1,5 @@
+import logging
+
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QWidget, QGridLayout, QHBoxLayout, QVBoxLayout
 from app.lib.console_logger import SingletonConsoleLogger
@@ -68,6 +70,9 @@ class HomePage(QWidget):
             footer.on_click_service_button.connect(
                 lambda: self.stacked_widget.go_by_page_number(PageNumber.HOME,
                                                               PageNumber.SERVICE_USER_AUTHENTICATION)
+            )
+            footer.on_click_other_button.connect(
+                lambda: self.singleton_console_logger.log("Other button clicked but not implemented yet.", logging.WARNING)
             )
             v_box.addWidget(footer)
         # end footer

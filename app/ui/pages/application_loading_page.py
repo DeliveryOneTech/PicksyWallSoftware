@@ -5,7 +5,6 @@ from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.enums.page_number import PageNumber
 from app.ui.utils import ui_utils
 from app.workers.actions.init_application_action import InitApplicationAction
-from app.workers.thread_manager import SingletonThreadManager
 
 
 class ApplicationLoadingPage(QWidget):
@@ -15,10 +14,8 @@ class ApplicationLoadingPage(QWidget):
         self.singleton_console_logger = SingletonConsoleLogger()
         self.singleton_console_logger.log()
 
-        init_application_action, self.init_application_thread = InitApplicationAction().run_in_thread(True)
+        init_application_action, self.init_application_action_thread = InitApplicationAction().run_in_thread(True)
         init_application_action.result_signal.connect(self.handle_init_application_action_result_signal)
-        thread_manager = SingletonThreadManager()
-        thread_manager.add_thread_action_pair(init_application_action, self.init_application_thread)
 
         h_box = QHBoxLayout()
 
@@ -71,4 +68,4 @@ class ApplicationLoadingPage(QWidget):
             pass
 
     def on_shown(self):
-        self.init_application_thread.start()
+        self.init_application_action_thread.start()
