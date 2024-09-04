@@ -28,7 +28,7 @@ class ThreadManager:
         actions_to_kill = []
 
         for action, thread in zip(self.__active_actions, self.__active_threads):
-            if action.is_thread_executed_signal:
+            if action.is_thread_executed:
                 self.console_logger.log(thread)
                 if thread.isRunning():
                     thread.quit()

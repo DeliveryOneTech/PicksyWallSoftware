@@ -1,5 +1,5 @@
-from PyQt5.QtCore import QThread, Qt, QPropertyAnimation, QEasingCurve, QPoint, QRect, QSize
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLabel, QGraphicsOpacityEffect, QSpacerItem, QSizePolicy, QHBoxLayout
+from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
+from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsOpacityEffect, QSpacerItem, QSizePolicy, QHBoxLayout
 from app.lib.console_logger import SingletonConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.enums.page_number import PageNumber
