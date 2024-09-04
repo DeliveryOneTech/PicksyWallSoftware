@@ -1,7 +1,8 @@
 from PyQt5 import QtWidgets
+from app.styles import Styles
 from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
 from app.ui.enums.page_number import PageNumber
-from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QVBoxLayout, QGridLayout, QLabel, QLineEdit, QTextEdit, QWidget
 from app.lib.console_logger import SingletonConsoleLogger
 from app.ui.components.approve_with_checkbox_input_component import ApproveWithCheckboxInputComponent
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
@@ -16,6 +17,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         self.active_wizard_index = 1
         self.step_1_title = "T.C. Kimlik Numaranızı Giriniz"
         self.step_2_title = "Kimlik Bilgilerinizi Giriniz"
+        self.step_3_title = "Alıcı Bilgilerini Giriniz"
 
         self.singleton_console_logger = SingletonConsoleLogger()
         self.singleton_console_logger.log()
@@ -24,6 +26,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
 
         otp_widget = QtWidgets.QWidget()
         customer_info_widget = QtWidgets.QWidget()
+        receiver_info_widget = QtWidgets.QWidget()
         self.send_to_cargo_identity_number_inner_stack = QtWidgets.QStackedWidget()
 
         main_layout = QVBoxLayout(self)
@@ -48,6 +51,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
             [
                 WizardItemViewModel(1, "Kimlik No Doğrulama"),
                 WizardItemViewModel(2, "Müşteri Bilgileri"),
+                WizardItemViewModel(3, "Alıcı Bilgileri"),
             ])
         v_box.addWidget(self.wizard_component)
         self.wizard_component.emit_current_index_changed()
@@ -74,9 +78,13 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         self.approve_with_checkbox_component = ApproveWithCheckboxInputComponent()
         otp_widget_layout.addStretch()
         otp_widget_layout.addWidget(self.approve_with_checkbox_component)
-        # end - otp_widget
+        '''
+        end - otp_widget
+        '''
 
-        # begin - customer_info_widget
+        '''
+        begin - customer_info_widget
+        '''
         customer_info_widget_layout = QVBoxLayout()
         customer_info_widget.setLayout(customer_info_widget_layout)
         # Customer Info
@@ -84,8 +92,57 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         '''
         end - customer_info_widget
         '''
+
+        '''
+        begin - receiver_info_widget
+        '''
+        receiver_info_widget_layout = QVBoxLayout()
+        receiver_info_widget.setLayout(receiver_info_widget_layout)
+
+        receiver_info_widget_layout.addSpacing(50)
+
+        receiver_info_grid_layout = QGridLayout()
+        receiver_info_widget_layout.addLayout(receiver_info_grid_layout)
+
+        city_label = QLabel("İl:")
+        city_label.setStyleSheet(Styles.label())
+        district_label = QLabel("İlçe:")
+        district_label.setStyleSheet(Styles.label())
+        neighborhood_label = QLabel("Mahalle:")
+        neighborhood_label.setStyleSheet(Styles.label())
+        address_label = QLabel("Adres:")
+        address_label.setStyleSheet(Styles.label())
+
+        city_input = QLineEdit()
+        city_input.setStyleSheet(Styles.bg_gray_input(15))
+        district_input = QLineEdit()
+        district_input.setStyleSheet(Styles.bg_gray_input(15))
+        neighborhood_input = QLineEdit()
+        neighborhood_input.setStyleSheet(Styles.bg_gray_input(15))
+        address_input = QTextEdit()
+        address_input.setStyleSheet(Styles.bg_gray_input())
+
+        receiver_info_grid_layout.addWidget(city_label, 0, 0)
+        receiver_info_grid_layout.addWidget(city_input, 0, 1)
+        receiver_info_grid_layout.addWidget(district_label, 1, 0)
+        receiver_info_grid_layout.addWidget(district_input, 1, 1)
+        receiver_info_grid_layout.addWidget(neighborhood_label, 2, 0)
+        receiver_info_grid_layout.addWidget(neighborhood_input, 2, 1)
+
+        receiver_info_grid_layout.addWidget(address_label, 0, 2)
+        receiver_info_grid_layout.addWidget(address_input, 0, 3, 3, 1)
+
+        receiver_info_grid_layout.setSpacing(50)
+        receiver_info_grid_layout.setContentsMargins(10, 10, 10, 10)
+
+        receiver_info_widget_layout.addStretch()
+        '''
+        end - receiver_info_widget
+        '''
+
         self.send_to_cargo_identity_number_inner_stack.addWidget(otp_widget)
         self.send_to_cargo_identity_number_inner_stack.addWidget(customer_info_widget)
+        self.send_to_cargo_identity_number_inner_stack.addWidget(receiver_info_widget)
         v_box.addWidget(self.send_to_cargo_identity_number_inner_stack)
 
         '''
@@ -107,6 +164,8 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
             self.header.set_title(self.step_1_title)
         elif index == 1:
             self.header.set_title(self.step_2_title)
+        elif index == 2:
+            self.header.set_title(self.step_3_title)
 
     def on_shown(self):
         self.otp_input_box.clear_inputs()

@@ -34,17 +34,7 @@ class ApproveWithCheckboxInputComponent(QtWidgets.QWidget):
         self.condition_label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.condition_label.setWordWrap(True)
 
-        self.condition_checkbox.setStyleSheet("""
-            QCheckBox::indicator {
-                width: 40px;
-                height: 40px;
-            }
-            QCheckBox {
-                font-size: 16px;
-                padding: 5px;
-                margin-right: 10px;
-            }
-        """)
+        self.condition_checkbox.setStyleSheet(Styles.lg_checkbox())
         self.condition_checkbox.setChecked(False)
         self.condition_checkbox.stateChanged.connect(self.on_checkbox_state_changed)
 

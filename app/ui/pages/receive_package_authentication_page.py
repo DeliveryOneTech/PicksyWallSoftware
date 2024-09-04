@@ -1,5 +1,7 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QHBoxLayout, QSpacerItem, QSizePolicy
+
+from app.styles import Styles
 from app.ui.enums.page_number import PageNumber
 from app.lib.console_logger import SingletonConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
@@ -35,8 +37,7 @@ class ReceivePackageAuthenticationPage(QWidget):
         spacer1 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         h_box.addItem(spacer1)
         self.password_input = QLineEdit()
-        self.password_input.setStyleSheet(
-            "font-size: 25px; padding: 10px; border: 1px solid #000; border-radius: 5px; background-color: transparent;")
+        self.password_input.setStyleSheet(Styles.bordered_input())
         self.password_input.setAlignment(Qt.AlignCenter)
         self.password_input.setFixedHeight(65)
         self.password_input.setPlaceholderText("*" * 7)

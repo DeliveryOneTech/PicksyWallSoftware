@@ -170,3 +170,24 @@ class Styles:
         font: 14pt "MS Shell Dlg 2";
         """
 
+    @staticmethod
+    def lg_checkbox():
+        return """
+            QCheckBox::indicator {
+                width: 40px;
+                height: 40px;
+            }
+            QCheckBox {
+                font-size: 16px;
+                padding: 5px;
+                margin-right: 10px;
+            }
+        """
+
+    @staticmethod
+    def bordered_input():
+        return "font-size: 25px; padding: 10px; border: 1px solid #000; border-radius: 5px; background-color: transparent;"
+
+    @staticmethod
+    def bg_gray_input(padding=10):
+        return f"font-size:25px; padding: {padding}px; border: 1px solid transparent; border-radius: 5px; background-color: #D9D9D9;"
