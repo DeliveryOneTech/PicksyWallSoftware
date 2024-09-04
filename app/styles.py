@@ -79,7 +79,7 @@ class Styles:
     @staticmethod
     def btn_main_clicked():
         return """
-            background-color: #45a049;
+            background-color: #BFBFBF;
             border-radius: 10px;
             padding: 10px;
             color: white;

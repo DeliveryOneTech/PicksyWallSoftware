@@ -74,18 +74,18 @@ class HomePage(QWidget):
 
         main_layout.addLayout(v_box, 0, 0)
 
-        self.define_events()
+        self.__define_events()
 
-    def define_events(self):
-        self.send_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(PageNumber.HOME,
-                                                                                               PageNumber.SEND_TO_CARGO_IDENTITY_NUMBER_INPUT)
-        self.receive_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(PageNumber.HOME,
-                                                                                                  PageNumber.RECEIVE_PACKAGE_AUTHENTICATION)
+    def __define_events(self):
+        self.send_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
+            PageNumber.HOME,
+            PageNumber.SEND_TO_CARGO_IDENTITY_NUMBER_INPUT
+        )
+        self.receive_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
+            PageNumber.HOME,
+            PageNumber.RECEIVE_PACKAGE_AUTHENTICATION
+        )
         self.send_to_reject_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.HOME, PageNumber.SEND_TO_REJECT_IDENTITY_NUMBER_INPUT)
-
-    def on_click_main_button(self, button, func=None):
-        button.setStyleSheet(Styles.btn_main_clicked())
-        QTimer.singleShot(1000, lambda: button.setStyleSheet(Styles.btn_main()))
-        if func:
-            func()
+            PageNumber.HOME,
+            PageNumber.SEND_TO_REJECT_IDENTITY_NUMBER_INPUT
+        )

@@ -62,3 +62,22 @@ class MainButtonComponent(QFrame):
         dialog.setFixedSize(dialog_width, 150)
 
         dialog.show_with_position(x_coord + 20, y_coord + 80)
+
+    def remove_shadow_effect(self):
+        self.setGraphicsEffect(None)
+
+    def add_shadow_effect(self):
+        shadow = QGraphicsDropShadowEffect()
+        shadow.setBlurRadius(60)
+        shadow.setXOffset(15)
+        shadow.setYOffset(10)
+        shadow.setColor(Qt.gray)
+        self.setGraphicsEffect(shadow)
+
+    def enterEvent(self, event):
+        self.remove_shadow_effect()
+        self.setStyleSheet(Styles.btn_main_clicked())
+
+    def leaveEvent(self, event):
+        self.add_shadow_effect()
+        self.setStyleSheet(Styles.btn_main())
