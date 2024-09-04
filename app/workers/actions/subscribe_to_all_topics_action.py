@@ -23,7 +23,7 @@ class SubscribeToAllTopicsAction(D1Action):
         self.is_loading_signal.emit(False)
 
     @staticmethod
-    def run_in_thread(auto_start: bool = False) -> tuple[D1Action, QThread]:
+    def run_in_thread(auto_start: bool = False, is_thread_executed: bool = True) -> tuple[D1Action, QThread]:
         action = SubscribeToAllTopicsAction()
         thread = QThread()
         action.moveToThread(thread)
