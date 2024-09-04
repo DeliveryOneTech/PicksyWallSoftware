@@ -1,5 +1,5 @@
 import re
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtCore import pyqtSignal, QThread
 from app.lib.d1_result import D1Result
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadName
@@ -33,3 +33,13 @@ class CheckUserIdentityNumberAction(D1Action):
         self.result_signal.emit(D1Result(True, "Valid identity number."))
 
         self.is_loading_signal.emit(False)
+
+    @staticmethod
+    def run_in_thread(auto_start: bool = False) -> tuple[D1Action, QThread]:
+        action = CheckUserIdentityNumberAction()
+        thread = QThread()
+        action.moveToThread(thread)
+        thread.started.connect(action.execute)
+        if auto_start:
+            thread.start()
+        return action, thread

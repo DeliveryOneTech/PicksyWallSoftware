@@ -15,15 +15,11 @@ class ApplicationLoadingPage(QWidget):
         self.singleton_console_logger = SingletonConsoleLogger()
         self.singleton_console_logger.log()
 
-        self.init_application_action = InitApplicationAction()
-        self.init_application_action_thread = QThread()
-        self.init_application_action.moveToThread(self.init_application_action_thread)
-        self.init_application_action_thread.started.connect(self.init_application_action.execute)
-        self.init_application_action.is_loading_signal.connect(self.on_finish_init_application_action)
-        self.init_application_action.result_signal.connect(self.handle_init_application_action_result_signal)
-        self.init_application_action.is_thread_executed = True
+        init_application_action, self.init_application_thread = InitApplicationAction().run_in_thread(True)
+        init_application_action.result_signal.connect(self.handle_init_application_action_result_signal)
+        init_application_action.is_thread_executed = True
         thread_manager = SingletonThreadManager()
-        thread_manager.add_thread_action_pair(self.init_application_action, self.init_application_action_thread)
+        thread_manager.add_thread_action_pair(init_application_action, self.init_application_thread)
 
         h_box = QHBoxLayout()
 
@@ -69,10 +65,6 @@ class ApplicationLoadingPage(QWidget):
         self.animation.start()
 
     # LOGIC METHODS
-
-    def on_finish_init_application_action(self):
-        pass
-
     def handle_init_application_action_result_signal(self, result):
         if result.success:
             self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING, PageNumber.HOME)
@@ -80,4 +72,4 @@ class ApplicationLoadingPage(QWidget):
             pass
 
     def on_shown(self):
-        self.init_application_action_thread.start()
+        self.init_application_thread.start()

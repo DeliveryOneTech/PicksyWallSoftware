@@ -1,28 +1,30 @@
 from PyQt5.QtCore import pyqtSignal, QThread
+from app.communication.iot.init_subscribers import SingletonInitSubscribers
+from app.lib.d1_result import D1Result
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadName
-from app.lib.d1_result import D1Result
 
 
-class ServiceUserLoginAction(D1Action):
-    result_signal = pyqtSignal(D1Result)
+class SubscribeToAllTopicsAction(D1Action):
     is_loading_signal = pyqtSignal(bool)
     is_thread_executed = False
+    result_signal = pyqtSignal(D1Result)
 
-    def __init__(self, thread_name: str = ThreadName.SERVICE_USER_LOGIN_ACTION.value):
+    def __init__(self, thread_name: str = ThreadName.SUBSCRIBE_TO_ALL_TOPICS_ACTION.value):
         super().__init__()
         self.thread_name = thread_name
 
-    def execute(self, password: str):
+    def execute(self):
         self.is_loading_signal.emit(True)
-        import time
-        time.sleep(5)
-        self.result_signal.emit(D1Result(False, "Operation failed."))
+
+        SingletonInitSubscribers()
+
+        self.result_signal.emit(D1Result(True, "Subscribe process completed."))
         self.is_loading_signal.emit(False)
 
     @staticmethod
     def run_in_thread(auto_start: bool = False) -> tuple[D1Action, QThread]:
-        action = ServiceUserLoginAction()
+        action = SubscribeToAllTopicsAction()
         thread = QThread()
         action.moveToThread(thread)
         thread.started.connect(action.execute)

@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtCore import QObject, pyqtSignal, QThread
 from abc import abstractmethod
 from app.lib.d1_result import D1Result
 
@@ -22,5 +22,10 @@ class D1Action(QObject):
     @abstractmethod
     def execute(self, *args, **kwargs): pass
 
-    # @abstractmethod
-    # def run_in_thread(self, *args, **kwargs): pass
+    @staticmethod
+    @abstractmethod
+    def run_in_thread(auto_start: bool = False) -> tuple[QObject, QThread]: pass
+
+    @is_thread_executed.setter
+    def is_thread_executed(self, value):
+        self.is_thread_executed = value
