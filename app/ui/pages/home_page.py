@@ -1,9 +1,6 @@
 import logging
-
-from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QWidget, QGridLayout, QHBoxLayout, QVBoxLayout
 from app.lib.console_logger import SingletonConsoleLogger
-from app.styles import Styles
 from app.ui.components.main_button_component import MainButtonComponent
 from app.ui.components.picksy_wall_date_time_header_component import PicksyWallDateTimeHeaderComponent
 from app.ui.components.picksy_wall_footer_component import PicksyWallFooterComponent
