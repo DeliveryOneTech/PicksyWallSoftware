@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 from app.styles import Styles
+from app.ui.components.keyboard_component import KeyboardComponent
 from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
 from app.ui.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QVBoxLayout, QGridLayout, QLabel, QLineEdit, QTextEdit
@@ -67,7 +68,8 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         otp_widget.setLayout(otp_widget_layout)
         # OTP Input
         self.otp_input_box = NumericOTPInputsComponent(11, "send_to_cargo_identity_number_input_")
-        self.otp_input_box.submit_button_clicked.connect(lambda: self.singleton_console_logger.log(self.otp_input_box.get_value()))
+        self.otp_input_box.submit_button_clicked.connect(
+            lambda: self.singleton_console_logger.log(self.otp_input_box.get_value()))
         otp_widget_layout.addWidget(self.otp_input_box)
         # Spacing for content
         otp_widget_layout.addSpacing(50)
@@ -96,6 +98,8 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         '''
         begin - receiver_info_widget
         '''
+        self.receiver_info_keyboard_component = KeyboardComponent()
+
         receiver_info_widget_layout = QVBoxLayout()
         receiver_info_widget.setLayout(receiver_info_widget_layout)
 
@@ -134,6 +138,9 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
 
         receiver_info_grid_layout.setSpacing(50)
         receiver_info_grid_layout.setContentsMargins(10, 10, 10, 10)
+
+        receiver_info_widget_layout.addStretch()
+        receiver_info_widget_layout.addWidget(self.receiver_info_keyboard_component)
 
         receiver_info_widget_layout.addStretch()
         '''
