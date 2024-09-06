@@ -1,7 +1,7 @@
 import logging
 from PyQt5.QtCore import QMutex
 
-from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.singleton_design import SingletonDesign
 from app.lib.console_logger import ConsoleLogger
 
 

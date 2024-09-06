@@ -2,7 +2,7 @@ import logging
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 import json
-from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.singleton_design import SingletonDesign
 from app.lib.utils import Utils
 from app.data.enums.log_level import LogLevel
 from app.services.log_service import LogService

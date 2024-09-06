@@ -1,7 +1,7 @@
 import logging
 import os
 import json
-from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.singleton_design import SingletonDesign
 from app.lib.console_logger import ConsoleLogger
 from app.mutexs.app_config_context_mutex import AppConfigContextMutex
 

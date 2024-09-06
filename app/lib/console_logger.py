@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.singleton_design import SingletonDesign
 from app.lib.console_printer import ConsolePrinter as Print
 import logging
 

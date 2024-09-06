@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QThread
 
-from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.singleton_design import SingletonDesign
 from app.workers.abstracts.d1_action import D1Action
 from app.lib.console_logger import ConsoleLogger
 from enum import Enum

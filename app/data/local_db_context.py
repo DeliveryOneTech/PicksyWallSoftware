@@ -1,7 +1,7 @@
 import os.path
 import sqlite3
 from app.data.models.log import Log
-from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.singleton_design import SingletonDesign
 from app.lib.console_logger import ConsoleLogger
 from app.data.abstracts.local_db_cursor import LocalDbCursor
 from app.data.abstracts.local_db_connection import LocalDbConnection

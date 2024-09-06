@@ -1,6 +1,6 @@
 import json
 from app.communication.iot.mqtt_context import MqttContext
-from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.singleton_design import SingletonDesign
 from app.lib.utils import Utils
 from app.lib.console_logger import ConsoleLogger
 

@@ -4,7 +4,7 @@ from app.data.enums.log_type import LogType
 from app.data.local_db_context import LocalDbContext
 from app.data.models.log import Log
 from app.data.utils.sql_query_generator import SqlQueryGenerator
-from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.singleton_design import SingletonDesign
 
 
 class LogService(metaclass=SingletonDesign):
