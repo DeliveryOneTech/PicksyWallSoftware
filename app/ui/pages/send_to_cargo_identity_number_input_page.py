@@ -18,7 +18,8 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         self.active_wizard_index = 1
         self.step_1_title = "T.C. Kimlik Numaranızı Giriniz"
         self.step_2_title = "Kimlik Bilgilerinizi Giriniz"
-        self.step_3_title = "Alıcı Adres Bilgisini Giriniz"
+        self.step_3_title = "Alıcı Bilgilerini Giriniz"
+        self.step_4_title = "Alıcı Adres Bilgisini Giriniz"
 
         self.console_logger = ConsoleLogger()
         self.console_logger.log()
@@ -182,6 +183,8 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
             self.header.set_title(self.step_2_title)
         elif index == 2:
             self.header.set_title(self.step_3_title)
+        elif index == 3:
+            self.header.set_title(self.step_4_title)
 
     def on_shown(self):
         self.otp_input_box.clear_inputs()
