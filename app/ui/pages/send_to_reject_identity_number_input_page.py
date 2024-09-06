@@ -62,12 +62,12 @@ class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
         otp_widget.setLayout(otp_widget_layout)
         # OTP Input
         self.otp_input_box = NumericOTPInputsComponent(11, "send_to_reject_identity_number_input_")
-        self.otp_input_box.submit_button_clicked.connect(lambda: self.singleton_console_logger.log(self.otp_input_box.get_value()))
         otp_widget_layout.addWidget(self.otp_input_box)
         # Spacing for content
         otp_widget_layout.addSpacing(50)
         # Numeric Keyboard Component
         numeric_keyboard_component = NumericKeyboardComponent()
+        numeric_keyboard_component.return_pressed.connect(lambda: self.singleton_console_logger.log("pressed_return"))
         otp_widget_layout.addWidget(numeric_keyboard_component)
         otp_widget_layout.addStretch()
         # end - otp_widget
