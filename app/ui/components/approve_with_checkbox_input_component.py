@@ -90,7 +90,7 @@ class ApproveWithCheckboxInputComponent(QtWidgets.QWidget):
             close_button.clicked.connect(dialog.close)
             close_button.setStyleSheet(Styles.btn_danger())
 
-            accept_button = QPushButton("Okudum, Anladım ve Kabul Ediyorum")
+            accept_button = QPushButton("Kabul Ediyorum")
             accept_button_font = accept_button.font()
             accept_button_font.setPointSize(11)
             accept_button.setFont(accept_button_font)

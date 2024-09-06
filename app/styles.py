@@ -61,7 +61,7 @@ class Styles:
             text-decoration: none;
             font-size: 16px;
             border-radius: 10px;
-            font: 16pt "MS Shell Dlg 2";            
+            font: 16pt "MS Shell Dlg 2";
         }
         """
 
@@ -140,13 +140,17 @@ class Styles:
         QPushButton {
             background-color: lightgray;
             color: black;
-            padding: 15px 32px;
+            padding-right: 30%;
+            padding-left: 30%;
+            padding-top: 25%;
+            padding-bottom: 25%;
             text-align: center;
             text-decoration: none;
             font-size: 25px;
             margin: 4px 2px;
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 10%;
+            font: 20pt "Segoe UI";
         }
         """
 

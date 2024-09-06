@@ -61,7 +61,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         self.wizard_component.current_index_changed.connect(lambda index: self.on_change_wizard_index(index))
 
         # Spacing for content
-        v_box.addSpacing(50)
+        v_box.addSpacing(25)
 
         '''
         begin - otp_widget
@@ -71,8 +71,8 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         # OTP Input
         self.otp_input_box = NumericOTPInputsComponent(11, "send_to_cargo_identity_number_input_")
         otp_widget_layout.addWidget(self.otp_input_box)
-        # Spacing for content
-        otp_widget_layout.addSpacing(50)
+        # space
+        otp_widget_layout.addSpacing(25)
         # Numeric Keyboard Component
         numeric_keyboard_component = NumericKeyboardComponent()
         numeric_keyboard_component.return_pressed.connect(lambda: self.console_logger.log("pressed_return"))
@@ -112,8 +112,6 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         receiver_address_widget_layout = QVBoxLayout()
         receiver_address_widget.setLayout(receiver_address_widget_layout)
 
-        receiver_address_widget_layout.addSpacing(50)
-
         receiver_address_grid_layout = QGridLayout()
         receiver_address_widget_layout.addLayout(receiver_address_grid_layout)
 
@@ -149,6 +147,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         receiver_address_grid_layout.setContentsMargins(10, 10, 10, 10)
 
         receiver_address_widget_layout.addStretch()
+        receiver_address_widget_layout.addSpacing(25)
         receiver_address_widget_layout.addWidget(self.receiver_address_keyboard_component)
 
         receiver_address_widget_layout.addStretch()
