@@ -7,6 +7,8 @@ import pyperclip
 
 
 class NumericKeyboardComponent(QtWidgets.QWidget):
+    return_pressed = QtCore.pyqtSignal()
+
     def __init__(self):
         super().__init__()
 
@@ -72,4 +74,4 @@ class NumericKeyboardComponent(QtWidgets.QWidget):
         pyautogui.press('backspace')
 
     def __trigger_enter(self):
-        pyautogui.press('enter')
+        self.return_pressed.emit()

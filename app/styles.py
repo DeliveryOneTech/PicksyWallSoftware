@@ -193,3 +193,15 @@ class Styles:
     @staticmethod
     def bg_gray_input(padding=10):
         return f"font-size:25px; padding: {padding}px; border: 1px solid transparent; border-radius: 5px; background-color: #D9D9D9;"
+
+    @staticmethod
+    def get_green_color():
+        return "#60892E"
+
+    @staticmethod
+    def get_gray_color():
+        return "#BFBFBF"
+
+    @staticmethod
+    def get_red_color():
+        return "#f44336"

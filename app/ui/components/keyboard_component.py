@@ -6,6 +6,8 @@ from app.ui.utils.ui_utils import get_icon
 
 
 class KeyboardComponent(QtWidgets.QWidget):
+    return_pressed = QtCore.pyqtSignal()
+
     def __init__(self):
         super().__init__()
 
@@ -160,4 +162,4 @@ class KeyboardComponent(QtWidgets.QWidget):
         pyautogui.press('backspace')
 
     def on_click_enter_button(self):
-        pyautogui.press('enter')
+        self.return_pressed.emit()

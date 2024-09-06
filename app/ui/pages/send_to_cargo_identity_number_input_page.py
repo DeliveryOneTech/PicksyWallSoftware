@@ -108,6 +108,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         begin - receiver_address_widget
         '''
         self.receiver_address_keyboard_component = KeyboardComponent()
+        self.receiver_address_keyboard_component.return_pressed.connect(lambda: self.singleton_console_logger.log("pressed_return"))
 
         receiver_address_widget_layout = QVBoxLayout()
         receiver_address_widget.setLayout(receiver_address_widget_layout)

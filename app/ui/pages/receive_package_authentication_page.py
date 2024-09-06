@@ -42,7 +42,6 @@ class ReceivePackageAuthenticationPage(QWidget):
         self.password_input.setPlaceholderText("*" * 7)
         self.password_input.setFixedWidth(650)
         self.password_input.setAlignment(Qt.AlignHCenter)
-        self.password_input.returnPressed.connect(lambda: self.singleton_console_logger.log(self.password_input.text()))
         h_box.addWidget(self.password_input)
         spacer2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         h_box.addItem(spacer2)
@@ -51,6 +50,7 @@ class ReceivePackageAuthenticationPage(QWidget):
         self.v_box.addSpacing(70)
 
         numeric_keyboard_component = NumericKeyboardComponent()
+        numeric_keyboard_component.return_pressed.connect(lambda: self.singleton_console_logger.log(self.password_input.text()))
         self.v_box.addWidget(numeric_keyboard_component)
 
         self.v_box.addStretch()
