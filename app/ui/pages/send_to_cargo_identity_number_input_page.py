@@ -20,8 +20,8 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         self.step_2_title = "Kimlik Bilgilerinizi Giriniz"
         self.step_3_title = "Alıcı Adres Bilgisini Giriniz"
 
-        self.singleton_console_logger = ConsoleLogger()
-        self.singleton_console_logger.log()
+        self.console_logger = ConsoleLogger()
+        self.console_logger.log()
 
         self.stacked_widget = stacked_widget
 
@@ -75,7 +75,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         otp_widget_layout.addSpacing(50)
         # Numeric Keyboard Component
         numeric_keyboard_component = NumericKeyboardComponent()
-        numeric_keyboard_component.return_pressed.connect(lambda: self.singleton_console_logger.log("pressed_return"))
+        numeric_keyboard_component.return_pressed.connect(lambda: self.console_logger.log("pressed_return"))
         otp_widget_layout.addWidget(numeric_keyboard_component)
         # approve_with_checkbox_input_component
         self.approve_with_checkbox_component = ApproveWithCheckboxInputComponent()
@@ -107,7 +107,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         begin - receiver_address_widget
         '''
         self.receiver_address_keyboard_component = KeyboardComponent()
-        self.receiver_address_keyboard_component.return_pressed.connect(lambda: self.singleton_console_logger.log("pressed_return"))
+        self.receiver_address_keyboard_component.return_pressed.connect(lambda: self.console_logger.log("pressed_return"))
 
         receiver_address_widget_layout = QVBoxLayout()
         receiver_address_widget.setLayout(receiver_address_widget_layout)
@@ -174,7 +174,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         self.setLayout(main_layout)
 
     def on_change_wizard_index(self, index):
-        self.singleton_console_logger.log(f"selected index: {index}")
+        self.console_logger.log(f"selected index: {index}")
         self.active_wizard_index = index
         self.send_to_cargo_identity_number_inner_stack.setCurrentIndex(index)
         if index == 0:

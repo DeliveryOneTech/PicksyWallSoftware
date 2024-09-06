@@ -11,8 +11,8 @@ class ApplicationLoadingPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
-        self.singleton_console_logger = ConsoleLogger()
-        self.singleton_console_logger.log()
+        self.console_logger = ConsoleLogger()
+        self.console_logger.log()
 
         init_application_action, self.init_application_action_thread = InitApplicationAction().run_in_thread(True)
         init_application_action.result_signal.connect(self.handle_init_application_action_result_signal)

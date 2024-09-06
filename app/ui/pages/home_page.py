@@ -12,8 +12,8 @@ class HomePage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
-        self.singleton_console_logger = ConsoleLogger()
-        self.singleton_console_logger.log()
+        self.console_logger = ConsoleLogger()
+        self.console_logger.log()
 
         header = PicksyWallDateTimeHeaderComponent()
         footer = PicksyWallFooterComponent()
@@ -69,7 +69,7 @@ class HomePage(QWidget):
                                                               PageNumber.SERVICE_USER_AUTHENTICATION)
             )
             footer.on_click_other_button.connect(
-                lambda: self.singleton_console_logger.log("Other button clicked but not implemented yet.", logging.WARNING)
+                lambda: self.console_logger.log("Other button clicked but not implemented yet.", logging.WARNING)
             )
             v_box.addWidget(footer)
         # end footer

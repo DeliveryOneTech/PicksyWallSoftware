@@ -12,18 +12,24 @@ class LocalDbContext(metaclass=SingletonDesign):
         db_name = 'local.db'
         db_path = os.path.join("./", db_name)
 
-        singleton_system_logger = ConsoleLogger()
+        console_logger = ConsoleLogger()
 
         try:
             self.connection = LocalDbConnection(db_path, check_same_thread=False, timeout=10)
             self.cursor = LocalDbCursor(self.connection)
-            singleton_system_logger.log("Connection & Cursor created.")
+            console_logger.log("Connection & Cursor created.")
         except sqlite3.Error as e:
             raise e
 
         try:
             self.create_tables_if_not_exists()
-            singleton_system_logger.log("Created tables if not exists.")
+            console_logger.log("Created tables if not exists.")
+        except sqlite3.Error as e:
+            raise e
+
+        try:
+            self.seed_data()
+            console_logger.log("Seeded data.")
         except sqlite3.Error as e:
             raise e
 
@@ -34,3 +40,10 @@ class LocalDbContext(metaclass=SingletonDesign):
     def run_query(self, query):
         self.cursor.execute(query)
         self.connection.commit()
+
+    def seed_data(self):
+        """
+        Seed data for bulk operations or initial data
+        :return:
+        """
+        pass

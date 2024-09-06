@@ -24,7 +24,7 @@ class ServiceUserLoginAction(D1Action):
     def run_in_thread(auto_start: bool = False, is_thread_executed: bool = True) -> tuple[D1Action, QThread]:
         action = ServiceUserLoginAction()
         thread = QThread()
-        singleton_thread_manager = ThreadManager()
+        thread_manager = ThreadManager()
 
         action.is_thread_executed = is_thread_executed
         action.moveToThread(thread)
@@ -35,9 +35,9 @@ class ServiceUserLoginAction(D1Action):
 
         if is_thread_executed:
             action.is_loading_signal.connect(
-                lambda is_loading: singleton_thread_manager.kill_thread(thread) if not is_loading else None
+                lambda is_loading: thread_manager.kill_thread(thread) if not is_loading else None
             )
-            thread.finished.connect(lambda: singleton_thread_manager.remove_redundant_thread_action_pairs())
+            thread.finished.connect(lambda: thread_manager.remove_redundant_thread_action_pairs())
             ThreadManager().add_thread_action_pair(action, thread)
 
         return action, thread

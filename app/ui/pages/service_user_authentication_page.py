@@ -11,8 +11,8 @@ from app.ui.components.picksy_wall_title_header_component import PicksyWallTitle
 class ServiceUserAuthenticationPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
-        self.singleton_console_logger = ConsoleLogger()
-        self.singleton_console_logger.log()
+        self.console_logger = ConsoleLogger()
+        self.console_logger.log()
 
         self.v_box = QVBoxLayout()
 
@@ -50,7 +50,7 @@ class ServiceUserAuthenticationPage(QWidget):
         self.v_box.addSpacing(70)
 
         numeric_keyboard_component = NumericKeyboardComponent()
-        numeric_keyboard_component.return_pressed.connect(lambda: self.singleton_console_logger.log(self.password_input.text()))
+        numeric_keyboard_component.return_pressed.connect(lambda: self.console_logger.log(self.password_input.text()))
 
         self.v_box.addWidget(numeric_keyboard_component)
 

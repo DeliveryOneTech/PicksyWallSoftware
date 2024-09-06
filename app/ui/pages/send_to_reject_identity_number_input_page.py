@@ -16,8 +16,8 @@ class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
         self.step_1_title = "T.C. Kimlik Numaranızı Giriniz"
         self.step_2_title = "Kimlik Bilgilerinizi Giriniz"
 
-        self.singleton_console_logger = ConsoleLogger()
-        self.singleton_console_logger.log()
+        self.console_logger = ConsoleLogger()
+        self.console_logger.log()
 
         self.stacked_widget = stacked_widget
 
@@ -67,7 +67,7 @@ class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
         otp_widget_layout.addSpacing(50)
         # Numeric Keyboard Component
         numeric_keyboard_component = NumericKeyboardComponent()
-        numeric_keyboard_component.return_pressed.connect(lambda: self.singleton_console_logger.log("pressed_return"))
+        numeric_keyboard_component.return_pressed.connect(lambda: self.console_logger.log("pressed_return"))
         otp_widget_layout.addWidget(numeric_keyboard_component)
         otp_widget_layout.addStretch()
         # end - otp_widget
@@ -96,7 +96,7 @@ class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
         self.setLayout(main_layout)
 
     def on_change_wizard_index(self, index):
-        self.singleton_console_logger.log(f"selected index: {index}")
+        self.console_logger.log(f"selected index: {index}")
         self.active_wizard_index = index
         self.send_to_reject_identity_number_inner_stack.setCurrentIndex(index)
         if index == 0:
