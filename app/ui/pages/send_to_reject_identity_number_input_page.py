@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
 from app.ui.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QVBoxLayout
-from app.lib.console_logger import SingletonConsoleLogger
+from app.lib.console_logger import ConsoleLogger
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
 from app.ui.components.numeric_otp_inputs_component import NumericOTPInputsComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent
@@ -16,7 +16,7 @@ class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
         self.step_1_title = "T.C. Kimlik Numaranızı Giriniz"
         self.step_2_title = "Kimlik Bilgilerinizi Giriniz"
 
-        self.singleton_console_logger = SingletonConsoleLogger()
+        self.singleton_console_logger = ConsoleLogger()
         self.singleton_console_logger.log()
 
         self.stacked_widget = stacked_widget

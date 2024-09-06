@@ -1,25 +1,25 @@
 import os
 import datetime
-from app.lib.app_config_context import SingletonAppConfigContext
+from app.lib.app_config_context import AppConfigContext
 
 
 class Utils:
 
     @staticmethod
     def read_all_app_config():
-        return SingletonAppConfigContext().read_all_app_config()
+        return AppConfigContext().read_all_app_config()
 
     @staticmethod
     def get_value_from_app_config(key):
-        return SingletonAppConfigContext().get_value_from_app_config(key)
+        return AppConfigContext().get_value_from_app_config(key)
 
     @staticmethod
     def upsert_app_config(key: str, value: object):
-        return SingletonAppConfigContext().upsert_app_config(key, value)
+        return AppConfigContext().upsert_app_config(key, value)
 
     @staticmethod
     def update_all_app_config(content: str):
-        return SingletonAppConfigContext().update_all_app_config(content)
+        return AppConfigContext().update_all_app_config(content)
 
     @staticmethod
     def get_the_folder_path_on_home(folder_name, create_if_not_exist=False):

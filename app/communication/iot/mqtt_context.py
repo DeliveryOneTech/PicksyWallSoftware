@@ -2,10 +2,11 @@ import logging
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 import json
+from app.lib.auto_singleton_register import SingletonDesign
 from app.lib.utils import Utils
 from app.data.enums.log_level import LogLevel
 from app.services.log_service import LogService
-from app.lib.console_logger import SingletonConsoleLogger
+from app.lib.console_logger import ConsoleLogger
 
 data = Utils.read_all_app_config()["IoTConfiguration"]
 ENDPOINT = data['Endpoint']
@@ -15,7 +16,7 @@ PATH_TO_PRIVATE_KEY = data['PathToPrivateKey']
 PATH_TO_AMAZON_ROOT_CA_1 = data['PathToAmazonRootCA']
 
 
-class MqttContext:
+class MqttContext(metaclass=SingletonDesign):
     def __init__(self):
         self.logService = LogService()
         self.subscribedTopics = []
@@ -25,7 +26,7 @@ class MqttContext:
         self.mqtt_connection = self.create_connection()
         self.mqtt_connection.on_publish = self.on_publish
 
-        self.console_logger = SingletonConsoleLogger()
+        self.console_logger = ConsoleLogger()
 
         self.console_logger.log("Connecting to {} with client ID '{}'...".format(
             ENDPOINT, CLIENT_ID))
@@ -137,12 +138,3 @@ class MqttContext:
             unsubscribe_future.result()
         self.logService.create_mqtt_log("Tum abonelikler sonlandirildi")
         self.subscribedTopics = []
-
-
-class SingletonMqttContext(MqttContext):
-    __instance = None
-
-    def __new__(cls):
-        if SingletonMqttContext.__instance is None:
-            SingletonMqttContext.__instance = MqttContext()
-        return SingletonMqttContext.__instance

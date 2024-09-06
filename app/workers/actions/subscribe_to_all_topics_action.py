@@ -1,9 +1,9 @@
 from PyQt5.QtCore import pyqtSignal, QThread
-from app.communication.iot.init_subscribers import SingletonInitSubscribers
+from app.communication.iot.init_subscribers import InitSubscribers
 from app.lib.d1_result import D1Result
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadName
-from app.workers.thread_manager import SingletonThreadManager
+from app.workers.thread_manager import ThreadManager
 
 
 class SubscribeToAllTopicsAction(D1Action):
@@ -18,7 +18,7 @@ class SubscribeToAllTopicsAction(D1Action):
     def execute(self):
         self.is_loading_signal.emit(True)
 
-        SingletonInitSubscribers()
+        InitSubscribers()
 
         self.result_signal.emit(D1Result(True, "Subscribe process completed."))
         self.is_loading_signal.emit(False)
@@ -27,7 +27,7 @@ class SubscribeToAllTopicsAction(D1Action):
     def run_in_thread(auto_start: bool = False, is_thread_executed: bool = True) -> tuple[D1Action, QThread]:
         action = SubscribeToAllTopicsAction()
         thread = QThread()
-        singleton_thread_manager = SingletonThreadManager()
+        singleton_thread_manager = ThreadManager()
 
         action.is_thread_executed = is_thread_executed
         action.moveToThread(thread)
@@ -41,6 +41,6 @@ class SubscribeToAllTopicsAction(D1Action):
                 lambda is_loading: singleton_thread_manager.kill_thread(thread) if not is_loading else None
             )
             thread.finished.connect(lambda: singleton_thread_manager.remove_redundant_thread_action_pairs())
-            SingletonThreadManager().add_thread_action_pair(action, thread)
+            ThreadManager().add_thread_action_pair(action, thread)
 
         return action, thread

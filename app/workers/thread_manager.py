@@ -1,6 +1,8 @@
 from PyQt5.QtCore import QThread
+
+from app.lib.auto_singleton_register import SingletonDesign
 from app.workers.abstracts.d1_action import D1Action
-from app.lib.console_logger import SingletonConsoleLogger
+from app.lib.console_logger import ConsoleLogger
 from enum import Enum
 
 
@@ -11,12 +13,12 @@ class ThreadName(Enum):
     INIT_APPLICATION_ACTION = "InitApplicationAction"
 
 
-class ThreadManager:
+class ThreadManager(metaclass=SingletonDesign):
     __active_threads: list[QThread] = []
     __active_actions: list[D1Action] = []
 
     def __init__(self):
-        self.console_logger = SingletonConsoleLogger()
+        self.console_logger = ConsoleLogger()
         self.console_logger.log()
 
     def add_thread_action_pair(self, action: D1Action, thread: QThread):
@@ -72,12 +74,3 @@ class ThreadManager:
     @property
     def active_actions_count(self):
         return len(self.__active_actions)
-
-
-class SingletonThreadManager(ThreadManager):
-    __instance = None
-
-    def __new__(cls):
-        if SingletonThreadManager.__instance is None:
-            SingletonThreadManager.__instance = ThreadManager()
-        return SingletonThreadManager.__instance

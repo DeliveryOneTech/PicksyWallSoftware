@@ -1,6 +1,6 @@
 import logging
 from PyQt5.QtWidgets import QWidget, QGridLayout, QHBoxLayout, QVBoxLayout
-from app.lib.console_logger import SingletonConsoleLogger
+from app.lib.console_logger import ConsoleLogger
 from app.ui.components.main_button_component import MainButtonComponent
 from app.ui.components.picksy_wall_date_time_header_component import PicksyWallDateTimeHeaderComponent
 from app.ui.components.picksy_wall_footer_component import PicksyWallFooterComponent
@@ -12,7 +12,7 @@ class HomePage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
-        self.singleton_console_logger = SingletonConsoleLogger()
+        self.singleton_console_logger = ConsoleLogger()
         self.singleton_console_logger.log()
 
         header = PicksyWallDateTimeHeaderComponent()

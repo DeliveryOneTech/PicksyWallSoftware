@@ -2,7 +2,7 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QHBoxLayout, QSpacerItem, QSizePolicy
 from app.styles import Styles
 from app.ui.enums.page_number import PageNumber
-from app.lib.console_logger import SingletonConsoleLogger
+from app.lib.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent
@@ -11,7 +11,7 @@ from app.ui.components.picksy_wall_title_header_component import PicksyWallTitle
 class ServiceUserAuthenticationPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
-        self.singleton_console_logger = SingletonConsoleLogger()
+        self.singleton_console_logger = ConsoleLogger()
         self.singleton_console_logger.log()
 
         self.v_box = QVBoxLayout()

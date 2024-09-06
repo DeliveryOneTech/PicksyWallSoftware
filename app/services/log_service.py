@@ -1,14 +1,15 @@
 from datetime import datetime
 from app.data.enums.log_level import LogLevel
 from app.data.enums.log_type import LogType
-from app.data.local_db_context import SingletonLocalDbContext
+from app.data.local_db_context import LocalDbContext
 from app.data.models.log import Log
 from app.data.utils.sql_query_generator import SqlQueryGenerator
+from app.lib.auto_singleton_register import SingletonDesign
 
 
-class LogService:
+class LogService(metaclass=SingletonDesign):
     def __init__(self):
-        self.__local_db_context = SingletonLocalDbContext.getInstance()
+        self.__local_db_context = LocalDbContext()
 
     def get_all_logs(self):
         query = SqlQueryGenerator.get_select_all_query(Log.table_name)
@@ -58,12 +59,3 @@ class LogService:
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
-
-
-class SingletonLogService(LogService):
-    __instance = None
-
-    def __new__(cls):
-        if SingletonLogService.__instance is None:
-            SingletonLogService.__instance = LogService()
-        return SingletonLogService.__instance

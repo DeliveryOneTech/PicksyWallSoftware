@@ -1,14 +1,14 @@
 import logging
 import os
 import json
+from app.lib.auto_singleton_register import SingletonDesign
+from app.lib.console_logger import ConsoleLogger
+from app.mutexs.app_config_context_mutex import AppConfigContextMutex
 
-from app.lib.console_logger import SingletonConsoleLogger
-from app.mutexs.app_config_context_mutex import SingletonAppConfigContextMutex
 
-
-class AppConfigContext:
+class AppConfigContext(metaclass=SingletonDesign):
     def __init__(self):
-        self.app_config_context_mutex = SingletonAppConfigContextMutex.getInstance()
+        self.app_config_context_mutex = AppConfigContextMutex()
 
     def read_all_app_config(self):
         try:
@@ -16,7 +16,7 @@ class AppConfigContext:
             with open("./appconfig.json") as f:
                 return json.load(f)
         except Exception as e:
-            SingletonConsoleLogger().log(e, logging.ERROR)
+            ConsoleLogger().log(e, logging.ERROR)
             return None
         finally:
             self.app_config_context_mutex.unlock()
@@ -52,7 +52,7 @@ class AppConfigContext:
 
             return True, None
         except Exception as e:
-            SingletonConsoleLogger().log(e, logging.ERROR)
+            ConsoleLogger().log(e, logging.ERROR)
             return False, str(e)
         finally:
             self.app_config_context_mutex.unlock()
@@ -79,16 +79,7 @@ class AppConfigContext:
 
             return True, None
         except Exception as e:
-            SingletonConsoleLogger().log(e, logging.ERROR)
+            ConsoleLogger().log(e, logging.ERROR)
             return False, str(e)
         finally:
             self.app_config_context_mutex.unlock()
-
-
-class SingletonAppConfigContext(AppConfigContext):
-    __instance = None
-
-    def __new__(cls):
-        if SingletonAppConfigContext.__instance is None:
-            SingletonAppConfigContext.__instance = AppConfigContext()
-        return SingletonAppConfigContext.__instance

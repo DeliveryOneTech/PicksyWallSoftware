@@ -1,9 +1,11 @@
 from datetime import datetime
+
+from app.lib.auto_singleton_register import SingletonDesign
 from app.lib.console_printer import ConsolePrinter as Print
 import logging
 
 
-class ConsoleLogger:
+class ConsoleLogger(metaclass=SingletonDesign):
     def __init__(self):
         self.__logger = logging.getLogger()
         self.__logger.setLevel(logging.DEBUG)
@@ -55,12 +57,3 @@ class ConsoleLogger:
 
         self.__logger.log(level, message)
         return message
-
-
-class SingletonConsoleLogger(ConsoleLogger):
-    __instance = None
-
-    def __new__(cls):
-        if SingletonConsoleLogger.__instance is None:
-            SingletonConsoleLogger.__instance = ConsoleLogger()
-        return SingletonConsoleLogger.__instance

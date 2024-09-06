@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QStackedWidget
 from app.ui.enums.page_number import PageNumber
-from app.services.log_service import SingletonLogService
+from app.services.log_service import LogService
+
 
 class BaseQStackedWidget(QStackedWidget):
     def __init__(self):
@@ -10,7 +11,7 @@ class BaseQStackedWidget(QStackedWidget):
                           caller_page_number: PageNumber,
                           target_page_number: PageNumber,
                           custom_method=None) -> None:
-        SingletonLogService().create_ui_log(
+        LogService().create_ui_log(
             f"Page transition from {caller_page_number.name} to {target_page_number.name}"
         )
 

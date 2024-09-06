@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
 from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsOpacityEffect, QSpacerItem, QSizePolicy, QHBoxLayout
-from app.lib.console_logger import SingletonConsoleLogger
+from app.lib.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.enums.page_number import PageNumber
 from app.ui.utils import ui_utils
@@ -11,7 +11,7 @@ class ApplicationLoadingPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
-        self.singleton_console_logger = SingletonConsoleLogger()
+        self.singleton_console_logger = ConsoleLogger()
         self.singleton_console_logger.log()
 
         init_application_action, self.init_application_action_thread = InitApplicationAction().run_in_thread(True)

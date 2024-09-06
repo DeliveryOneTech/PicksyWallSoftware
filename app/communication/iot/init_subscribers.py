@@ -1,13 +1,14 @@
 import json
-from app.communication.iot.mqtt_context import SingletonMqttContext
+from app.communication.iot.mqtt_context import MqttContext
+from app.lib.auto_singleton_register import SingletonDesign
 from app.lib.utils import Utils
-from app.lib.console_logger import SingletonConsoleLogger
+from app.lib.console_logger import ConsoleLogger
 
 
-class InitSubscribers:
+class InitSubscribers(metaclass=SingletonDesign):
     def __init__(self):
-        self.mqtt_client = SingletonMqttContext()
-        self.console_logger = SingletonConsoleLogger()
+        self.mqtt_client = MqttContext()
+        self.console_logger = ConsoleLogger()
 
         device_id = Utils.get_value_from_app_config('DeviceId')
 
@@ -28,11 +29,3 @@ class InitSubscribers:
         self.mqtt_client.un_subscribe_all(self.topic_list_for_subscribe)
         self.console_logger.log('Unsubscribed from all topics')
 
-
-class SingletonInitSubscribers(InitSubscribers):
-    __instance = None
-
-    def __new__(cls):
-        if SingletonInitSubscribers.__instance is None:
-            SingletonInitSubscribers.__instance = InitSubscribers()
-        return SingletonInitSubscribers.__instance

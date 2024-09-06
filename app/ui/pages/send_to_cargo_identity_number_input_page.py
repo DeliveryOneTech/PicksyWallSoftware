@@ -4,7 +4,7 @@ from app.ui.components.keyboard_component import KeyboardComponent
 from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
 from app.ui.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QVBoxLayout, QGridLayout, QLabel, QLineEdit, QTextEdit
-from app.lib.console_logger import SingletonConsoleLogger
+from app.lib.console_logger import ConsoleLogger
 from app.ui.components.approve_with_checkbox_input_component import ApproveWithCheckboxInputComponent
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
 from app.ui.components.numeric_otp_inputs_component import NumericOTPInputsComponent
@@ -20,7 +20,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         self.step_2_title = "Kimlik Bilgilerinizi Giriniz"
         self.step_3_title = "Alıcı Adres Bilgisini Giriniz"
 
-        self.singleton_console_logger = SingletonConsoleLogger()
+        self.singleton_console_logger = ConsoleLogger()
         self.singleton_console_logger.log()
 
         self.stacked_widget = stacked_widget
