@@ -103,34 +103,36 @@ class Styles:
         """
 
     @staticmethod
-    def btn_success():
-        return """
-        QPushButton {
-            background-color: #60892E;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 10px;
-        }
+    def btn_success(width: str = "auto", padding: str = "15px 32px"):
+        return f"""
+            QPushButton {{
+                background-color: #60892E;
+                color: white;
+                padding: {padding};
+                text-align: center;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                width: {width};
+            }}
         """
 
     @staticmethod
-    def btn_danger():
-        return """
-        QPushButton {
-            background-color: #f44336;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 10px;
-        }
-        """
+    def btn_danger(width: str = "auto", padding: str = "15px 32px"):
+        return f'''
+            QPushButton {{
+                background-color: #f44336;
+                color: white;
+                padding: {padding};
+                text-align: center;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 10px;
+                width: {width};
+            }}
+        '''
 
     @staticmethod
     def btn_numeric_keyboard():
