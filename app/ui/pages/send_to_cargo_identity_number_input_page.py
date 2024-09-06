@@ -18,7 +18,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         self.active_wizard_index = 1
         self.step_1_title = "T.C. Kimlik Numaranızı Giriniz"
         self.step_2_title = "Kimlik Bilgilerinizi Giriniz"
-        self.step_3_title = "Alıcı Bilgilerini Giriniz"
+        self.step_3_title = "Alıcı Adres Bilgisini Giriniz"
 
         self.singleton_console_logger = SingletonConsoleLogger()
         self.singleton_console_logger.log()
@@ -28,6 +28,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         otp_widget = QtWidgets.QWidget()
         customer_info_widget = QtWidgets.QWidget()
         receiver_info_widget = QtWidgets.QWidget()
+        receiver_address_widget = QtWidgets.QWidget()
         self.send_to_cargo_identity_number_inner_stack = QtWidgets.QStackedWidget()
 
         main_layout = QVBoxLayout(self)
@@ -53,6 +54,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
                 WizardItemViewModel(1, "Kimlik No Doğrulama"),
                 WizardItemViewModel(2, "Müşteri Bilgileri"),
                 WizardItemViewModel(3, "Alıcı Bilgileri"),
+                WizardItemViewModel(4, "Adres"),
             ])
         v_box.addWidget(self.wizard_component)
         self.wizard_component.emit_current_index_changed()
@@ -98,15 +100,22 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         '''
         begin - receiver_info_widget
         '''
-        self.receiver_info_keyboard_component = KeyboardComponent()
+        '''
+        end - receiver_info_widget
+        '''
 
-        receiver_info_widget_layout = QVBoxLayout()
-        receiver_info_widget.setLayout(receiver_info_widget_layout)
+        '''
+        begin - receiver_address_widget
+        '''
+        self.receiver_address_keyboard_component = KeyboardComponent()
 
-        receiver_info_widget_layout.addSpacing(50)
+        receiver_address_widget_layout = QVBoxLayout()
+        receiver_address_widget.setLayout(receiver_address_widget_layout)
 
-        receiver_info_grid_layout = QGridLayout()
-        receiver_info_widget_layout.addLayout(receiver_info_grid_layout)
+        receiver_address_widget_layout.addSpacing(50)
+
+        receiver_address_grid_layout = QGridLayout()
+        receiver_address_widget_layout.addLayout(receiver_address_grid_layout)
 
         city_label = QLabel("İl:")
         city_label.setStyleSheet(Styles.label())
@@ -126,30 +135,31 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         address_input = QTextEdit()
         address_input.setStyleSheet(Styles.bg_gray_input())
 
-        receiver_info_grid_layout.addWidget(city_label, 0, 0)
-        receiver_info_grid_layout.addWidget(city_input, 0, 1)
-        receiver_info_grid_layout.addWidget(district_label, 1, 0)
-        receiver_info_grid_layout.addWidget(district_input, 1, 1)
-        receiver_info_grid_layout.addWidget(neighborhood_label, 2, 0)
-        receiver_info_grid_layout.addWidget(neighborhood_input, 2, 1)
+        receiver_address_grid_layout.addWidget(city_label, 0, 0)
+        receiver_address_grid_layout.addWidget(city_input, 0, 1)
+        receiver_address_grid_layout.addWidget(district_label, 1, 0)
+        receiver_address_grid_layout.addWidget(district_input, 1, 1)
+        receiver_address_grid_layout.addWidget(neighborhood_label, 2, 0)
+        receiver_address_grid_layout.addWidget(neighborhood_input, 2, 1)
 
-        receiver_info_grid_layout.addWidget(address_label, 0, 2)
-        receiver_info_grid_layout.addWidget(address_input, 0, 3, 3, 1)
+        receiver_address_grid_layout.addWidget(address_label, 0, 2)
+        receiver_address_grid_layout.addWidget(address_input, 0, 3, 3, 1)
 
-        receiver_info_grid_layout.setSpacing(50)
-        receiver_info_grid_layout.setContentsMargins(10, 10, 10, 10)
+        receiver_address_grid_layout.setSpacing(50)
+        receiver_address_grid_layout.setContentsMargins(10, 10, 10, 10)
 
-        receiver_info_widget_layout.addStretch()
-        receiver_info_widget_layout.addWidget(self.receiver_info_keyboard_component)
+        receiver_address_widget_layout.addStretch()
+        receiver_address_widget_layout.addWidget(self.receiver_address_keyboard_component)
 
-        receiver_info_widget_layout.addStretch()
+        receiver_address_widget_layout.addStretch()
         '''
-        end - receiver_info_widget
+        end - receiver_address_widget
         '''
 
         self.send_to_cargo_identity_number_inner_stack.addWidget(otp_widget)
         self.send_to_cargo_identity_number_inner_stack.addWidget(customer_info_widget)
         self.send_to_cargo_identity_number_inner_stack.addWidget(receiver_info_widget)
+        self.send_to_cargo_identity_number_inner_stack.addWidget(receiver_address_widget)
         v_box.addWidget(self.send_to_cargo_identity_number_inner_stack)
 
         '''
