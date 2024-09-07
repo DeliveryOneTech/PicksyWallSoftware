@@ -1,5 +1,5 @@
 from PyQt5.QtCore import pyqtSignal, QThread
-from app.communication.iot.init_subscribers import MqttSubscriber
+from app.communication.iot.mqtt_subscriber import MqttSubscriber
 from app.lib.d1_result import D1Result
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadName
