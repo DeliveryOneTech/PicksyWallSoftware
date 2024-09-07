@@ -5,7 +5,7 @@ from app.lib.utils import Utils
 from app.lib.console_logger import ConsoleLogger
 
 
-class InitSubscribers(metaclass=SingletonDesign):
+class MqttSubscriber(metaclass=SingletonDesign):
     def __init__(self):
         self.mqtt_client = MqttContext()
         self.console_logger = ConsoleLogger()
@@ -16,6 +16,9 @@ class InitSubscribers(metaclass=SingletonDesign):
             f'picksywall/{device_id}/#'
         ]
 
+        self.subscribe_all()
+
+    def subscribe_all(self):
         for topic_name in self.topic_list_for_subscribe:
             self.mqtt_client.subscribe(topic_name, self.__callback)
             self.console_logger.log(f'Subscribed to {topic_name}')
@@ -28,4 +31,3 @@ class InitSubscribers(metaclass=SingletonDesign):
     def unsubscribe_all(self):
         self.mqtt_client.un_subscribe_all(self.topic_list_for_subscribe)
         self.console_logger.log('Unsubscribed from all topics')
-

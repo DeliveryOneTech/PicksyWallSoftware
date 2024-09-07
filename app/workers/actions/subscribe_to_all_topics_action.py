@@ -1,5 +1,5 @@
 from PyQt5.QtCore import pyqtSignal, QThread
-from app.communication.iot.init_subscribers import InitSubscribers
+from app.communication.iot.init_subscribers import MqttSubscriber
 from app.lib.d1_result import D1Result
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadName
@@ -18,7 +18,7 @@ class SubscribeToAllTopicsAction(D1Action):
     def execute(self):
         self.is_loading_signal.emit(True)
 
-        InitSubscribers()
+        MqttSubscriber()
 
         self.result_signal.emit(D1Result(True, "Subscribe process completed."))
         self.is_loading_signal.emit(False)

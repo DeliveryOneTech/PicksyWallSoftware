@@ -57,9 +57,6 @@ class ApplicationLoadingPage(QWidget):
         self.animation.setEasingCurve(QEasingCurve.InOutQuad)
         self.animation.setLoopCount(-1)
 
-        # Start the animation
-        self.animation.start()
-
     # LOGIC METHODS
     def handle_init_application_action_result_signal(self, result):
         if result.success:
@@ -69,3 +66,7 @@ class ApplicationLoadingPage(QWidget):
 
     def on_shown(self):
         self.init_application_action_thread.start()
+        self.animation.start()
+
+    def on_exit(self):
+        self.animation.stop()

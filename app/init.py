@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QApplication
 import sys
-from app.communication.iot.init_subscribers import InitSubscribers
+from app.communication.iot.init_subscribers import MqttSubscriber
 from app.communication.iot.mqtt_context import MqttContext
 from app.ui.main_window import MainWindow
 from app.lib.console_logger import ConsoleLogger
@@ -10,7 +10,7 @@ from app.workers.loops.check_internet_connection_loop import CheckInternetConnec
 
 
 def __on_close_app():
-    InitSubscribers().unsubscribe_all()
+    MqttSubscriber().unsubscribe_all()
     MqttContext().disconnect()
     ConsoleLogger().log("Application is closing.")
     LogService().create_system_log("Application is closing.")

@@ -1,6 +1,6 @@
 import logging
 from PyQt5.QtCore import pyqtSignal, QObject, QThread
-from app.communication.iot.init_subscribers import InitSubscribers
+from app.communication.iot.init_subscribers import MqttSubscriber
 from app.communication.iot.mqtt_context import MqttContext
 from app.data.enums.log_level import LogLevel
 from app.lib.console_logger import ConsoleLogger
@@ -27,9 +27,12 @@ class CheckInternetConnectionLoop(D1Action):
 
             current_internet_state = self.__get_internet_connection_state()
 
-            if last_internet_state != current_internet_state and last_internet_state == False:
+            if (last_internet_state != current_internet_state and
+                    not last_internet_state):
                 MqttContext().reconnect()
-                InitSubscribers()
+                MqttSubscriber().subscribe_all()
+
+            last_internet_state = current_internet_state
 
             if not current_internet_state:
                 self.result_signal.emit(D1Result(False))
@@ -43,11 +46,21 @@ class CheckInternetConnectionLoop(D1Action):
     def __get_internet_connection_state() -> bool:
         try:
             urllib.request.urlopen("https://www.google.com")
-            ConsoleLogger().log("Checking internet connection state. Internet state: ON")
+            ConsoleLogger().log("Checking internet connection state. STATE: ON")
             return True
-        except Exception as e:
-            ConsoleLogger().log(f"Internet connection is lost. Error: {e}", logging.ERROR)
+        except urllib.error.URLError:
+            ConsoleLogger().log(f"Internet connection is lost. STATE: OFF", logging.ERROR)
             LogService().create_system_log("Internet connection is lost.", LogLevel.ERROR)
+            return False
+        except Exception as e:
+            ConsoleLogger().log(
+                f"An unexpected error occurred while checking the internet connection. ERROR: {e}, STATE: OFF",
+                logging.ERROR
+            )
+            LogService().create_system_log(
+                f"An unexpected error occurred while checking the internet connection. ERROR: {e}, STATE: OFF",
+                LogLevel.ERROR
+            )
             return False
 
     @staticmethod
