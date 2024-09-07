@@ -1,5 +1,4 @@
 from PyQt5.QtCore import QThread
-
 from app.lib.singleton_design import SingletonDesign
 from app.workers.abstracts.d1_action import D1Action
 from app.lib.console_logger import ConsoleLogger
@@ -25,6 +24,7 @@ class ThreadManager(metaclass=SingletonDesign):
     def add_thread_action_pair(self, action: D1Action, thread: QThread):
         self.__active_actions.append(action)
         self.__active_threads.append(thread)
+        self.console_logger.log(f"Active threads: {self.active_threads_count}")
 
     def kill_executed_threads(self):
         threads_to_kill = []
@@ -44,11 +44,15 @@ class ThreadManager(metaclass=SingletonDesign):
         for thread in threads_to_kill:
             self.__active_threads.remove(thread)
 
+        self.console_logger.log(f"Active threads: {self.active_threads_count}")
+
     def remove_redundant_thread_action_pairs(self):
         for action, thread in zip(self.__active_actions, self.__active_threads):
             if not thread.isRunning():
                 self.__active_actions.remove(action)
                 self.__active_threads.remove(thread)
+
+        self.console_logger.log(f"Active threads: {self.active_threads_count}")
 
     def find_worker_and_thread_pair_by_thread_name(self, thread_name: str):
         for worker, thread in zip(self.__active_actions, self.__active_threads):
