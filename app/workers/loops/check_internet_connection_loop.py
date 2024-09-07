@@ -20,7 +20,7 @@ class CheckInternetConnectionLoop(D1Action):
         super().__init__()
         self.thread_name = thread_name
 
-    def execute(self, *args, **kwargs):
+    def execute(self):
         last_internet_state = self.__get_internet_connection_state()
         while True:
             self.is_loading_signal.emit(True)
