@@ -1,5 +1,6 @@
 import json
 from app.communication.iot.mqtt_context import MqttContext
+from app.communication.iot.mqtt_message_router import MqttMessageRouter
 from app.lib.singleton_design import SingletonDesign
 from app.lib.utils import Utils
 from app.lib.console_logger import ConsoleLogger
@@ -13,7 +14,7 @@ class MqttSubscriber(metaclass=SingletonDesign):
         device_id = Utils.get_value_from_app_config('DeviceId')
 
         self.topic_list_for_subscribe = [
-            f'picksywall/{device_id}/#'
+            f'picksywall/{device_id}/test',
         ]
 
         self.subscribe_all()
@@ -26,7 +27,7 @@ class MqttSubscriber(metaclass=SingletonDesign):
     def __callback(self, payload, **kwargs):
         topic = kwargs['topic']
         payload = json.loads(payload)
-        self.console_logger.log(f'Received message from topic {topic}: {payload}')
+        MqttMessageRouter().route(topic, payload)
 
     def unsubscribe_all(self):
         self.mqtt_client.un_subscribe_all(self.topic_list_for_subscribe)
