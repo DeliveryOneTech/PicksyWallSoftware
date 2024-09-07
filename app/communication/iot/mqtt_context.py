@@ -89,14 +89,12 @@ class MqttContext(metaclass=SingletonDesign):
         # if topic is subscribed exisiting, unsubscribe it
         if self.isSubscribed(topic) is False:
             self.subscribedTopics.append(topic)
-            # subscribe to topic
-            self.console_logger.log("Subscribing to topic '{}'...".format(topic))
             subscribe_future, packet_id = self.mqtt_connection.subscribe(
                 topic=topic,
                 qos=mqtt.QoS.AT_LEAST_ONCE,
                 callback=callback)
             subscribe_result = subscribe_future.result()
-            self.logService.create_mqtt_log("Abone olunan topic : {}".format(topic))
+            self.logService.create_mqtt_log("Subscribed to topic : {}".format(topic))
             return packet_id
         else:
             return None
