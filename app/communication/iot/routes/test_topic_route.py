@@ -1,4 +1,5 @@
 from app.communication.iot.routes.base_route import MqttMessageRoute
+from app.lib.console_logger import ConsoleLogger
 from app.lib.utils import Utils
 
 
@@ -9,5 +10,5 @@ class TestTopicRoute(MqttMessageRoute):
         super().__init__()
 
     def handle(self, payload):
-        print('HashRoute', payload)
+        ConsoleLogger.log(payload)
         return payload
