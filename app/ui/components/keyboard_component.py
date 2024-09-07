@@ -11,20 +11,7 @@ class KeyboardComponent(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setStyleSheet("QWidget{\n"
-                           "background-color: white;\n"
-                           "}\n"
-                           "QPushButton{\n"
-                           "background-color:black;\n"
-                           "color:white;\n"
-                           "padding-right: 30%;\n"
-                           "padding-left: 30%;\n"
-                           "padding-top: 25%;\n"
-                           "padding-bottom: 25%;\n"
-                           "border-radius: 10%;\n"
-                           "font-weight:bold;\n"
-                           "width:auto;\n"
-                           "font: 20pt \"Segoe UI\";}")
+        self.setStyleSheet(Styles.btn_keyboard())
 
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
@@ -40,7 +27,7 @@ class KeyboardComponent(QtWidgets.QWidget):
         self.backspaceButton = QtWidgets.QPushButton()
         self.backspaceButton.setObjectName("backspaceButton")
         self.backspaceButton.setText("Sil")
-        self.backspaceButton.setStyleSheet(Styles.btn_danger("150%", "25% 30%"))
+        self.backspaceButton.setStyleSheet(Styles.btn_danger("150%", "15px 32px"))
         self.backspaceButton.setIcon(get_icon(":/icons/assets/white-arrow-left.svg"))
         self.backspaceButton.setIconSize(QtCore.QSize(48, 48))
         self.backspaceButton.clicked.connect(self.on_click_back_space_button)
@@ -92,35 +79,41 @@ class KeyboardComponent(QtWidgets.QWidget):
 
         # Space button
         self.spaceButton = QtWidgets.QPushButton()
-        self.spaceButton.setObjectName("spaceButton")
+        self.spaceButton.setObjectName("space")
         self.spaceButton.setText("")
         self.spaceButton.setMinimumWidth(300)
         self.spaceButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.spaceButton.clicked.connect(self.on_click_space_button)
+        self.spaceButton.enterEvent = lambda event, value='space': self.on_enter_event(value)
+        self.spaceButton.leaveEvent = lambda event, value='space': self.on_leave_event(value)
         self.spaceButton.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         self.row5_layout.addWidget(self.spaceButton)
 
         # . button
         self.dotButton = QtWidgets.QPushButton()
-        self.dotButton.setObjectName("dotButton")
+        self.dotButton.setObjectName(".")
         self.dotButton.setText(".")
         self.dotButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.dotButton.clicked.connect(lambda: self.on_click_key_button('.'))
+        self.dotButton.enterEvent = lambda event, value='.': self.on_enter_event(value)
+        self.dotButton.leaveEvent = lambda event, value='.': self.on_leave_event(value)
         self.row5_layout.addWidget(self.dotButton)
 
         # / button
         self.slashButton = QtWidgets.QPushButton()
-        self.slashButton.setObjectName("slashButton")
+        self.slashButton.setObjectName("/")
         self.slashButton.setText("/")
         self.slashButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.slashButton.clicked.connect(lambda: self.on_click_key_button('/'))
+        self.slashButton.enterEvent = lambda event, value='/': self.on_enter_event(value)
+        self.slashButton.leaveEvent = lambda event, value='/': self.on_leave_event(value)
         self.row5_layout.addWidget(self.slashButton)
 
         # Enter button
         self.enterButton = QtWidgets.QPushButton()
         self.enterButton.setObjectName("enterButton")
         self.enterButton.setText("Giriş")
-        self.enterButton.setStyleSheet(Styles.btn_success("150%", "25% 30%"))
+        self.enterButton.setStyleSheet(Styles.btn_success("150%", "15px 32px"))
         self.enterButton.setIcon(get_icon(":/icons/assets/check-lg.svg"))
         self.enterButton.setIconSize(QtCore.QSize(48, 48))
         self.enterButton.setFocusPolicy(QtCore.Qt.NoFocus)
@@ -141,6 +134,8 @@ class KeyboardComponent(QtWidgets.QWidget):
             button.setText(key)
             button.setFocusPolicy(QtCore.Qt.NoFocus)
             button.mousePressEvent = lambda event, value=key: self.on_click_key_button(value)
+            button.enterEvent = lambda event, value=key: self.on_enter_event(value)
+            button.leaveEvent = lambda event, value=key: self.on_leave_event(value)
             layout.addWidget(button)
 
     def on_click_key_button(self, value):
@@ -163,3 +158,11 @@ class KeyboardComponent(QtWidgets.QWidget):
 
     def on_click_enter_button(self):
         self.return_pressed.emit()
+
+    def on_enter_event(self, btn_name):
+        button = self.findChild(QtWidgets.QPushButton, btn_name)
+        button.setStyleSheet(Styles.btn_keyboard_hover())
+
+    def on_leave_event(self, btn_name):
+        button = self.findChild(QtWidgets.QPushButton, btn_name)
+        button.setStyleSheet(Styles.btn_keyboard())

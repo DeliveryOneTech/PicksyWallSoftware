@@ -22,17 +22,23 @@ class NumericKeyboardComponent(QtWidgets.QWidget):
 
         for i in range(1, 10):
             button = QtWidgets.QPushButton(str(i))
+            button.setObjectName(str(i))
             button.setFixedSize(btn_width, btn_height)
             button.setStyleSheet(Styles.btn_numeric_keyboard())
             button.setFocusPolicy(Qt.NoFocus)
             layout.addWidget(button, (i - 1) // 3, (i - 1) % 3)
             button.mousePressEvent = lambda event, value=i: self.__on_click(value)
+            button.enterEvent = lambda event, value=i: self.on_enter_event(value)
+            button.leaveEvent = lambda event, value=i: self.on_leave_event(value)
 
         button = QtWidgets.QPushButton("0")
+        button.setObjectName("0")
         button.setFixedSize(btn_width, btn_height)
         button.setStyleSheet(Styles.btn_numeric_keyboard())
         button.setFocusPolicy(Qt.NoFocus)
         button.mousePressEvent = lambda event, value=0: self.__on_click(value)
+        button.enterEvent = lambda event, value=0: self.on_enter_event(value)
+        button.leaveEvent = lambda event, value=0: self.on_leave_event(value)
         layout.addWidget(button, 3, 1)
 
         delete_button = QtWidgets.QPushButton()
@@ -75,3 +81,11 @@ class NumericKeyboardComponent(QtWidgets.QWidget):
 
     def __trigger_enter(self):
         self.return_pressed.emit()
+
+    def on_enter_event(self, value):
+        button = self.findChild(QtWidgets.QPushButton, str(value))
+        button.setStyleSheet(Styles.btn_numeric_keyboard_hover())
+
+    def on_leave_event(self, value):
+        button = self.findChild(QtWidgets.QPushButton, str(value))
+        button.setStyleSheet(Styles.btn_numeric_keyboard())

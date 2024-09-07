@@ -36,7 +36,7 @@ def run() -> int:
     """
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.show()
+    window.showFullScreen()
 
     __on_start_app()
 

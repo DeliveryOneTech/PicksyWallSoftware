@@ -135,10 +135,58 @@ class Styles:
         '''
 
     @staticmethod
+    def btn_keyboard():
+        return """
+            QPushButton {
+                background-color: black;
+                color: white;
+                padding: 15px 32px;
+                border-radius: 10px;
+                font-weight: bold;
+                width: auto;
+                font: 20pt "Segoe UI";
+            }
+        """
+
+    @staticmethod
+    def btn_keyboard_hover():
+        return """
+            QPushButton {
+                background-color: #BFBFBF;
+                color: black;
+                padding: 15px 32px;
+                border-radius: 10px;
+                font-weight: bold;
+                width: auto;
+                font: 20pt "Segoe UI";
+            }
+        """
+
+    @staticmethod
     def btn_numeric_keyboard():
         return """
         QPushButton {
             background-color: lightgray;
+            color: black;
+            padding-right: 30%;
+            padding-left: 30%;
+            padding-top: 25%;
+            padding-bottom: 25%;
+            text-align: center;
+            text-decoration: none;
+            font-size: 25px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 10%;
+            font: 20pt "Segoe UI";
+        }
+        """
+
+    @staticmethod
+    def btn_numeric_keyboard_hover():
+        return """
+        QPushButton {
+            background-color: #BFBFBF;
             color: black;
             padding-right: 30%;
             padding-left: 30%;
