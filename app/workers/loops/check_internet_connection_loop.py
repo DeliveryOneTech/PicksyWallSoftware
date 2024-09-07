@@ -28,7 +28,7 @@ class CheckInternetConnectionLoop(D1Action):
             current_internet_state = self.__get_internet_connection_state()
 
             if (last_internet_state != current_internet_state and
-                    not last_internet_state):
+                    last_internet_state == False):
                 MqttContext().reconnect()
                 MqttSubscriber().subscribe_all()
 
