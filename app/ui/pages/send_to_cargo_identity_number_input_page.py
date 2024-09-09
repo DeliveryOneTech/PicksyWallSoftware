@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 from app.styles import Styles
 from app.ui.components.keyboard_component import KeyboardComponent
 from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
-from app.ui.enums.page_number import PageNumber
+from app.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QVBoxLayout, QGridLayout, QLabel, QLineEdit, QTextEdit
 from app.lib.console_logger import ConsoleLogger
 from app.ui.components.approve_with_checkbox_input_component import ApproveWithCheckboxInputComponent

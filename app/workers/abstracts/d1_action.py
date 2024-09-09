@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QObject, pyqtSignal, QThread
 from abc import abstractmethod
-from app.lib.d1_result import D1Result
+from app.lib.models.d1_result_data_model import D1Result
 
 
 class D1Action(QObject):

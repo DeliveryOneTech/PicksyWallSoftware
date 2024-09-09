@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QStackedWidget
-from app.ui.enums.page_number import PageNumber
+from app.enums.page_number import PageNumber
 from app.services.log_service import LogService
 
 

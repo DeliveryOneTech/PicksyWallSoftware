@@ -2,14 +2,14 @@ import logging
 from PyQt5.QtCore import pyqtSignal, QObject, QThread
 from app.communication.iot.mqtt_subscriber import MqttSubscriber
 from app.communication.iot.mqtt_context import MqttContext
-from app.data.enums.log_level import LogLevel
+from app.enums.log_level import LogLevel
 from app.lib.console_logger import ConsoleLogger
-from app.lib.d1_result import D1Result
+from app.lib.models.d1_result_data_model import D1Result
 from app.services.log_service import LogService
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadManager
 import urllib.request
-from app.workers.enums.thread_name import ThreadName
+from app.enums.thread_name import ThreadName
 
 
 class CheckInternetConnectionLoop(D1Action):

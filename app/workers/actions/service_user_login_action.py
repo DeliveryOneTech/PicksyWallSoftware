@@ -1,8 +1,8 @@
 from PyQt5.QtCore import pyqtSignal, QThread
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadManager
-from app.lib.d1_result import D1Result
-from app.workers.enums.thread_name import ThreadName
+from app.lib.models.d1_result_data_model import D1Result
+from app.enums.thread_name import ThreadName
 
 
 class ServiceUserLoginAction(D1Action):

@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
-from app.ui.enums.page_number import PageNumber
+from app.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QVBoxLayout
 from app.lib.console_logger import ConsoleLogger
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent

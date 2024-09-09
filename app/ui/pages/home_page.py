@@ -4,7 +4,7 @@ from app.lib.console_logger import ConsoleLogger
 from app.ui.components.main_button_component import MainButtonComponent
 from app.ui.components.picksy_wall_date_time_header_component import PicksyWallDateTimeHeaderComponent
 from app.ui.components.picksy_wall_footer_component import PicksyWallFooterComponent
-from app.ui.enums.page_number import PageNumber
+from app.enums.page_number import PageNumber
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 
 

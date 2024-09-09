@@ -4,7 +4,7 @@ from awsiot import mqtt_connection_builder
 import json
 from app.lib.decorators.singleton_decorator import Singleton
 from app.lib.utils import Utils
-from app.data.enums.log_level import LogLevel
+from app.enums.log_level import LogLevel
 from app.services.log_service import LogService
 from app.lib.console_logger import ConsoleLogger
 
