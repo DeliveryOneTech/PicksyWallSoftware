@@ -8,6 +8,7 @@ from app.ui.pages.receive_package_authentication_page import ReceivePackageAuthe
 from app.ui.pages.send_to_cargo_identity_number_input_page import SendToCargoIdentityNumberInputPage
 from app.ui.pages.send_to_reject_identity_number_input_page import SendToRejectIdentityNumberInputPage
 from app.ui.pages.service_user_authentication_page import ServiceUserAuthenticationPage
+from app.ui.utils import resource
 
 
 class MainWindow(QMainWindow):
