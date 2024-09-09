@@ -11,7 +11,10 @@ class WizardItemViewModel:
 class WizardComponent(QtWidgets.QWidget):
     current_index_changed = QtCore.pyqtSignal(int)
 
-    def __init__(self, wizard_item_name_prefix: str = "step_", item_list: list[WizardItemViewModel] = None):
+    def __init__(self,
+                 wizard_item_name_prefix: str = "step_",
+                 item_list: list[WizardItemViewModel] = None,
+                 disable_steps: bool = False):
         super().__init__()
         self.item_list = item_list
         self.current_index = 0
@@ -24,6 +27,7 @@ class WizardComponent(QtWidgets.QWidget):
             step_label = QtWidgets.QLabel(f"{item.order}. {item.title}", self)
             step_label.setObjectName(f"{wizard_item_name_prefix}{index}")
             step_label.setStyleSheet(Styles.green_box())
+            step_label.setDisabled(disable_steps)
             step_label.mousePressEvent = lambda event, idx=index: self.go_to_step(idx)
             spacer = QtWidgets.QSpacerItem(100, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
             self.layout.addItem(spacer)
