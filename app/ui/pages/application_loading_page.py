@@ -14,7 +14,9 @@ class ApplicationLoadingPage(QWidget):
         self.console_logger = ConsoleLogger()
         self.console_logger.log()
 
-        init_application_action, self.init_application_action_thread = InitApplicationAction().run_in_thread(True)
+        init_application_action, self.init_application_action_thread = InitApplicationAction().run_in_thread(
+            auto_start=True, run_with_thread_manager=True
+        )
         init_application_action.result_signal.connect(self.handle_init_application_action_result_signal)
 
         h_box = QHBoxLayout()

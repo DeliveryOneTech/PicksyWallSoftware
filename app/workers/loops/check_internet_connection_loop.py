@@ -7,8 +7,9 @@ from app.lib.console_logger import ConsoleLogger
 from app.lib.d1_result import D1Result
 from app.services.log_service import LogService
 from app.workers.abstracts.d1_action import D1Action
-from app.workers.thread_manager import ThreadName, ThreadManager
+from app.workers.thread_manager import ThreadManager
 import urllib.request
+from app.workers.enums.thread_name import ThreadName
 
 
 class CheckInternetConnectionLoop(D1Action):
@@ -16,7 +17,7 @@ class CheckInternetConnectionLoop(D1Action):
     is_loading_signal = pyqtSignal(bool)
     is_thread_executed = False
 
-    def __init__(self, thread_name=ThreadName.CHECK_INTERNET_CONNECTION_LOOP):
+    def __init__(self, thread_name=ThreadName.CHECK_INTERNET_CONNECTION_LOOP.value):
         super().__init__()
         self.thread_name = thread_name
 
@@ -64,10 +65,10 @@ class CheckInternetConnectionLoop(D1Action):
             return False
 
     @staticmethod
-    def run_in_thread(auto_start: bool = False, is_thread_executed: bool = True) -> tuple[QObject, QThread]:
+    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True) -> tuple[QObject, QThread]:
         action = CheckInternetConnectionLoop()
         thread = QThread()
-        thread_manager = ThreadManager()
+        thread.setObjectName(action.thread_name)
 
         action.is_thread_executed = True
         action.moveToThread(thread)
@@ -76,8 +77,9 @@ class CheckInternetConnectionLoop(D1Action):
         if auto_start:
             thread.start()
 
-        if is_thread_executed:
+        if run_with_thread_manager:
+            thread_manager = ThreadManager()
             thread.finished.connect(lambda: thread_manager.remove_redundant_thread_action_pairs())
-            ThreadManager().add_thread_action_pair(action, thread)
+            thread_manager.add_thread_action_pair(action, thread)
 
         return action, thread

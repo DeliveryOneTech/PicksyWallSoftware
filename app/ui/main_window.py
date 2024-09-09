@@ -1,3 +1,4 @@
+from PyQt5.QtCore import pyqtSignal
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.pages.application_loading_page import ApplicationLoadingPage
 from app.ui.pages.home_page import HomePage
@@ -11,6 +12,8 @@ from app.ui.utils import resource
 
 
 class MainWindow(QMainWindow):
+    app_ready = pyqtSignal()
+
     def __init__(self):
         try:
             super(MainWindow, self).__init__()
@@ -42,6 +45,8 @@ class MainWindow(QMainWindow):
 
             stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING,
                                              PageNumber.APPLICATION_LOADING)
+
+            self.app_ready.emit()
 
         except Exception as e:
             print(e)
