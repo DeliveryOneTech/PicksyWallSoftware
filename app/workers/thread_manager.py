@@ -1,16 +1,17 @@
 from PyQt5.QtCore import QThread
-from app.lib.singleton_design import SingletonDesign
+from app.lib.decorators.singleton_decorator import Singleton
 from app.workers.abstracts.d1_action import D1Action
 from app.lib.console_logger import ConsoleLogger
 
 
-class ThreadManager(metaclass=SingletonDesign):
+@Singleton
+class ThreadManager:
     __active_threads: list[QThread] = []
     __active_actions: list[D1Action] = []
 
     def __init__(self):
         self.console_logger = ConsoleLogger()
-        self.console_logger.log()
+        self.console_logger.log("i'm created babbbooo")
 
     def add_thread_action_pair(self, action: D1Action, thread: QThread):
         self.__active_actions.append(action)

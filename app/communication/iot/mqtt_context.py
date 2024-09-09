@@ -2,7 +2,7 @@ import logging
 from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 import json
-from app.lib.singleton_design import SingletonDesign
+from app.lib.decorators.singleton_decorator import Singleton
 from app.lib.utils import Utils
 from app.data.enums.log_level import LogLevel
 from app.services.log_service import LogService
@@ -16,7 +16,8 @@ PATH_TO_PRIVATE_KEY = data['PathToPrivateKey']
 PATH_TO_AMAZON_ROOT_CA_1 = data['PathToAmazonRootCA']
 
 
-class MqttContext(metaclass=SingletonDesign):
+@Singleton
+class MqttContext:
     def __init__(self):
         self.logService = LogService()
         self.subscribedTopics = []

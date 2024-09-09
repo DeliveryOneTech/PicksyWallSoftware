@@ -1,12 +1,13 @@
 import logging
 import os
 import json
-from app.lib.singleton_design import SingletonDesign
+from app.lib.decorators.singleton_decorator import Singleton
 from app.lib.console_logger import ConsoleLogger
 from app.mutexs.app_config_context_mutex import AppConfigContextMutex
 
 
-class AppConfigContext(metaclass=SingletonDesign):
+@Singleton
+class AppConfigContext:
     def __init__(self):
         self.app_config_context_mutex = AppConfigContextMutex()
 

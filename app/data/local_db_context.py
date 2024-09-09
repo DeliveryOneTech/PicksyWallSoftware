@@ -1,13 +1,14 @@
 import os.path
 import sqlite3
 from app.data.models.log import Log
-from app.lib.singleton_design import SingletonDesign
+from app.lib.decorators.singleton_decorator import Singleton
 from app.lib.console_logger import ConsoleLogger
 from app.data.abstracts.local_db_cursor import LocalDbCursor
 from app.data.abstracts.local_db_connection import LocalDbConnection
 
 
-class LocalDbContext(metaclass=SingletonDesign):
+@Singleton
+class LocalDbContext:
     def __init__(self):
         db_name = 'local.db'
         db_path = os.path.join("./", db_name)

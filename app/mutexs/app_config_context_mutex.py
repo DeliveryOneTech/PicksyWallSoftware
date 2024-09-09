@@ -1,11 +1,9 @@
-import logging
 from PyQt5.QtCore import QMutex
-
-from app.lib.singleton_design import SingletonDesign
-from app.lib.console_logger import ConsoleLogger
+from app.lib.decorators.singleton_decorator import Singleton
 
 
-class AppConfigContextMutex(metaclass=SingletonDesign):
+@Singleton
+class AppConfigContextMutex:
     def __init__(self):
         self.mutex = QMutex()
 
@@ -17,4 +15,3 @@ class AppConfigContextMutex(metaclass=SingletonDesign):
 
     def tryLock(self):
         return self.mutex.tryLock()
-

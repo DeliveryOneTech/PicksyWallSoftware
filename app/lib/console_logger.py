@@ -1,11 +1,11 @@
 from datetime import datetime
-
-from app.lib.singleton_design import SingletonDesign
+from app.lib.decorators.singleton_decorator import Singleton
 from app.lib.console_printer import ConsolePrinter as Print
 import logging
 
 
-class ConsoleLogger(metaclass=SingletonDesign):
+@Singleton
+class ConsoleLogger:
     def __init__(self):
         self.__logger = logging.getLogger()
         self.__logger.setLevel(logging.DEBUG)
