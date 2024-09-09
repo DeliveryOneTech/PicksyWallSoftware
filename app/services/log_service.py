@@ -2,7 +2,7 @@ from datetime import datetime
 from app.enums.log_level import LogLevel
 from app.enums.log_type import LogType
 from app.data.local_db_context import LocalDbContext
-from app.data.models.log import Log
+from app.data.entities.log import Log
 from app.data.utils.sql_query_generator import SqlQueryGenerator
 from app.lib.decorators.singleton_decorator import Singleton
 

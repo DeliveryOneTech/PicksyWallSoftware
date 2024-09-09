@@ -1,6 +1,6 @@
 import os.path
 import sqlite3
-from app.data.models.log import Log
+from app.data.entities.log import Log
 from app.lib.decorators.singleton_decorator import Singleton
 from app.lib.console_logger import ConsoleLogger
 from app.data.abstracts.local_db_cursor import LocalDbCursor
