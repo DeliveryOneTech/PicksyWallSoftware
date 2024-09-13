@@ -41,14 +41,14 @@ class OthersMainPage(QWidget):
         # Main Button 2
         self.maintenance_button = MainButtonComponent(
             title_html="<h1>Bakım</h1>",
-            icon_path=':/icons/assets/receive-icon.png',
+            icon_path=':/icons/assets/maintenance.svg',
             tooltip="Bu buton aracılığı ile Picksy Wall cihazınızın bakım işlemlerini gerçekleştirebilirsiniz."
         )
 
         # Main Button 3
         self.cleaning_button = MainButtonComponent(
             title_html="<h1>Temizlik</h1>",
-            icon_path=':/icons/assets/reject-icon.png',
+            icon_path=':/icons/assets/seedling.svg',
             tooltip="Bu buton aracılığı ile Picksy Wall cihazınızın temizlik işlemlerini gerçekleştirebilirsiniz."
         )
 

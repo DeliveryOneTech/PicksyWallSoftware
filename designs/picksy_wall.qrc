@@ -17,6 +17,8 @@
     <file>assets/spellcheck.svg</file>
     <file>assets/white-arrow-left.svg</file>
     <file>assets/white-d1-logo.png</file>
+    <file>assets/maintenance.svg</file>
+    <file>assets/seedling.svg</file>
   </qresource>
   <qresource prefix="logos">
     <file>assets/gray-d1-logo.png</file>
