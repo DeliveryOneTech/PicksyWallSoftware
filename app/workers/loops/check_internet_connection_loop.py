@@ -20,10 +20,12 @@ class CheckInternetConnectionLoop(D1Action):
     def __init__(self, thread_name=ThreadName.CHECK_INTERNET_CONNECTION_LOOP.value):
         super().__init__()
         self.thread_name = thread_name
+        self.is_running = False
 
     def execute(self):
+        self.is_running = True
         last_internet_state = self.__get_internet_connection_state()
-        while True:
+        while self.is_running:
             self.is_loading_signal.emit(True)
 
             current_internet_state = self.__get_internet_connection_state()
@@ -42,6 +44,9 @@ class CheckInternetConnectionLoop(D1Action):
 
             self.is_loading_signal.emit(False)
             QThread.msleep(5000)
+
+    def stop_internet_connection_loop(self):
+        self.is_running = False
 
     @staticmethod
     def __get_internet_connection_state() -> bool:
