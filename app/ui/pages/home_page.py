@@ -69,7 +69,8 @@ class HomePage(QWidget):
                                                               PageNumber.SERVICE_USER_AUTHENTICATION)
             )
             footer.on_click_other_button.connect(
-                lambda: self.console_logger.log("Other button clicked but not implemented yet.", logging.WARNING)
+                lambda: self.stacked_widget.go_by_page_number(PageNumber.HOME,
+                                                              PageNumber.OTHERS_MAIN)
             )
             v_box.addWidget(footer)
         # end footer

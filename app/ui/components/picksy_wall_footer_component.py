@@ -59,3 +59,13 @@ class PicksyWallFooterComponent(QtWidgets.QWidget):
         width -= 95
         self.picksy_wall_footer_service_button.setFixedWidth(width)
         self.picksy_wall_footer_other_button.setFixedWidth(width)
+
+    def hide_other_button(self):
+        self.picksy_wall_footer_other_button.setDisabled(True)
+        self.picksy_wall_footer_other_button.setStyleSheet(
+            "background-color: transparent; border: none; color: transparent;")
+
+    def hide_service_button(self):
+        self.picksy_wall_footer_service_button.setDisabled(True)
+        self.picksy_wall_footer_service_button.setStyleSheet(
+            "background-color: transparent; border: none; color: transparent;")
