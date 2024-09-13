@@ -11,7 +11,7 @@ class ThreadManager:
 
     def __init__(self):
         self.console_logger = ConsoleLogger()
-        self.console_logger.log("i'm created babbbooo")
+        self.console_logger.log()
 
     def add_thread_action_pair(self, action: D1Action, thread: QThread):
         self.__active_actions.append(action)

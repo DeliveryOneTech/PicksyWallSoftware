@@ -30,7 +30,7 @@ class CourierUserAuthenticationPage(QWidget):
         '''
         begin - content
         '''
-        self.v_box.addStretch()
+        self.v_box.addSpacing(50)
 
         h_box = QHBoxLayout()
 
