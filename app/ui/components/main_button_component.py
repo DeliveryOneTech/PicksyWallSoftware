@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QVBoxLayout, QLabel, QFrame, QDialog, QGraphicsDropShadowEffect
+from PyQt5.QtWidgets import QVBoxLayout, QLabel, QFrame, QGraphicsDropShadowEffect
 from PyQt5.QtGui import QPixmap, QFont
-from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtCore import Qt
 from app.styles import Styles
 from app.ui.components.ballon_dialog_component import BalloonDialog
 
