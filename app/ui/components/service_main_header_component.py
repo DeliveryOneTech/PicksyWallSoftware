@@ -9,8 +9,12 @@ from app.styles import Styles
 class ServiceMainHeaderComponent(QtWidgets.QWidget):
     back_button_clicked = QtCore.pyqtSignal()
 
-    def __init__(self):
+    def __init__(self, system_status='gray', internet_status='gray', temperature_status='gray', electricity_status='gray'):
         super().__init__()
+        self.system_status = system_status
+        self.internet_status = internet_status
+        self.temperature_status = temperature_status
+        self.electricity_status = electricity_status
         self.setupUi(self)
 
     def setupUi(self, picksy_wall_title_header):
@@ -25,13 +29,13 @@ class ServiceMainHeaderComponent(QtWidgets.QWidget):
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.header_layout.addItem(spacerItem1)
 
-        self.system_status_circle = StatusCircleComponent('Sistem', 'red')
+        self.system_status_circle = StatusCircleComponent('Sistem', self.system_status)
         self.header_layout.addWidget(self.system_status_circle)
-        self.internet_status_circle = StatusCircleComponent('İnternet', 'green')
+        self.internet_status_circle = StatusCircleComponent('İnternet', self.internet_status)
         self.header_layout.addWidget(self.internet_status_circle)
-        self.temperature_status_circle = StatusCircleComponent('Sıcaklık', 'yellow')
+        self.temperature_status_circle = StatusCircleComponent('Sıcaklık', self.temperature_status)
         self.header_layout.addWidget(self.temperature_status_circle)
-        self.electricity_status_circle = StatusCircleComponent('Elektrik', 'red')
+        self.electricity_status_circle = StatusCircleComponent('Elektrik', self.electricity_status)
         self.header_layout.addWidget(self.electricity_status_circle)
 
         spacerItem2 = QtWidgets.QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
