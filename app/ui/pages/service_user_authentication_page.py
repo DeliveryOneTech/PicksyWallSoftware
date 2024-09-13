@@ -50,7 +50,9 @@ class ServiceUserAuthenticationPage(QWidget):
         self.v_box.addSpacing(70)
 
         numeric_keyboard_component = NumericKeyboardComponent()
-        numeric_keyboard_component.return_pressed.connect(lambda: self.console_logger.log(self.password_input.text()))
+        numeric_keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
+            PageNumber.SERVICE_USER_AUTHENTICATION, PageNumber.SERVICE_MAIN
+        ))
 
         self.v_box.addWidget(numeric_keyboard_component)
 

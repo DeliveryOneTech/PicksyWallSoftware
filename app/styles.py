@@ -66,11 +66,11 @@ class Styles:
         """
 
     @staticmethod
-    def btn_main():
-        return """
+    def btn_main(padding: str = "10px"):
+        return f"""
             background-color: #60892E;
             border-radius: 10px;
-            padding: 10px;
+            padding: {padding};
             color: white;
             margin-left: 20px;
             margin-right: 20px;
