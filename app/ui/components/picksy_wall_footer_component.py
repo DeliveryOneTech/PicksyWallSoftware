@@ -17,6 +17,9 @@ class PicksyWallFooterComponent(QtWidgets.QWidget):
         self.footer_layout = QtWidgets.QHBoxLayout(picksy_wall_footer)
         self.footer_layout.setObjectName("gridLayout")
 
+        spacer_start = QtWidgets.QSpacerItem(5, 0, QSizePolicy.Fixed, QSizePolicy.Fixed)
+        self.footer_layout.addItem(spacer_start)
+
         self.picksy_wall_footer_service_button = QtWidgets.QPushButton(picksy_wall_footer)
         self.picksy_wall_footer_service_button.setObjectName("picksy_wall_footer_other_button")
 
@@ -34,6 +37,9 @@ class PicksyWallFooterComponent(QtWidgets.QWidget):
         spacer = QtWidgets.QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.footer_layout.addItem(spacer)
         self.footer_layout.addWidget(self.picksy_wall_footer_other_button)
+
+        spacer_end = QtWidgets.QSpacerItem(5, 0, QSizePolicy.Fixed, QSizePolicy.Fixed)
+        self.footer_layout.addItem(spacer_end)
 
         self.picksy_wall_footer_service_button.mousePressEvent = lambda event: self.on_click_service_button.emit()
         self.picksy_wall_footer_other_button.mousePressEvent = lambda event: self.on_click_other_button.emit()
@@ -56,7 +62,7 @@ class PicksyWallFooterComponent(QtWidgets.QWidget):
         self.picksy_wall_footer_brand_image_label.setFixedSize(500, 100)
 
     def set_service_and_other_button_width(self, width):
-        width -= 95
+        width -= 50
         self.picksy_wall_footer_service_button.setFixedWidth(width)
         self.picksy_wall_footer_other_button.setFixedWidth(width)
 

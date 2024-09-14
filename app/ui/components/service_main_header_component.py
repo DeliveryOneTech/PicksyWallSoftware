@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QSizePolicy
-
 from app.ui.components.status_circle_component import StatusCircleComponent
 from app.ui.utils import ui_utils
 from app.styles import Styles
@@ -9,8 +8,10 @@ from app.styles import Styles
 class ServiceMainHeaderComponent(QtWidgets.QWidget):
     back_button_clicked = QtCore.pyqtSignal()
 
-    def __init__(self, system_status='gray', internet_status='gray', temperature_status='gray', electricity_status='gray'):
+    def __init__(self, label_text: str, system_status='gray', internet_status='gray', temperature_status='gray',
+                 electricity_status='gray'):
         super().__init__()
+        self.label_text = label_text
         self.system_status = system_status
         self.internet_status = internet_status
         self.temperature_status = temperature_status
@@ -26,6 +27,16 @@ class ServiceMainHeaderComponent(QtWidgets.QWidget):
         self.picksy_wall_header_back_button.setObjectName("picksy_wall_header_back_button")
 
         self.header_layout.addWidget(self.picksy_wall_header_back_button)
+
+        spacerItem0 = QtWidgets.QSpacerItem(40, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+        self.header_layout.addItem(spacerItem0)
+
+        label = QtWidgets.QLabel(self.label_text)
+        label.setStyleSheet(Styles.label())
+        label.setObjectName("label")
+        label.setFixedWidth(300)
+        self.header_layout.addWidget(label)
+
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
         self.header_layout.addItem(spacerItem1)
 
@@ -42,7 +53,8 @@ class ServiceMainHeaderComponent(QtWidgets.QWidget):
         self.header_layout.addItem(spacerItem2)
 
         back_button_width = self.picksy_wall_header_back_button.width()
-        spacerItem3 = QtWidgets.QSpacerItem(back_button_width, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
+        label_width = label.width()
+        spacerItem3 = QtWidgets.QSpacerItem(back_button_width + label_width, 20, QSizePolicy.Fixed, QSizePolicy.Minimum)
         self.header_layout.addItem(spacerItem3)
 
         self.setContentsMargins(0, 0, 0, 0)

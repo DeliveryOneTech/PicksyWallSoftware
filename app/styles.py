@@ -257,3 +257,27 @@ class Styles:
     @staticmethod
     def get_red_color():
         return "#f44336"
+
+    @staticmethod
+    def badge_green():
+        return """
+        QLabel {
+            background-color: #60892E;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font: 12pt "MS Shell Dlg 2";
+        }
+        """
+
+    @staticmethod
+    def badge_gray():
+        return """
+        QLabel {
+            background-color: #BFBFBF;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            font: 12pt "MS Shell Dlg 2";
+        }
+        """
