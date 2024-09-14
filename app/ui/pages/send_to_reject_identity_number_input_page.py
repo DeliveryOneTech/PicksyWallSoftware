@@ -1,10 +1,12 @@
 from PyQt5 import QtWidgets
-from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
+from PyQt5.QtCore import Qt
+
+from app.styles import Styles
 from app.enums.page_number import PageNumber
-from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QVBoxLayout, QLineEdit, QSpacerItem, QSizePolicy, QHBoxLayout
 from app.lib.console_logger import ConsoleLogger
+from app.ui.components.keyboard_component import KeyboardComponent
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
-from app.ui.components.numeric_otp_inputs_component import NumericOTPInputsComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 
@@ -12,99 +14,55 @@ from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
-        self.active_wizard_index = 1
-        self.step_1_title = "T.C. Kimlik Numaranızı Giriniz"
-        self.step_2_title = "Kimlik Bilgilerinizi Giriniz"
-
+        self.stacked_widget = stacked_widget
         self.console_logger = ConsoleLogger()
         self.console_logger.log()
 
-        self.stacked_widget = stacked_widget
-
-        otp_widget = QtWidgets.QWidget()
-        customer_info_widget = QtWidgets.QWidget()
-        self.send_to_reject_identity_number_inner_stack = QtWidgets.QStackedWidget()
-
-        main_layout = QVBoxLayout(self)
         v_box = QVBoxLayout()
 
-        self.header = PicksyWallTitleHeaderComponent()
+        header = PicksyWallTitleHeaderComponent()
         footer = None
 
-        # Header
-        if self.header:
-            self.header.back_button_clicked.connect(lambda: self.stacked_widget.go_by_page_number(
+        if header:
+            header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
                 PageNumber.SEND_TO_REJECT_IDENTITY_NUMBER_INPUT, PageNumber.HOME
             ))
-            self.header.set_title(self.step_1_title)
-            v_box.addWidget(self.header)
+            header.set_title("İade Teslimat Kodunu Giriniz")
+            v_box.addWidget(header)
 
         '''
         begin - content
         '''
-        self.wizard_component = WizardComponent(
-            "send_to_reject_identity_number_input_step_",
-            [
-                WizardItemViewModel(1, "Kimlik No Doğrulama"),
-                WizardItemViewModel(2, "Müşteri Bilgileri"),
-            ])
-        v_box.addWidget(self.wizard_component)
-        self.wizard_component.emit_current_index_changed()
-        self.wizard_component.current_index_changed.connect(lambda index: self.on_change_wizard_index(index))
+        v_box.addSpacing(50)
 
-        # Spacing for content
-        v_box.addSpacing(25)
+        h_box = QHBoxLayout()
+        spacer1 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        h_box.addItem(spacer1)
+        self.reject_code_input = QLineEdit()
+        self.reject_code_input.setStyleSheet(Styles.bordered_input())
+        self.reject_code_input.setAlignment(Qt.AlignCenter)
+        self.reject_code_input.setFixedHeight(65)
+        self.reject_code_input.setFixedWidth(650)
+        self.reject_code_input.setAlignment(Qt.AlignHCenter)
+        h_box.addWidget(self.reject_code_input)
+        spacer2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        h_box.addItem(spacer2)
+        v_box.addLayout(h_box)
 
-        '''
-        begin - otp_widget
-        '''
-        otp_widget_layout = QVBoxLayout()
-        otp_widget.setLayout(otp_widget_layout)
-        # OTP Input
-        self.otp_input_box = NumericOTPInputsComponent(11, "send_to_reject_identity_number_input_")
-        otp_widget_layout.addWidget(self.otp_input_box)
-        # Spacing for content
-        otp_widget_layout.addSpacing(25)
-        # Numeric Keyboard Component
-        numeric_keyboard_component = NumericKeyboardComponent()
-        numeric_keyboard_component.return_pressed.connect(lambda: self.console_logger.log("pressed_return"))
-        otp_widget_layout.addWidget(numeric_keyboard_component)
-        otp_widget_layout.addStretch()
-        # end - otp_widget
+        v_box.addSpacing(70)
 
-        # begin - customer_info_widget
-        customer_info_widget_layout = QVBoxLayout()
-        customer_info_widget.setLayout(customer_info_widget_layout)
-        # Customer Info
-        customer_info_widget_layout.addStretch()
-        '''
-        end - customer_info_widget
-        '''
-        self.send_to_reject_identity_number_inner_stack.addWidget(otp_widget)
-        self.send_to_reject_identity_number_inner_stack.addWidget(customer_info_widget)
-        v_box.addWidget(self.send_to_reject_identity_number_inner_stack)
+        keyboard = NumericKeyboardComponent()
+        v_box.addWidget(keyboard)
 
+        v_box.addStretch()
         '''
         end - content
         '''
 
-        # Footer
         if footer:
             v_box.addWidget(footer)
 
-        main_layout.addLayout(v_box)
-        self.setLayout(main_layout)
-
-    def on_change_wizard_index(self, index):
-        self.console_logger.log(f"selected index: {index}")
-        self.active_wizard_index = index
-        self.send_to_reject_identity_number_inner_stack.setCurrentIndex(index)
-        if index == 0:
-            self.header.set_title(self.step_1_title)
-        elif index == 1:
-            self.header.set_title(self.step_2_title)
+        self.setLayout(v_box)
 
     def on_shown(self):
-        self.otp_input_box.clear_inputs()
-        self.otp_input_box.set_focus_first_input()
-        self.wizard_component.go_to_step(0)
+        self.reject_code_input.setFocus()
