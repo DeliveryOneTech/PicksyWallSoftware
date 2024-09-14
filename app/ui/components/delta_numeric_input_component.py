@@ -20,13 +20,22 @@ class DeltaNumericInputComponent(QWidget):
         self.label.setStyleSheet(Styles.label())
         v_box.addWidget(self.label)
 
+        inputs_h_box = QHBoxLayout()
+
+        self.disable_input = QLineEdit()
+        self.disable_input.setStyleSheet(Styles.bg_gray_input(20))
+        self.disable_input.setReadOnly(True)
+        inputs_h_box.addWidget(self.disable_input)
+
         self.input = QLineEdit()
         self.input.setStyleSheet(Styles.bg_gray_input(20))
         if initial_value:
             self.input.setText(str(initial_value))
         # only numeric value allowed
         self.input.setValidator(QtGui.QIntValidator())
-        v_box.addWidget(self.input)
+        inputs_h_box.addWidget(self.input)
+
+        v_box.addLayout(inputs_h_box)
 
         v_box.addSpacing(25)
 
@@ -59,8 +68,14 @@ class DeltaNumericInputComponent(QWidget):
 
         self.setLayout(v_box)
 
-    def get_value(self):
+    def get_input_value(self):
         return int(self.input.text())
 
-    def set_value(self, value: int):
+    def set_input_value(self, value: int):
         self.input.setText(str(value))
+
+    def get_disable_input_value(self):
+        return int(self.disable_input.text())
+
+    def set_disable_input_value(self, value: int):
+        self.disable_input.setText(str(value))

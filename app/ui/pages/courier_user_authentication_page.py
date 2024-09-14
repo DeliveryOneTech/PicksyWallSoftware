@@ -4,7 +4,7 @@ from app.styles import Styles
 from app.enums.page_number import PageNumber
 from app.lib.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
-from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
+from app.ui.components.keyboard_component import KeyboardComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent
 
 
@@ -79,7 +79,7 @@ class CourierUserAuthenticationPage(QWidget):
 
         self.v_box.addSpacing(70)
 
-        numeric_keyboard_component = NumericKeyboardComponent()
+        numeric_keyboard_component = KeyboardComponent()
         numeric_keyboard_component.return_pressed.connect(lambda: self.console_logger.log(self.user_name_input.text() + " " + self.password_input.text()))
 
         self.v_box.addWidget(numeric_keyboard_component)

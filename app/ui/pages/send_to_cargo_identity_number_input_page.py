@@ -53,7 +53,7 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
             "send_to_cargo_identity_number_input_step_",
             [
                 WizardItemViewModel(1, "Kimlik No Doğrulama"),
-                WizardItemViewModel(2, "Müşteri Bilgileri"),
+                WizardItemViewModel(2, "Gönderici Bilgileri"),
                 WizardItemViewModel(3, "Alıcı Bilgileri"),
                 WizardItemViewModel(4, "Adres"),
             ])

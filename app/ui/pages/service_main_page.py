@@ -34,8 +34,8 @@ class ServiceMainPage(QWidget):
         connection_check_button.clicked.connect(lambda: self.console_logger.log('connection check'))
         connection_check_button.setStyleSheet(Styles.btn_success(padding="25px 40px"))
 
-        robot_check_button = QPushButton('Robot Kontrolü')
-        robot_check_button.clicked.connect(lambda: self.console_logger.log('robot check'))
+        robot_check_button = QPushButton('Senaryo Kontrolü')
+        robot_check_button.clicked.connect(lambda: self.console_logger.log('scenario check'))
         robot_check_button.setStyleSheet(Styles.btn_success(padding="25px 40px"))
 
         lighting_check_button = QPushButton('Aydınlatma Kontrolü')
@@ -97,15 +97,12 @@ class ServiceMainPage(QWidget):
         grid_layout.addWidget(relay_check_button, 1, 0)
         grid_layout.addWidget(package_measuring_system_button, 1, 1)
         grid_layout.addWidget(restart_button, 1, 2)
-
-        grid_layout.addItem(QSpacerItem(20, 75, QSizePolicy.Minimum, QSizePolicy.Expanding), 2, 0)
-
-        grid_layout.addWidget(x1_axis, 3, 0)
-        grid_layout.addWidget(z_axis, 3, 1)
-        grid_layout.addWidget(delivery_cover, 3, 2)
-        grid_layout.addWidget(x2_axis, 4, 0)
-        grid_layout.addWidget(y_axis, 4, 1)
-        grid_layout.addWidget(hide_cover, 4, 2)
+        grid_layout.addWidget(x1_axis, 2, 0)
+        grid_layout.addWidget(z_axis, 2, 1)
+        grid_layout.addWidget(delivery_cover, 2, 2)
+        grid_layout.addWidget(x2_axis, 3, 0)
+        grid_layout.addWidget(y_axis, 3, 1)
+        grid_layout.addWidget(hide_cover, 3, 2)
 
         grid_layout.setHorizontalSpacing(75)
         grid_layout.setVerticalSpacing(45)
