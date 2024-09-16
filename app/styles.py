@@ -12,7 +12,6 @@ class Styles:
             display: inline-block;
             font-size: 16px;
             margin: 4px 2px;
-            cursor: pointer;
         }
         """
 
@@ -112,7 +111,6 @@ class Styles:
                 text-align: center;
                 text-decoration: none;
                 margin: 4px 2px;
-                cursor: pointer;
                 border-radius: 10px;
                 width: {width};
             }}
@@ -128,7 +126,6 @@ class Styles:
                 text-align: center;
                 text-decoration: none;
                 margin: 4px 2px;
-                cursor: pointer;
                 border-radius: 10px;
                 width: {width};
             }}
@@ -176,7 +173,6 @@ class Styles:
             text-decoration: none;
             font-size: 25px;
             margin: 4px 2px;
-            cursor: pointer;
             border-radius: 10%;
             font: 20pt "Segoe UI";
         }
@@ -196,7 +192,6 @@ class Styles:
             text-decoration: none;
             font-size: 25px;
             margin: 4px 2px;
-            cursor: pointer;
             border-radius: 10%;
             font: 20pt "Segoe UI";
         }
