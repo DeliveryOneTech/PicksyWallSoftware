@@ -34,7 +34,7 @@ class ServiceMainHeaderComponent(QtWidgets.QWidget):
         label = QtWidgets.QLabel(self.label_text)
         label.setStyleSheet(Styles.label())
         label.setObjectName("label")
-        label.setFixedWidth(300)
+        label.setFixedWidth(400)
         self.header_layout.addWidget(label)
 
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)

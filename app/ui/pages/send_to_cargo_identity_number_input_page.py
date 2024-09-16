@@ -89,10 +89,71 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         '''
         begin - customer_info_widget
         '''
+        self.customer_info_keyboard_component = KeyboardComponent()
+        self.customer_info_keyboard_component.return_pressed.connect(lambda: self.console_logger.log("pressed_return"))
+
         customer_info_widget_layout = QVBoxLayout()
         customer_info_widget.setLayout(customer_info_widget_layout)
-        # Customer Info
+
+        customer_info_grid_layout = QGridLayout()
+        customer_info_widget_layout.addLayout(customer_info_grid_layout)
+
+        # ad, soyad, doğum yılı, il, ilçe, mahalle, adres
+        name_label = QLabel("Ad:")
+        name_label.setStyleSheet(Styles.label())
+        surname_label = QLabel("Soyad:")
+        surname_label.setStyleSheet(Styles.label())
+        birth_year_label = QLabel("Doğum Yılı:")
+        birth_year_label.setStyleSheet(Styles.label())
+        city_label = QLabel("İl:")
+        city_label.setStyleSheet(Styles.label())
+        district_label = QLabel("İlçe:")
+        district_label.setStyleSheet(Styles.label())
+        neighborhood_label = QLabel("Mahalle:")
+        neighborhood_label.setStyleSheet(Styles.label())
+        address_label = QLabel("Adres:")
+        address_label.setStyleSheet(Styles.label())
+
+        self.name_input = QLineEdit()
+        self.name_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.surname_input = QLineEdit()
+        self.surname_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.birth_year_input = QLineEdit()
+        self.birth_year_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.city_input = QLineEdit()
+        self.city_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.district_input = QLineEdit()
+        self.district_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.neighborhood_input = QLineEdit()
+        self.neighborhood_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.address_input = QTextEdit()
+        self.address_input.setStyleSheet(Styles.bg_gray_input())
+
+        customer_info_grid_layout.addWidget(name_label, 0, 0)
+        customer_info_grid_layout.addWidget(self.name_input, 0, 1)
+        customer_info_grid_layout.addWidget(surname_label, 1, 0)
+        customer_info_grid_layout.addWidget(self.surname_input, 1, 1)
+        customer_info_grid_layout.addWidget(birth_year_label, 2, 0)
+        customer_info_grid_layout.addWidget(self.birth_year_input, 2, 1)
+        customer_info_grid_layout.addWidget(city_label, 3, 0)
+        customer_info_grid_layout.addWidget(self.city_input, 3, 1)
+        customer_info_grid_layout.addWidget(district_label, 4, 0)
+        customer_info_grid_layout.addWidget(self.district_input, 4, 1)
+        customer_info_grid_layout.addWidget(neighborhood_label, 5, 0)
+        customer_info_grid_layout.addWidget(self.neighborhood_input, 5, 1)
+
+        customer_info_grid_layout.addWidget(address_label, 0, 2)
+        customer_info_grid_layout.addWidget(self.address_input, 0, 3, 6, 1)
+
+        customer_info_grid_layout.setSpacing(50)
+        customer_info_grid_layout.setContentsMargins(10, 10, 10, 10)
+
         customer_info_widget_layout.addStretch()
+        customer_info_widget_layout.addSpacing(25)
+        customer_info_widget_layout.addWidget(self.customer_info_keyboard_component)
+
+        customer_info_widget_layout.addStretch()
+
         '''
         end - customer_info_widget
         '''
@@ -100,6 +161,45 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         '''
         begin - receiver_info_widget
         '''
+        self.receiver_info_keyboard_component = KeyboardComponent()
+        self.receiver_info_keyboard_component.return_pressed.connect(lambda: self.console_logger.log("pressed_return"))
+
+        receiver_info_widget_layout = QVBoxLayout()
+        receiver_info_widget.setLayout(receiver_info_widget_layout)
+
+        receiver_info_grid_layout = QGridLayout()
+        receiver_info_widget_layout.addLayout(receiver_info_grid_layout)
+
+        receiver_name_label = QLabel("Ad:")
+        receiver_name_label.setStyleSheet(Styles.label())
+        receiver_surname_label = QLabel("Soyad:")
+        receiver_surname_label.setStyleSheet(Styles.label())
+        receiver_phone_label = QLabel("Telefon:")
+        receiver_phone_label.setStyleSheet(Styles.label())
+
+        self.receiver_name_input = QLineEdit()
+        self.receiver_name_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.receiver_surname_input = QLineEdit()
+        self.receiver_surname_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.receiver_phone_input = QLineEdit()
+        self.receiver_phone_input.setStyleSheet(Styles.bg_gray_input(15))
+
+        receiver_info_grid_layout.addWidget(receiver_name_label, 0, 0)
+        receiver_info_grid_layout.addWidget(self.receiver_name_input, 0, 1)
+        receiver_info_grid_layout.addWidget(receiver_surname_label, 1, 0)
+        receiver_info_grid_layout.addWidget(self.receiver_surname_input, 1, 1)
+        receiver_info_grid_layout.addWidget(receiver_phone_label, 2, 0)
+        receiver_info_grid_layout.addWidget(self.receiver_phone_input, 2, 1)
+
+        receiver_info_grid_layout.setSpacing(50)
+        receiver_info_grid_layout.setContentsMargins(10, 10, 10, 10)
+
+        receiver_info_widget_layout.addStretch()
+        receiver_info_widget_layout.addSpacing(25)
+        receiver_info_widget_layout.addWidget(self.receiver_info_keyboard_component)
+
+        receiver_info_widget_layout.addStretch()
+
         '''
         end - receiver_info_widget
         '''
@@ -108,7 +208,8 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         begin - receiver_address_widget
         '''
         self.receiver_address_keyboard_component = KeyboardComponent()
-        self.receiver_address_keyboard_component.return_pressed.connect(lambda: self.console_logger.log("pressed_return"))
+        self.receiver_address_keyboard_component.return_pressed.connect(
+            lambda: self.console_logger.log("pressed_return"))
 
         receiver_address_widget_layout = QVBoxLayout()
         receiver_address_widget.setLayout(receiver_address_widget_layout)
@@ -125,24 +226,24 @@ class SendToCargoIdentityNumberInputPage(QtWidgets.QWidget):
         address_label = QLabel("Adres:")
         address_label.setStyleSheet(Styles.label())
 
-        city_input = QLineEdit()
-        city_input.setStyleSheet(Styles.bg_gray_input(15))
-        district_input = QLineEdit()
-        district_input.setStyleSheet(Styles.bg_gray_input(15))
-        neighborhood_input = QLineEdit()
-        neighborhood_input.setStyleSheet(Styles.bg_gray_input(15))
-        address_input = QTextEdit()
-        address_input.setStyleSheet(Styles.bg_gray_input())
+        self.receiver_city_input = QLineEdit()
+        self.receiver_city_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.receiver_district_input = QLineEdit()
+        self.receiver_district_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.receiver_neighborhood_input = QLineEdit()
+        self.receiver_neighborhood_input.setStyleSheet(Styles.bg_gray_input(15))
+        self.receiver_address_input = QTextEdit()
+        self.receiver_address_input.setStyleSheet(Styles.bg_gray_input())
 
         receiver_address_grid_layout.addWidget(city_label, 0, 0)
-        receiver_address_grid_layout.addWidget(city_input, 0, 1)
+        receiver_address_grid_layout.addWidget(self.receiver_city_input, 0, 1)
         receiver_address_grid_layout.addWidget(district_label, 1, 0)
-        receiver_address_grid_layout.addWidget(district_input, 1, 1)
+        receiver_address_grid_layout.addWidget(self.receiver_district_input, 1, 1)
         receiver_address_grid_layout.addWidget(neighborhood_label, 2, 0)
-        receiver_address_grid_layout.addWidget(neighborhood_input, 2, 1)
+        receiver_address_grid_layout.addWidget(self.receiver_neighborhood_input, 2, 1)
 
         receiver_address_grid_layout.addWidget(address_label, 0, 2)
-        receiver_address_grid_layout.addWidget(address_input, 0, 3, 3, 1)
+        receiver_address_grid_layout.addWidget(self.receiver_address_input, 0, 3, 3, 1)
 
         receiver_address_grid_layout.setSpacing(50)
         receiver_address_grid_layout.setContentsMargins(10, 10, 10, 10)

@@ -8,7 +8,7 @@ from app.ui.utils.ui_utils import get_icon
 class KeyboardComponent(QtWidgets.QWidget):
     return_pressed = QtCore.pyqtSignal()
 
-    def __init__(self):
+    def __init__(self, submit_button_is_visible=True):
         super().__init__()
 
         self.setStyleSheet(Styles.btn_keyboard())
@@ -118,7 +118,8 @@ class KeyboardComponent(QtWidgets.QWidget):
         self.enterButton.setIconSize(QtCore.QSize(48, 48))
         self.enterButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.enterButton.clicked.connect(self.on_click_enter_button)
-        self.row5_layout.addWidget(self.enterButton)
+        if not submit_button_is_visible:
+            self.enterButton.hide()
 
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.row5_layout.addItem(spacerItem9)
