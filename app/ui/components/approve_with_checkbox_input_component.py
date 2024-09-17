@@ -30,7 +30,7 @@ class ApproveWithCheckboxInputComponent(QtWidgets.QWidget):
     def retranslateUi(self):
         self.condition_label.setText(
             "<html><head/><body><p>Bu sistemde girdiğiniz T.C. kimlik numarası ve diğer kişisel verileriniz, kargo gönderim ve teslimat işlemlerinin gerçekleştirilmesi amacıyla işlenmektedir. Verileriniz, 6698 sayılı Kişisel Verilerin Korunması Kanunu'na uygun olarak saklanmakta ve korunmaktadır. Kişisel verilerinizle ilgili haklarınızı ve detaylı bilgiyi <a href='kvkk'>buraya tıklayarak</a> öğrenebilirsiniz.</p></body></html>")
-        self.condition_label.setStyleSheet(Styles.label())
+        self.condition_label.setStyleSheet(Styles.label(11))
         self.condition_label.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.condition_label.setWordWrap(True)
 

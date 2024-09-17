@@ -34,7 +34,7 @@ class ServiceMainHeaderComponent(QtWidgets.QWidget):
         label = QtWidgets.QLabel(self.label_text)
         label.setStyleSheet(Styles.label())
         label.setObjectName("label")
-        label.setFixedWidth(400)
+        label.setFixedWidth(500)
         self.header_layout.addWidget(label)
 
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -65,7 +65,7 @@ class ServiceMainHeaderComponent(QtWidgets.QWidget):
 
     def retranslateUi(self):
         self.picksy_wall_header_back_button.setIcon(ui_utils.get_icon(":/icons/assets/arrow-left.svg"))
-        self.picksy_wall_header_back_button.setIconSize(QtCore.QSize(64, 64))
+        self.picksy_wall_header_back_button.setIconSize(QtCore.QSize(48, 48))
         self.picksy_wall_header_back_button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         self.picksy_wall_header_back_button.setStyleSheet(Styles.btn_back())
 

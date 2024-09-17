@@ -1,5 +1,8 @@
+import logging
+
 from PyQt5.QtWidgets import QStackedWidget
 from app.enums.page_number import PageNumber
+from app.lib.console_logger import ConsoleLogger
 from app.services.log_service import LogService
 
 
@@ -11,6 +14,10 @@ class BaseQStackedWidget(QStackedWidget):
                           caller_page_number: PageNumber,
                           target_page_number: PageNumber,
                           custom_method=None) -> None:
+        if self.count() <= target_page_number.value:
+            ConsoleLogger().log(f"Page number {target_page_number} is not available.", logging.ERROR)
+            return
+
         LogService().create_ui_log(
             f"Page transition from {caller_page_number.name} to {target_page_number.name}"
         )
