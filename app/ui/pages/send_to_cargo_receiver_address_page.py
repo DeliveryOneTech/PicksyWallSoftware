@@ -69,7 +69,7 @@ class SendToCargoReceiverAddressPage(QWidget):
             PageNumber.HOME
         ))
         main_layout.addWidget(keyboard_component, 5, 0, 1, 4)
-
+        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 6, 0, 1, 4)
         '''
         end - content
         '''
