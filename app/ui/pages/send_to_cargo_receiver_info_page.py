@@ -30,41 +30,40 @@ class SendToCargoReceiverInfoPage(QWidget):
         '''
         begin - content
         '''
+        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 1, 0)
 
-        # yan yana ad - soyad
-        # yan yana telefon - doğum yılı
         name_label = QLabel("Ad:")
         name_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(name_label, 1, 0)
+        main_layout.addWidget(name_label, 2, 0)
 
         self.name_input = QLineEdit()
         self.name_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.name_input, 1, 1)
+        main_layout.addWidget(self.name_input, 2, 1)
 
         surname_label = QLabel("Soyad:")
         surname_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(surname_label, 2, 0)
+        main_layout.addWidget(surname_label, 3, 0)
 
         self.surname_input = QLineEdit()
         self.surname_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.surname_input, 2, 1)
+        main_layout.addWidget(self.surname_input, 3, 1)
 
         phone_label = QLabel("Telefon:")
         phone_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(phone_label, 3, 0)
+        main_layout.addWidget(phone_label, 4, 0)
 
         self.phone_input = QLineEdit()
         self.phone_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.phone_input, 3, 1)
+        main_layout.addWidget(self.phone_input, 4, 1)
 
         keyboard_component = KeyboardComponent()
         keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
             PageNumber.SEND_TO_CARGO_RECEIVER_INFO,
             PageNumber.SEND_TO_CARGO_RECEIVER_ADDRESS
         ))
-        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 4, 0, 1, 3)
-        main_layout.addWidget(keyboard_component, 5, 0, 1, 3)
-        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 6, 0, 1, 3)
+        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 5, 0, 1, 3)
+        main_layout.addWidget(keyboard_component, 6, 0, 1, 3)
+        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 7, 0, 1, 3)
         '''
         end - content
         '''

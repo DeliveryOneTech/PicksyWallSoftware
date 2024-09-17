@@ -30,46 +30,48 @@ class SendToCargoCustomerAddressPage(QWidget):
         '''
         begin - content
         '''
+        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 1, 0)
+
         city_label = QLabel("İl:")
         city_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(city_label, 1, 0)
+        main_layout.addWidget(city_label, 2, 0)
 
         self.city_input = QLineEdit()
         self.city_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.city_input, 1, 1)
+        main_layout.addWidget(self.city_input, 2, 1)
 
         district_label = QLabel("İlçe:")
         district_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(district_label, 2, 0)
+        main_layout.addWidget(district_label, 3, 0)
 
         self.district_input = QLineEdit()
         self.district_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.district_input, 2, 1)
+        main_layout.addWidget(self.district_input, 3, 1)
 
         neighborhood_label = QLabel("Mahalle:")
         neighborhood_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(neighborhood_label, 3, 0)
+        main_layout.addWidget(neighborhood_label, 4, 0)
 
         self.neighborhood_input = QLineEdit()
         self.neighborhood_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.neighborhood_input, 3, 1)
+        main_layout.addWidget(self.neighborhood_input, 4, 1)
 
         address_label = QLabel("Adres:")
         address_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(address_label, 1, 2, 3, 1)
+        main_layout.addWidget(address_label, 2, 2, 3, 1)
 
         self.address_input = QTextEdit()
         self.address_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.address_input, 1, 3, 3, 1)
+        main_layout.addWidget(self.address_input, 2, 3, 3, 1)
 
         keyboard_component = KeyboardComponent()
-        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 4, 1, 1, 4)
+        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 5, 1, 1, 4)
         keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
             PageNumber.SEND_TO_CARGO_CUSTOMER_ADDRESS,
             PageNumber.SEND_TO_CARGO_RECEIVER_INFO
         ))
-        main_layout.addWidget(keyboard_component, 5, 0, 1, 4)
-        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 6, 0, 1, 4)
+        main_layout.addWidget(keyboard_component, 6, 0, 1, 4)
+        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 7, 0, 1, 4)
 
         '''
         end - content
