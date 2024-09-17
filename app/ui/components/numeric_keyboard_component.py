@@ -13,7 +13,7 @@ class NumericKeyboardComponent(QtWidgets.QWidget):
         super().__init__()
 
         btn_width = 150
-        btn_height = 110
+        btn_height = 100
 
         layout = QtWidgets.QGridLayout()
         layout.setSpacing(10)

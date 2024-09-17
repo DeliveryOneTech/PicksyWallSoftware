@@ -16,12 +16,8 @@ class Styles:
         """
 
     @staticmethod
-    def label():
-        return """
-        QLabel {
-            font: 14pt "MS Shell Dlg 2";
-        }
-        """
+    def label(font_size: int = 14):
+        return f"QLabel {{ font: {font_size}pt \"MS Shell Dlg 2\"; }}"
 
     @staticmethod
     def header():
@@ -45,7 +41,7 @@ class Styles:
             background-color: transparent;
             border: 2px solid gray;
             padding: 8px;
-            border-radius: 40%;
+            border-radius: 32%;
         }
         """
 
@@ -97,7 +93,7 @@ class Styles:
             color: black;
             font-size: 16px;
             margin: 0px;
-            font: 16pt "MS Shell Dlg 2";
+            font: 20pt "MS Shell Dlg 2";
         }
         """
 
@@ -132,17 +128,17 @@ class Styles:
         '''
 
     @staticmethod
-    def btn_keyboard():
-        return """
-            QPushButton {
-                background-color: black;
+    def btn_keyboard(bg_color: str = "black"):
+        return f"""
+            QPushButton {{
+                background-color: {bg_color};
                 color: white;
                 padding: 15px 32px;
                 border-radius: 10px;
                 font-weight: bold;
                 width: auto;
                 font: 20pt "Segoe UI";
-            }
+            }}
         """
 
     @staticmethod
@@ -165,10 +161,7 @@ class Styles:
         QPushButton {
             background-color: lightgray;
             color: black;
-            padding-right: 30%;
-            padding-left: 30%;
-            padding-top: 25%;
-            padding-bottom: 25%;
+            padding: 15px;
             text-align: center;
             text-decoration: none;
             font-size: 25px;
@@ -184,10 +177,7 @@ class Styles:
         QPushButton {
             background-color: #BFBFBF;
             color: black;
-            padding-right: 30%;
-            padding-left: 30%;
-            padding-top: 25%;
-            padding-bottom: 25%;
+            padding: 15px;
             text-align: center;
             text-decoration: none;
             font-size: 25px;
@@ -235,11 +225,11 @@ class Styles:
 
     @staticmethod
     def bordered_input():
-        return "font-size: 25px; padding: 10px; border: 1px solid #000; border-radius: 5px; background-color: transparent;"
+        return "font-size: 16pt; padding: 10px; border: 1px solid #000; border-radius: 5px; background-color: transparent;"
 
     @staticmethod
     def bg_gray_input(padding=10):
-        return f"font-size:25px; padding: {padding}px; border: 1px solid transparent; border-radius: 5px; background-color: #D9D9D9;"
+        return f"font-size: 16pt; padding: {padding}px; border: 1px solid transparent; border-radius: 5px; background-color: #D9D9D9;"
 
     @staticmethod
     def get_green_color():

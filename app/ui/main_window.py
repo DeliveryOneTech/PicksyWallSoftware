@@ -9,7 +9,11 @@ from app.ui.pages.left_robot_management_page import LeftRobotManagementPage
 from app.ui.pages.others_main_page import OthersMainPage
 from app.ui.pages.receive_package_authentication_page import ReceivePackageAuthenticationPage
 from app.ui.pages.right_robot_management_page import RightRobotManagementPage
+from app.ui.pages.send_to_cargo_customer_address_page import SendToCargoCustomerAddressPage
+from app.ui.pages.send_to_cargo_customer_info_page import SendToCargoCustomerInfoPage
 from app.ui.pages.send_to_cargo_identity_number_input_page import SendToCargoIdentityNumberInputPage
+from app.ui.pages.send_to_cargo_receiver_address_page import SendToCargoReceiverAddressPage
+from app.ui.pages.send_to_cargo_receiver_info_page import SendToCargoReceiverInfoPage
 from app.ui.pages.send_to_reject_identity_number_input_page import SendToRejectIdentityNumberInputPage
 from app.ui.pages.service_main_page import ServiceMainPage
 from app.ui.pages.service_user_authentication_page import ServiceUserAuthenticationPage
@@ -23,6 +27,8 @@ class MainWindow(QMainWindow):
         try:
             super(MainWindow, self).__init__()
             stacked_widget = BaseQStackedWidget()
+
+            self.setFixedSize(1280, 800)
 
             stacked_widget.addWidget(
                 HomePage(stacked_widget)
@@ -56,6 +62,18 @@ class MainWindow(QMainWindow):
             )
             stacked_widget.addWidget(
                 RightRobotManagementPage(stacked_widget)
+            )
+            stacked_widget.addWidget(
+                SendToCargoCustomerInfoPage(stacked_widget)
+            )
+            stacked_widget.addWidget(
+                SendToCargoCustomerAddressPage(stacked_widget)
+            )
+            stacked_widget.addWidget(
+                SendToCargoReceiverInfoPage(stacked_widget)
+            )
+            stacked_widget.addWidget(
+                SendToCargoReceiverAddressPage(stacked_widget)
             )
 
             stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING,

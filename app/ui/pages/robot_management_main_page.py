@@ -17,7 +17,7 @@ class RobotManagementMainPage(QWidget):
 
         label = 'Sol' if caller_page_number == PageNumber.LEFT_ROBOT_MANAGEMENT else 'Sağ'
 
-        header = ServiceMainHeaderComponent(label + ' Robot Yönetim Paneli')
+        header = ServiceMainHeaderComponent(label)
         footer = None
 
         if header:

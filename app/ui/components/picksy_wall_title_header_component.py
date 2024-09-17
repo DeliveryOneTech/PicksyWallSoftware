@@ -22,7 +22,7 @@ class PicksyWallTitleHeaderComponent(QtWidgets.QWidget):
         self.picksy_wall_header_title_label = QtWidgets.QLabel(picksy_wall_title_header)
         self.picksy_wall_header_title_label.setAlignment(QtCore.Qt.AlignCenter)
         self.picksy_wall_header_title_label.setObjectName("picksy_wall_header_brand_image_label")
-        self.picksy_wall_header_title_label.setStyleSheet(Styles.header())
+        self.picksy_wall_header_title_label.setStyleSheet(Styles.label(16))
 
         self.header_layout.addWidget(self.picksy_wall_header_back_button)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
@@ -42,7 +42,7 @@ class PicksyWallTitleHeaderComponent(QtWidgets.QWidget):
 
     def retranslateUi(self):
         self.picksy_wall_header_back_button.setIcon(ui_utils.get_icon(":/icons/assets/arrow-left.svg"))
-        self.picksy_wall_header_back_button.setIconSize(QtCore.QSize(64, 64))
+        self.picksy_wall_header_back_button.setIconSize(QtCore.QSize(48, 48))
         self.picksy_wall_header_back_button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         self.picksy_wall_header_back_button.setStyleSheet(Styles.btn_back())
 
