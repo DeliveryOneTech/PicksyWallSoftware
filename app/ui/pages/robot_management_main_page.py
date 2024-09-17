@@ -1,5 +1,5 @@
 from app.enums.page_number import PageNumber
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QGridLayout
+from PyQt5.QtWidgets import QWidget, QVBoxLayout, QPushButton, QGridLayout, QSpacerItem, QSizePolicy
 from app.styles import Styles
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.delta_numeric_input_component import DeltaNumericInputComponent
@@ -71,6 +71,8 @@ class RobotManagementMainPage(QWidget):
         grid_layout.addWidget(self.x2_axis, 4, 0)
         grid_layout.addWidget(self.y_axis, 4, 1)
         grid_layout.addWidget(self.hide_cover, 4, 2)
+
+        grid_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 5, 0, 1, 3)
 
         '''
         end - content

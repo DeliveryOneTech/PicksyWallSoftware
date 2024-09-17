@@ -51,8 +51,8 @@ class CourierUserAuthenticationPage(QWidget):
             PageNumber.COURIER_USER_AUTHENTICATION,
             PageNumber.OTHERS_MAIN
         ))
-        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 3, 0)
-        main_layout.addWidget(keyboard_component, 3, 0, 1, 4)
+        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 3, 0, 1, 4)
+        main_layout.addWidget(keyboard_component, 4, 0, 1, 4)
 
         '''
         end - content
