@@ -225,11 +225,11 @@ class Styles:
 
     @staticmethod
     def bordered_input():
-        return "font-size: 16pt; padding: 10px; border: 1px solid #000; border-radius: 5px; background-color: transparent;"
+        return "font-size: 20pt; padding: 10px; border: 1px solid #000; border-radius: 5px; background-color: transparent;"
 
     @staticmethod
     def bg_gray_input(padding=10):
-        return f"font-size: 16pt; padding: {padding}px; border: 1px solid transparent; border-radius: 5px; background-color: #D9D9D9;"
+        return f"font-size: 20pt; padding: {padding}px; border: 1px solid transparent; border-radius: 5px; background-color: #D9D9D9;"
 
     @staticmethod
     def get_green_color():

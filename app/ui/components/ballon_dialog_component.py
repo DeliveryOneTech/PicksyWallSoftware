@@ -19,7 +19,7 @@ class BalloonDialog(QDialog):
         label = QLabel(self.tooltip)
         label.setStyleSheet("padding: 10px; background-color: white; border-radius: 10px; border: 0px;")
         font = label.font()
-        font.setPointSize(12)
+        font.setPointSize(18)
         label.setFont(font)
         label.setWordWrap(True)
 
