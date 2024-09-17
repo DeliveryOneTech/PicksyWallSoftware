@@ -40,7 +40,7 @@ def run() -> int:
     """
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.show()
+    window.showFullScreen()
 
     window.app_ready.connect(__on_start_app)
     app.aboutToQuit.connect(__on_close_app)

@@ -28,8 +28,6 @@ class MainWindow(QMainWindow):
             super(MainWindow, self).__init__()
             stacked_widget = BaseQStackedWidget()
 
-            self.setFixedSize(1280, 800)
-
             stacked_widget.addWidget(
                 HomePage(stacked_widget)
             )
