@@ -74,6 +74,7 @@ class CheckInternetConnectionLoop(D1Action):
         action = CheckInternetConnectionLoop()
         thread = QThread()
         thread.setObjectName(action.thread_name)
+        thread_manager = ThreadManager()
 
         action.is_thread_executed = True
         action.moveToThread(thread)
@@ -86,7 +87,6 @@ class CheckInternetConnectionLoop(D1Action):
             thread.start()
 
         if run_with_thread_manager:
-            thread_manager = ThreadManager()
             thread.finished.connect(lambda: thread_manager.remove_redundant_thread_action_pairs())
             thread_manager.add_thread_action_pair(action, thread)
 

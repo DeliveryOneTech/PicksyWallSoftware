@@ -27,6 +27,7 @@ class SubscribeToAllTopicsAction(D1Action):
     def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True, execute_func_params: list = None) -> tuple[D1Action, QThread]:
         action = SubscribeToAllTopicsAction()
         thread = QThread()
+        thread_manager = ThreadManager()
         thread.setObjectName(action.thread_name)
 
         action.is_thread_executed = run_with_thread_manager
@@ -40,11 +41,10 @@ class SubscribeToAllTopicsAction(D1Action):
             thread.start()
 
         if run_with_thread_manager:
-            thread_manager = ThreadManager()
-            action.is_loading_signal.connect(
-                lambda is_loading: thread_manager.kill_thread(thread) if not is_loading else None
-            )
             thread.finished.connect(lambda: thread_manager.remove_redundant_thread_action_pairs())
             thread_manager.add_thread_action_pair(action, thread)
 
+        action.is_loading_signal.connect(
+            lambda is_loading: thread_manager.kill_thread(thread) if not is_loading else None
+        )
         return action, thread
