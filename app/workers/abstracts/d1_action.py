@@ -24,7 +24,8 @@ class D1Action(QObject):
 
     @staticmethod
     @abstractmethod
-    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True) -> tuple[QObject, QThread]: pass
+    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True,
+                      execute_func_params: list = None) -> tuple[QObject, QThread]: pass
 
     @is_thread_executed.setter
     def is_thread_executed(self, value):

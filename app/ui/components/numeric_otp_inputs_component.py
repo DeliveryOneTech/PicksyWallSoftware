@@ -39,6 +39,11 @@ class NumericOTPInputsComponent(QtWidgets.QWidget):
         if first_input:
             first_input.setFocus()
 
+    def set_focus_last_input(self):
+        last_input = self.findChild(QtWidgets.QLineEdit, self.name_prefix + str(len(self.name_prefix)))
+        if last_input:
+            last_input.setFocus()
+
     def get_value(self):
         all_inputs = self.findChildren(QtWidgets.QLineEdit)
         otp = ""
