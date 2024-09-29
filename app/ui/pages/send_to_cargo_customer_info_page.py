@@ -5,6 +5,7 @@ from app.styles import Styles
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.keyboard_component import KeyboardComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent
+from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
 
 
 class SendToCargoCustomerInfoPage(QWidget):
@@ -30,40 +31,48 @@ class SendToCargoCustomerInfoPage(QWidget):
         '''
         begin - content
         '''
-        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 1, 0)
+        self.wizard = WizardComponent("send_to_cargo_customer_info_page_", [
+            WizardItemViewModel(1, "Kimlik No"),
+            WizardItemViewModel(2, "Gönderici Bilgileri"),
+            WizardItemViewModel(3, "Alıcı Bilgileri"),
+        ], True)
+
+        main_layout.addWidget(self.wizard, 1, 0, 1, 4)
+
+        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 2, 0)
 
         name_label = QLabel("Ad:")
         name_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(name_label, 2, 0)
+        main_layout.addWidget(name_label, 3, 0)
 
         self.name_input = QLineEdit()
         self.name_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.name_input, 2, 1)
+        main_layout.addWidget(self.name_input, 3, 1)
 
         surname_label = QLabel("Soyad:")
         surname_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(surname_label, 3, 0)
+        main_layout.addWidget(surname_label, 4, 0)
 
         self.surname_input = QLineEdit()
         self.surname_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.surname_input, 3, 1)
+        main_layout.addWidget(self.surname_input, 4, 1)
 
         birth_year_label = QLabel("Doğum Yılı:")
         birth_year_label.setStyleSheet(Styles.label())
-        main_layout.addWidget(birth_year_label, 4, 0)
+        main_layout.addWidget(birth_year_label, 5, 0)
 
         self.birth_year_input = QLineEdit()
         self.birth_year_input.setStyleSheet(Styles.bg_gray_input())
-        main_layout.addWidget(self.birth_year_input, 4, 1)
+        main_layout.addWidget(self.birth_year_input, 5, 1)
 
         keyboard_component = KeyboardComponent()
         keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
             PageNumber.SEND_TO_CARGO_CUSTOMER_INFO,
             PageNumber.SEND_TO_CARGO_CUSTOMER_ADDRESS
         ))
-        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 5, 0, 1, 4)
-        main_layout.addWidget(keyboard_component, 6, 0, 1, 4)
-        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 7, 0, 1, 4)
+        main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 6, 0, 1, 4)
+        main_layout.addWidget(keyboard_component, 7, 0, 1, 4)
+        main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 8, 0, 1, 4)
         '''
         end - content
         '''
@@ -75,3 +84,4 @@ class SendToCargoCustomerInfoPage(QWidget):
         self.surname_input.clear()
         self.birth_year_input.clear()
         self.name_input.setFocus()
+        self.wizard.go_to_step(1)
