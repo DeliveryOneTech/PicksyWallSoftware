@@ -5,6 +5,8 @@ from app.lib.utils import Utils
 
 class TestTopicRoute(MqttMessageRoute):
     topic = f'picksywall/{Utils.get_value_from_app_config("DeviceId")}/test'
+    # TODO : ENUMERABLE NAME EKLENECEK.
+    # TODO : ENUMS'A NAME EKLEMEK YENİ EKLENECEKLER İÇİN ZORUNLU..
 
     def __init__(self):
         super().__init__()
