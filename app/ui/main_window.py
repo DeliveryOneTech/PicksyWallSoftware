@@ -22,7 +22,6 @@ from app.ui.utils import resource
 
 
 class MainWindow(QMainWindow):
-
     def __init__(self):
         (self.check_internet_connection_loop_action,
          self.check_internet_connection_loop_thread) = CheckInternetConnectionLoop().run_in_thread(
@@ -90,14 +89,15 @@ class MainWindow(QMainWindow):
             print(e)
             raise e
 
+    __last_internet_state = CheckInternetConnectionLoop.get_internet_connection_state()
+
     def __handle_check_internet_connection_loop_result_signal(self, result: D1Result):
         if not result.success:
             self.stacked_widget.go_by_page_number(PageNumber.HOME, PageNumber.APPLICATION_LOADING)
-            return
-
-        current_page_number = PageNumber(self.stacked_widget.currentIndex())
-        if current_page_number == PageNumber.APPLICATION_LOADING:
+        elif self.__last_internet_state is False and result.success:
             self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING, PageNumber.HOME)
+
+        self.__last_internet_state = result.success
 
     def showEvent(self, event):
         super().showEvent(event)

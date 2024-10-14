@@ -65,6 +65,9 @@ class ApplicationLoadingPage(QWidget):
         if result.success:
             self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING, PageNumber.HOME)
         else:
+            active_page = PageNumber(self.stacked_widget.currentIndex())
+            if active_page is not PageNumber.APPLICATION_LOADING:
+                self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING, PageNumber.APPLICATION_LOADING)
             ConsoleLogger().log(result.message, logging.ERROR)
 
     def on_shown(self):

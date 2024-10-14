@@ -1,7 +1,5 @@
 import logging
-
 from PyQt5.QtCore import pyqtSignal, QThread
-
 from app.communication.iot.mqtt_subscriber import MqttSubscriber
 from app.lib.console_logger import ConsoleLogger
 from app.lib.models.d1_result_data_model import D1Result
@@ -23,15 +21,14 @@ class InitApplicationAction(D1Action):
         self.is_loading_signal.emit(True)
         try:
             MqttSubscriber()
+            self.result_signal.emit(D1Result(True, "Init process completed."))
+            ConsoleLogger().log("Init process completed.")
+            self.is_loading_signal.emit(False)
         except Exception as e:
             self.result_signal.emit(D1Result(False, str(e)))
             ConsoleLogger().log(str(e), logging.ERROR)
             self.is_loading_signal.emit(False)
             return
-        finally:
-            self.result_signal.emit(D1Result(True, "Init process completed."))
-            ConsoleLogger().log("Init process completed.")
-            self.is_loading_signal.emit(False)
 
     @staticmethod
     def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True,

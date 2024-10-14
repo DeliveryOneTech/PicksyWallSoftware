@@ -24,11 +24,11 @@ class CheckInternetConnectionLoop(D1Action):
 
     def execute(self):
         self.is_running = True
-        last_internet_state = self.__get_internet_connection_state()
+        last_internet_state = self.get_internet_connection_state()
         while self.is_running:
             self.is_loading_signal.emit(True)
 
-            current_internet_state = self.__get_internet_connection_state()
+            current_internet_state = self.get_internet_connection_state()
 
             if (last_internet_state != current_internet_state and
                     last_internet_state == False):
@@ -49,7 +49,7 @@ class CheckInternetConnectionLoop(D1Action):
         self.is_running = False
 
     @staticmethod
-    def __get_internet_connection_state() -> bool:
+    def get_internet_connection_state() -> bool:
         try:
             urllib.request.urlopen("https://www.google.com")
             ConsoleLogger().log("Checking internet connection state. STATE: ON")

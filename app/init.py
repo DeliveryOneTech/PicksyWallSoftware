@@ -24,7 +24,7 @@ def run() -> int:
     """
     app = QApplication(sys.argv)
     window = MainWindow()
-    window.show()
+    window.showFullScreen()
 
     app.aboutToQuit.connect(__on_close_app)
     return sys.exit(app.exec())
