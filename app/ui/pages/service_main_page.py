@@ -44,7 +44,7 @@ class ServiceMainPage(QWidget):
             footer.hide_other_button()
             footer.picksy_wall_footer_service_button.setText("Geri Dön")
             footer.on_click_service_button.connect(lambda: stacked_widget.go_by_page_number(
-                PageNumber.SERVICE_MAIN, PageNumber.HOME
+                PageNumber.SERVICE_MAIN_PAGE, PageNumber.HOME_PAGE
             ))
             v_box.addWidget(footer)
 
@@ -54,11 +54,11 @@ class ServiceMainPage(QWidget):
 
     def __define_events(self):
         self.left_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.SERVICE_MAIN,
-            PageNumber.LEFT_ROBOT_MANAGEMENT
+            PageNumber.SERVICE_MAIN_PAGE,
+            PageNumber.LEFT_ROBOT_MANAGEMENT_PAGE
         )
 
         self.right_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.SERVICE_MAIN,
-            PageNumber.RIGHT_ROBOT_MANAGEMENT
+            PageNumber.SERVICE_MAIN_PAGE,
+            PageNumber.RIGHT_ROBOT_MANAGEMENT_PAGE
         )

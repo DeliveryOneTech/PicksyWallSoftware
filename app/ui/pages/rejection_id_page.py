@@ -10,7 +10,7 @@ from app.ui.components.picksy_wall_title_header_component import PicksyWallTitle
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 
 
-class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
+class RejectionIdPage(QtWidgets.QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
@@ -24,7 +24,7 @@ class SendToRejectIdentityNumberInputPage(QtWidgets.QWidget):
 
         if header:
             header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
-                PageNumber.SEND_TO_REJECT_IDENTITY_NUMBER_INPUT, PageNumber.HOME
+                PageNumber.REJECTION_ID_PAGE, PageNumber.HOME_PAGE
             ))
             header.set_title("İade Teslimat Kodunu Giriniz")
             v_box.addWidget(header)

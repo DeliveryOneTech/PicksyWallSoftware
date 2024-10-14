@@ -1,20 +1,20 @@
 from app.lib.models.d1_result_data_model import D1Result
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
-from app.ui.pages.application_loading_page import ApplicationLoadingPage
-from app.ui.pages.courier_user_authentication_page import CourierUserAuthenticationPage
+from app.ui.pages.initialization_page import InitializationPage
+from app.ui.pages.courier_authentication_page import CourierAuthenticationPage
 from app.ui.pages.home_page import HomePage
 from app.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QMainWindow
 from app.ui.pages.left_robot_management_page import LeftRobotManagementPage
-from app.ui.pages.others_main_page import OthersMainPage
-from app.ui.pages.receive_package_authentication_page import ReceivePackageAuthenticationPage
+from app.ui.pages.other_services_page import OtherServicesPage
+from app.ui.pages.receiver_authentication_page import ReceiverAuthenticationPage
 from app.ui.pages.right_robot_management_page import RightRobotManagementPage
-from app.ui.pages.send_to_cargo_customer_address_page import SendToCargoCustomerAddressPage
-from app.ui.pages.send_to_cargo_customer_info_page import SendToCargoCustomerInfoPage
-from app.ui.pages.send_to_cargo_identity_number_input_page import SendToCargoIdentityNumberInputPage
-from app.ui.pages.send_to_cargo_receiver_address_page import SendToCargoReceiverAddressPage
-from app.ui.pages.send_to_cargo_receiver_info_page import SendToCargoReceiverInfoPage
-from app.ui.pages.send_to_reject_identity_number_input_page import SendToRejectIdentityNumberInputPage
+from app.ui.pages.sender_address_page import SenderAddressPage
+from app.ui.pages.sender_information_page import SenderInformationPage
+from app.ui.pages.sender_identification_page import SenderIdentificationPage
+from app.ui.pages.receiver_address_page import ReceiverAddressPage
+from app.ui.pages.receiver_information_page import ReceiverInformationPage
+from app.ui.pages.rejection_id_page import RejectionIdPage
 from app.ui.pages.service_main_page import ServiceMainPage
 from app.ui.pages.service_user_authentication_page import ServiceUserAuthenticationPage
 from app.workers.loops.check_internet_connection_loop import CheckInternetConnectionLoop
@@ -38,25 +38,25 @@ class MainWindow(QMainWindow):
                 HomePage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                SendToCargoIdentityNumberInputPage(self.stacked_widget)
+                SenderIdentificationPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                SendToRejectIdentityNumberInputPage(self.stacked_widget)
+                RejectionIdPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                ReceivePackageAuthenticationPage(self.stacked_widget)
+                ReceiverAuthenticationPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
                 ServiceUserAuthenticationPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                ApplicationLoadingPage(self.stacked_widget)
+                InitializationPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                OthersMainPage(self.stacked_widget)
+                OtherServicesPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                CourierUserAuthenticationPage(self.stacked_widget)
+                CourierAuthenticationPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
                 ServiceMainPage(self.stacked_widget)
@@ -68,20 +68,20 @@ class MainWindow(QMainWindow):
                 RightRobotManagementPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                SendToCargoCustomerInfoPage(self.stacked_widget)
+                SenderInformationPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                SendToCargoCustomerAddressPage(self.stacked_widget)
+                SenderAddressPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                SendToCargoReceiverInfoPage(self.stacked_widget)
+                ReceiverInformationPage(self.stacked_widget)
             )
             self.stacked_widget.addWidget(
-                SendToCargoReceiverAddressPage(self.stacked_widget)
+                ReceiverAddressPage(self.stacked_widget)
             )
 
-            self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING,
-                                                  PageNumber.APPLICATION_LOADING)
+            self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE,
+                                                  PageNumber.INITIALIZATION_PAGE)
 
             self.setCentralWidget(self.stacked_widget)
 
@@ -93,9 +93,9 @@ class MainWindow(QMainWindow):
 
     def __handle_check_internet_connection_loop_result_signal(self, result: D1Result):
         if not result.success:
-            self.stacked_widget.go_by_page_number(PageNumber.HOME, PageNumber.APPLICATION_LOADING)
+            self.stacked_widget.go_by_page_number(PageNumber.HOME_PAGE, PageNumber.INITIALIZATION_PAGE)
         elif self.__last_internet_state is False and result.success:
-            self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING, PageNumber.HOME)
+            self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE, PageNumber.HOME_PAGE)
 
         self.__last_internet_state = result.success
 

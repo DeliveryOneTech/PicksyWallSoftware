@@ -8,7 +8,7 @@ from app.ui.utils import ui_utils
 from app.workers.actions.init_application_action import InitApplicationAction
 
 
-class ApplicationLoadingPage(QWidget):
+class InitializationPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
@@ -63,11 +63,11 @@ class ApplicationLoadingPage(QWidget):
     # LOGIC METHODS
     def handle_init_application_action_result_signal(self, result):
         if result.success:
-            self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING, PageNumber.HOME)
+            self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE, PageNumber.HOME_PAGE)
         else:
             active_page = PageNumber(self.stacked_widget.currentIndex())
-            if active_page is not PageNumber.APPLICATION_LOADING:
-                self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING, PageNumber.APPLICATION_LOADING)
+            if active_page is not PageNumber.INITIALIZATION_PAGE:
+                self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE, PageNumber.INITIALIZATION_PAGE)
             ConsoleLogger().log(result.message, logging.ERROR)
 
     def on_shown(self):

@@ -7,7 +7,7 @@ from app.ui.components.keyboard_component import KeyboardComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent
 
 
-class CourierUserAuthenticationPage(QWidget):
+class CourierAuthenticationPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.console_logger = ConsoleLogger()
@@ -19,8 +19,8 @@ class CourierUserAuthenticationPage(QWidget):
 
         if header is not None:
             header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
-                PageNumber.COURIER_USER_AUTHENTICATION,
-                PageNumber.HOME
+                PageNumber.COURIER_AUTHENTICATION_PAGE,
+                PageNumber.HOME_PAGE
             ))
             header.set_title("Kurye Kullanıcı Bilgilerini Giriniz")
             main_layout.addWidget(header, 0, 0, 1, 4)
@@ -49,8 +49,8 @@ class CourierUserAuthenticationPage(QWidget):
 
         keyboard_component = KeyboardComponent()
         keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
-            PageNumber.COURIER_USER_AUTHENTICATION,
-            PageNumber.OTHERS_MAIN
+            PageNumber.COURIER_AUTHENTICATION_PAGE,
+            PageNumber.OTHER_SERVICES_PAGE
         ))
         main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 4, 0, 1, 4)
         main_layout.addWidget(keyboard_component, 5, 0, 1, 4)

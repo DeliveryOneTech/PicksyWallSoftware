@@ -22,7 +22,7 @@ class ServiceUserAuthenticationPage(QWidget):
         # Header
         if self.header:
             self.header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
-                PageNumber.SERVICE_USER_AUTHENTICATION, PageNumber.HOME
+                PageNumber.SERVICE_USER_AUTHENTICATION_PAGE, PageNumber.HOME_PAGE
             ))
             self.header.set_title("Servis Personeli Şifresini Giriniz.")
             self.v_box.addWidget(self.header)
@@ -51,7 +51,7 @@ class ServiceUserAuthenticationPage(QWidget):
 
         numeric_keyboard_component = NumericKeyboardComponent()
         numeric_keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
-            PageNumber.SERVICE_USER_AUTHENTICATION, PageNumber.SERVICE_MAIN
+            PageNumber.SERVICE_USER_AUTHENTICATION_PAGE, PageNumber.SERVICE_MAIN_PAGE
         ))
 
         self.v_box.addWidget(numeric_keyboard_component)

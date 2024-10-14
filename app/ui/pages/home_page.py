@@ -65,12 +65,12 @@ class HomePage(QWidget):
         if footer:
             footer.set_service_and_other_button_width(self.send_button.width())
             footer.on_click_service_button.connect(
-                lambda: self.stacked_widget.go_by_page_number(PageNumber.HOME,
-                                                              PageNumber.SERVICE_USER_AUTHENTICATION)
+                lambda: self.stacked_widget.go_by_page_number(PageNumber.HOME_PAGE,
+                                                              PageNumber.SERVICE_USER_AUTHENTICATION_PAGE)
             )
             footer.on_click_other_button.connect(
-                lambda: self.stacked_widget.go_by_page_number(PageNumber.HOME,
-                                                              PageNumber.OTHERS_MAIN)
+                lambda: self.stacked_widget.go_by_page_number(PageNumber.HOME_PAGE,
+                                                              PageNumber.OTHER_SERVICES_PAGE)
             )
             v_box.addWidget(footer)
         # end footer
@@ -81,14 +81,14 @@ class HomePage(QWidget):
 
     def __define_events(self):
         self.send_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.HOME,
-            PageNumber.SEND_TO_CARGO_IDENTITY_NUMBER_INPUT
+            PageNumber.HOME_PAGE,
+            PageNumber.SENDER_IDENTIFICATION_PAGE
         )
         self.receive_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.HOME,
-            PageNumber.RECEIVE_PACKAGE_AUTHENTICATION
+            PageNumber.HOME_PAGE,
+            PageNumber.RECEIVER_AUTHENTICATION_PAGE
         )
         self.send_to_reject_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.HOME,
-            PageNumber.SEND_TO_REJECT_IDENTITY_NUMBER_INPUT
+            PageNumber.HOME_PAGE,
+            PageNumber.REJECTION_ID_PAGE
         )

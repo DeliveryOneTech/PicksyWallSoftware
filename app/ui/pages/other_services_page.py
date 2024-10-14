@@ -8,7 +8,7 @@ from app.enums.page_number import PageNumber
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 
 
-class OthersMainPage(QWidget):
+class OtherServicesPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.stacked_widget = stacked_widget
@@ -67,8 +67,8 @@ class OthersMainPage(QWidget):
             footer.picksy_wall_footer_service_button.setText("Geri Dön")
             footer.hide_other_button()
             footer.on_click_service_button.connect(
-                lambda: self.stacked_widget.go_by_page_number(PageNumber.OTHERS_MAIN,
-                                                              PageNumber.HOME)
+                lambda: self.stacked_widget.go_by_page_number(PageNumber.OTHER_SERVICES_PAGE,
+                                                              PageNumber.HOME_PAGE)
             )
             footer.on_click_other_button.connect(
                 lambda: self.console_logger.log("Other button clicked but not implemented yet.", logging.WARNING)
@@ -82,14 +82,14 @@ class OthersMainPage(QWidget):
 
     def __define_events(self):
         self.courier_login_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.OTHERS_MAIN,
-            PageNumber.COURIER_USER_AUTHENTICATION
+            PageNumber.OTHER_SERVICES_PAGE,
+            PageNumber.COURIER_AUTHENTICATION_PAGE
         )
         self.maintenance_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.OTHERS_MAIN,
+            PageNumber.OTHER_SERVICES_PAGE,
             PageNumber.MAINTENANCE
         )
         self.cleaning_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
-            PageNumber.HOME,
+            PageNumber.HOME_PAGE,
             PageNumber.CLEANING
         )

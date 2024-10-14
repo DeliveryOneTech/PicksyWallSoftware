@@ -9,7 +9,7 @@ from app.ui.components.picksy_wall_title_header_component import PicksyWallTitle
 from app.ui.components.wizard_component import WizardItemViewModel, WizardComponent
 
 
-class SendToCargoIdentityNumberInputPage(QWidget):
+class SenderIdentificationPage(QWidget):
 
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
@@ -23,8 +23,8 @@ class SendToCargoIdentityNumberInputPage(QWidget):
 
         if header is not None:
             header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
-                PageNumber.SEND_TO_CARGO_IDENTITY_NUMBER_INPUT,
-                PageNumber.HOME
+                PageNumber.SENDER_IDENTIFICATION_PAGE,
+                PageNumber.HOME_PAGE
             ))
             header.set_title("T.C. Kimlik Numaranızı Giriniz")
             main_layout.addWidget(header, 0, 0, 1, 3)
@@ -46,8 +46,8 @@ class SendToCargoIdentityNumberInputPage(QWidget):
         numeric_keyboard_component = NumericKeyboardComponent()
         main_layout.addWidget(numeric_keyboard_component, 3, 0, 1, 3)
         numeric_keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
-            PageNumber.SEND_TO_CARGO_IDENTITY_NUMBER_INPUT,
-            PageNumber.SEND_TO_CARGO_CUSTOMER_INFO
+            PageNumber.SENDER_IDENTIFICATION_PAGE,
+            PageNumber.SENDER_INFORMATION_PAGE
         ))
 
         self.approve_with_checkbox_component = ApproveWithCheckboxInputComponent()

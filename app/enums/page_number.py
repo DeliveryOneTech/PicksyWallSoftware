@@ -1,22 +1,27 @@
 from enum import Enum
 
-# sonu page ile bitsin
+
 class PageNumber(Enum):
-    HOME = 0
-    SEND_TO_CARGO_IDENTITY_NUMBER_INPUT = 1 # sender identification page
-    SEND_TO_REJECT_IDENTITY_NUMBER_INPUT = 2 # rejection id page
-    RECEIVE_PACKAGE_AUTHENTICATION = 3 # receiver authentication page
-    SERVICE_USER_AUTHENTICATION = 4
-    APPLICATION_LOADING = 5 # initialaztion page
-    OTHERS_MAIN = 6 # other services page
-    COURIER_USER_AUTHENTICATION = 7 # courier authentication page
-    SERVICE_MAIN = 8 # service main page
-    LEFT_ROBOT_MANAGEMENT = 9 # left robot management page
-    RIGHT_ROBOT_MANAGEMENT = 10 # right robot management page
-    SEND_TO_CARGO_CUSTOMER_INFO = 11 # sender information page
-    SEND_TO_CARGO_CUSTOMER_ADDRESS = 12 # sender address page
-    SEND_TO_CARGO_RECEIVER_INFO = 13 # receiver information page
-    SEND_TO_CARGO_RECEIVER_ADDRESS = 14 # receiver address page
+    HOME_PAGE = 0
+
+    SENDER_IDENTIFICATION_PAGE = 1  # sender identification page
+    SENDER_INFORMATION_PAGE = 11  # sender information page
+    SENDER_ADDRESS_PAGE = 12  # sender address page
+    RECEIVER_INFORMATION_PAGE = 13  # receiver information page
+    RECEIVER_ADDRESS_PAGE = 14  # receiver address page
+
+    REJECTION_ID_PAGE = 2  # rejection id page
+
+    INITIALIZATION_PAGE = 5  # initialaztion page
+    RECEIVER_AUTHENTICATION_PAGE = 3  # receiver authentication page
+
+    OTHER_SERVICES_PAGE = 6  # other services page
+    COURIER_AUTHENTICATION_PAGE = 7  # courier authentication page
+
+    SERVICE_USER_AUTHENTICATION_PAGE = 4
+    SERVICE_MAIN_PAGE = 8  # service main page
+    LEFT_ROBOT_MANAGEMENT_PAGE = 9  # left robot management page
+    RIGHT_ROBOT_MANAGEMENT_PAGE = 10  # right robot management page
 
     # MAINTENANCE =
     # CLEANING =

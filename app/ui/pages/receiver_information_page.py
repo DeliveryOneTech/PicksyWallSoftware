@@ -8,7 +8,7 @@ from app.ui.components.picksy_wall_title_header_component import PicksyWallTitle
 from app.ui.components.wizard_component import WizardComponent, WizardItemViewModel
 
 
-class SendToCargoReceiverInfoPage(QWidget):
+class ReceiverInformationPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
 
@@ -22,8 +22,8 @@ class SendToCargoReceiverInfoPage(QWidget):
 
         if header is not None:
             header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
-                PageNumber.SEND_TO_CARGO_RECEIVER_INFO,
-                PageNumber.HOME
+                PageNumber.RECEIVER_INFORMATION_PAGE,
+                PageNumber.HOME_PAGE
             ))
             header.set_title("Alıcı Bilgilerini Giriniz")
             main_layout.addWidget(header, 0, 0, 1, 4)
@@ -67,8 +67,8 @@ class SendToCargoReceiverInfoPage(QWidget):
 
         keyboard_component = KeyboardComponent()
         keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
-            PageNumber.SEND_TO_CARGO_RECEIVER_INFO,
-            PageNumber.SEND_TO_CARGO_RECEIVER_ADDRESS
+            PageNumber.RECEIVER_INFORMATION_PAGE,
+            PageNumber.RECEIVER_ADDRESS_PAGE
         ))
         main_layout.addItem(QSpacerItem(20, 40, QSizePolicy.Fixed, QSizePolicy.Expanding), 6, 0, 1, 3)
         main_layout.addWidget(keyboard_component, 7, 0, 1, 3)

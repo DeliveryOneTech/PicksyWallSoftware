@@ -15,13 +15,13 @@ class RobotManagementMainPage(QWidget):
         self.setStyleSheet("QPushButton {font: 16pt 'MS Shell Dlg 2';}")
         grid_layout = QGridLayout()
 
-        label = 'Sol' if caller_page_number == PageNumber.LEFT_ROBOT_MANAGEMENT else 'Sağ'
+        label = 'Sol' if caller_page_number == PageNumber.LEFT_ROBOT_MANAGEMENT_PAGE else 'Sağ'
 
         header = ServiceMainHeaderComponent(label + ' Robot')
 
         if header:
             header.back_button_clicked.connect(lambda: self.stacked_widget.go_by_page_number(
-                self.caller_page_number, PageNumber.SERVICE_MAIN
+                self.caller_page_number, PageNumber.SERVICE_MAIN_PAGE
             ))
             grid_layout.addWidget(header, 0, 0, 1, 3)
 

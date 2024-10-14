@@ -8,7 +8,7 @@ from app.ui.components.numeric_keyboard_component import NumericKeyboardComponen
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent
 
 
-class ReceivePackageAuthenticationPage(QWidget):
+class ReceiverAuthenticationPage(QWidget):
     def __init__(self, stacked_widget: BaseQStackedWidget):
         super().__init__()
         self.console_logger = ConsoleLogger()
@@ -22,7 +22,7 @@ class ReceivePackageAuthenticationPage(QWidget):
         # Header
         if header:
             header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
-                PageNumber.RECEIVE_PACKAGE_AUTHENTICATION, PageNumber.HOME
+                PageNumber.RECEIVER_AUTHENTICATION_PAGE, PageNumber.HOME_PAGE
             ))
             header.set_title("Tek Kullanımlık Şifreyi Giriniz.")
             self.v_box.addWidget(header)
