@@ -90,7 +90,7 @@ class MainWindow(QMainWindow):
             print(e)
             raise e
 
-    def handle_check_internet_connection_loop_result_signal(self, result: D1Result):
+    def __handle_check_internet_connection_loop_result_signal(self, result: D1Result):
         if not result.success:
             self.stacked_widget.go_by_page_number(PageNumber.HOME, PageNumber.APPLICATION_LOADING)
             return
@@ -103,5 +103,5 @@ class MainWindow(QMainWindow):
         super().showEvent(event)
         self.check_internet_connection_loop_thread.start()
         self.check_internet_connection_loop_action.result_signal.connect(
-            self.handle_check_internet_connection_loop_result_signal
+            self.__handle_check_internet_connection_loop_result_signal
         )
