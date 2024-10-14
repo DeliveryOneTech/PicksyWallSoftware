@@ -1,6 +1,6 @@
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
-from app.styles import Styles
+from app.ui.utils.styles import Styles
 from app.ui.utils.ui_utils import *
 import pyautogui
 import pyperclip

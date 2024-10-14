@@ -1,8 +1,8 @@
 from PyQt5 import QtGui
 from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QLabel, QLineEdit, QVBoxLayout, QPushButton, QGridLayout
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QGridLayout
 
-from app.styles import Styles
+from app.ui.utils.styles import Styles
 
 
 class DeltaNumericInputComponent(QWidget):

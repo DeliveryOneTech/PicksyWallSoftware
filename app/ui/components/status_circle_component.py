@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QHBoxLayout
 from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtCore import Qt
-from app.styles import Styles
+from app.ui.utils.styles import Styles
 
 
 class StatusCircle(QWidget):

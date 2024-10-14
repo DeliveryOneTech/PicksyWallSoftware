@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QSizePolicy
 from app.ui.utils import ui_utils
-from app.styles import Styles
+from app.ui.utils.styles import Styles
 
 
 class PicksyWallFooterComponent(QtWidgets.QWidget):

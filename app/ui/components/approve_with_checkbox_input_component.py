@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QLabel, QVBoxLayout, QPushButton
-from app.styles import Styles
+from app.ui.utils.styles import Styles
 from app.ui.utils import ui_utils
 
 

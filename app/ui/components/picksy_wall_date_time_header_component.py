@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtWidgets
-from app.styles import Styles
+from app.ui.utils.styles import Styles
 
 
 class PicksyWallDateTimeHeaderComponent(QtWidgets.QWidget):

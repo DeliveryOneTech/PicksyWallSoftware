@@ -1,6 +1,5 @@
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QHBoxLayout, QSpacerItem, QSizePolicy, QLabel, QGridLayout
-from app.styles import Styles
+from PyQt5.QtWidgets import QWidget, QLineEdit, QSpacerItem, QSizePolicy, QLabel, QGridLayout
+from app.ui.utils.styles import Styles
 from app.enums.page_number import PageNumber
 from app.lib.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget

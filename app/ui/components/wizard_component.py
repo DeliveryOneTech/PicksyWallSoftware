@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets, QtCore, QtGui
-from app.styles import Styles
+from app.ui.utils.styles import Styles
 
 
 class WizardItemViewModel:
