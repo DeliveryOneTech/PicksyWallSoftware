@@ -70,7 +70,7 @@ class CheckInternetConnectionLoop(D1Action):
             return False
 
     @staticmethod
-    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True, execute_func_params: list = None) -> tuple[QObject, QThread]:
+    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True, execute_func_params: list = None) -> tuple[D1Action, QThread]:
         action = CheckInternetConnectionLoop()
         thread = QThread()
         thread.setObjectName(action.thread_name)

@@ -1,3 +1,4 @@
+import logging
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
 from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsOpacityEffect, QSpacerItem, QSizePolicy, QHBoxLayout
 from app.lib.console_logger import ConsoleLogger
@@ -64,7 +65,7 @@ class ApplicationLoadingPage(QWidget):
         if result.success:
             self.stacked_widget.go_by_page_number(PageNumber.APPLICATION_LOADING, PageNumber.HOME)
         else:
-            pass
+            ConsoleLogger().log(result.message, logging.ERROR)
 
     def on_shown(self):
         self.init_application_action_thread.start()

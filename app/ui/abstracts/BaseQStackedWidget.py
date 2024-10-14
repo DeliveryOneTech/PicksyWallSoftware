@@ -1,5 +1,4 @@
 import logging
-
 from PyQt5.QtWidgets import QStackedWidget
 from app.enums.page_number import PageNumber
 from app.lib.console_logger import ConsoleLogger
@@ -33,4 +32,5 @@ class BaseQStackedWidget(QStackedWidget):
             target_widget.on_shown()
 
         if custom_method is not None:
+            ConsoleLogger().log(f"Custom method is called for page number {target_page_number}")
             custom_method()

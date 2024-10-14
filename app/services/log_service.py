@@ -60,3 +60,16 @@ class LogService:
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
+
+    def create_exception_log(self, message, logLevel=LogLevel.ERROR) -> object:
+        """
+        Creates an exception log.
+        :param message:
+        :param logLevel:
+        :return: -> lastrowid
+        """
+        exception_log = Log(message, logLevel.value, LogType.EXCEPTION_LOG.value, datetime.now())
+        query, values = SqlQueryGenerator.get_insert_query(Log.table_name, exception_log.__dict__)
+        self.__local_db_context.cursor.execute(query, values)
+        self.__local_db_context.connection.commit()
+        return self.__local_db_context.cursor.lastrowid

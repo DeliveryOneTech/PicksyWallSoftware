@@ -1,4 +1,9 @@
+import logging
+
 from PyQt5.QtCore import pyqtSignal, QThread
+
+from app.communication.iot.mqtt_subscriber import MqttSubscriber
+from app.lib.console_logger import ConsoleLogger
 from app.lib.models.d1_result_data_model import D1Result
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadManager
@@ -16,13 +21,21 @@ class InitApplicationAction(D1Action):
 
     def execute(self):
         self.is_loading_signal.emit(True)
-        import time
-        time.sleep(10)
-        self.result_signal.emit(D1Result(True, "Init process completed."))
-        self.is_loading_signal.emit(False)
+        try:
+            MqttSubscriber()
+        except Exception as e:
+            self.result_signal.emit(D1Result(False, str(e)))
+            ConsoleLogger().log(str(e), logging.ERROR)
+            self.is_loading_signal.emit(False)
+            return
+        finally:
+            self.result_signal.emit(D1Result(True, "Init process completed."))
+            ConsoleLogger().log("Init process completed.")
+            self.is_loading_signal.emit(False)
 
     @staticmethod
-    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True, execute_func_params: list = None) -> tuple[D1Action, QThread]:
+    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True,
+                      execute_func_params: list = None) -> tuple[D1Action, QThread]:
         action = InitApplicationAction()
         thread = QThread()
         thread_manager = ThreadManager()
