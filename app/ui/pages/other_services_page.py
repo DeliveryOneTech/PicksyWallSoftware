@@ -42,14 +42,14 @@ class OtherServicesPage(QWidget):
         self.maintenance_button = MainButtonComponent(
             title_html="<h1>Bakım</h1>",
             icon_path=':/icons/assets/maintenance.svg',
-            tooltip="Bu buton aracılığı ile Picksy Wall cihazınızın bakım işlemlerini gerçekleştirebilirsiniz."
+            tooltip="Bu buton aracılığı ile Picksy Wall cihazının bakım işlemlerini gerçekleştirebilirsiniz."
         )
 
         # Main Button 3
         self.cleaning_button = MainButtonComponent(
             title_html="<h1>Temizlik</h1>",
             icon_path=':/icons/assets/seedling.svg',
-            tooltip="Bu buton aracılığı ile Picksy Wall cihazınızın temizlik işlemlerini gerçekleştirebilirsiniz."
+            tooltip="Bu buton aracılığı ile Picksy Wall cihazının temizlik işlemlerini gerçekleştirebilirsiniz."
         )
 
         h_box.addWidget(self.courier_login_button)

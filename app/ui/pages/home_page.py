@@ -51,6 +51,7 @@ class HomePage(QWidget):
             icon_path=':/icons/assets/reject-icon.png',
             tooltip="Bu buton aracılığı ile kargonuzu iade edilmek üzere gönderebilirsiniz."
         )
+        self.send_to_reject_button.setEnabled(False)
 
         h_box.addWidget(self.send_button)
         h_box.addWidget(self.receive_button)
