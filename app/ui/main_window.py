@@ -10,6 +10,7 @@ from app.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QMainWindow
 from app.ui.pages.left_robot_management_page import LeftRobotManagementPage
 from app.ui.pages.maintenance_authentication_page import MaintenanceAuthenticationPage
+from app.ui.pages.maintenance_main_page import MaintenanceMainPage
 from app.ui.pages.other_services_page import OtherServicesPage
 from app.ui.pages.package_authentication_page import PackageAuthenticationPage
 from app.ui.pages.receiver_authentication_page import ReceiverAuthenticationPage
@@ -98,6 +99,9 @@ class MainWindow(QMainWindow):
             )
             self.stacked_widget.addWidget(
                 PackageAuthenticationPage(self.stacked_widget)
+            )
+            self.stacked_widget.addWidget(
+                MaintenanceMainPage(self.stacked_widget)
             )
 
             self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE,
