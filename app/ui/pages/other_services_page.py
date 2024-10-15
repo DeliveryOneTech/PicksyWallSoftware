@@ -87,9 +87,9 @@ class OtherServicesPage(QWidget):
         )
         self.maintenance_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
             PageNumber.OTHER_SERVICES_PAGE,
-            PageNumber.MAINTENANCE
+            PageNumber.MAINTENANCE_AUTHENTICATION_PAGE
         )
         self.cleaning_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
             PageNumber.HOME_PAGE,
-            PageNumber.CLEANING
+            PageNumber.CLEANING_AUTHENTICATION_PAGE
         )

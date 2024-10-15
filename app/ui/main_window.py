@@ -1,5 +1,6 @@
 from app.lib.models.d1_result_data_model import D1Result
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
+from app.ui.pages.cleaning_authentication_page import CleaningAuthenticationPage
 from app.ui.pages.device_management_page import DeviceManagementPage
 from app.ui.pages.initialization_page import InitializationPage
 from app.ui.pages.courier_authentication_page import CourierAuthenticationPage
@@ -7,6 +8,7 @@ from app.ui.pages.home_page import HomePage
 from app.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QMainWindow
 from app.ui.pages.left_robot_management_page import LeftRobotManagementPage
+from app.ui.pages.maintenance_authentication_page import MaintenanceAuthenticationPage
 from app.ui.pages.other_services_page import OtherServicesPage
 from app.ui.pages.receiver_authentication_page import ReceiverAuthenticationPage
 from app.ui.pages.right_robot_management_page import RightRobotManagementPage
@@ -82,6 +84,12 @@ class MainWindow(QMainWindow):
             )
             self.stacked_widget.addWidget(
                 DeviceManagementPage(self.stacked_widget)
+            )
+            self.stacked_widget.addWidget(
+                MaintenanceAuthenticationPage(self.stacked_widget)
+            )
+            self.stacked_widget.addWidget(
+                CleaningAuthenticationPage(self.stacked_widget)
             )
 
             self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE,
