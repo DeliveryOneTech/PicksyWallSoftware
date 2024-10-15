@@ -1,6 +1,7 @@
 from app.lib.models.d1_result_data_model import D1Result
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.pages.cleaning_authentication_page import CleaningAuthenticationPage
+from app.ui.pages.courier_main_page import CourierMainPage
 from app.ui.pages.device_management_page import DeviceManagementPage
 from app.ui.pages.initialization_page import InitializationPage
 from app.ui.pages.courier_authentication_page import CourierAuthenticationPage
@@ -90,6 +91,9 @@ class MainWindow(QMainWindow):
             )
             self.stacked_widget.addWidget(
                 CleaningAuthenticationPage(self.stacked_widget)
+            )
+            self.stacked_widget.addWidget(
+                CourierMainPage(self.stacked_widget)
             )
 
             self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE,
