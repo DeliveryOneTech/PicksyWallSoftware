@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import QMainWindow
 from app.ui.pages.left_robot_management_page import LeftRobotManagementPage
 from app.ui.pages.maintenance_authentication_page import MaintenanceAuthenticationPage
 from app.ui.pages.other_services_page import OtherServicesPage
+from app.ui.pages.package_authentication_page import PackageAuthenticationPage
 from app.ui.pages.receiver_authentication_page import ReceiverAuthenticationPage
 from app.ui.pages.right_robot_management_page import RightRobotManagementPage
 from app.ui.pages.sender_address_page import SenderAddressPage
@@ -94,6 +95,9 @@ class MainWindow(QMainWindow):
             )
             self.stacked_widget.addWidget(
                 CourierMainPage(self.stacked_widget)
+            )
+            self.stacked_widget.addWidget(
+                PackageAuthenticationPage(self.stacked_widget)
             )
 
             self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE,

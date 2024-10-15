@@ -55,7 +55,7 @@ class CourierMainPage(QWidget):
     def __define_events(self):
         self.deliver_cargo_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
             PageNumber.COURIER_MAIN_PAGE,
-            PageNumber.OTHER_SERVICES_PAGE
+            PageNumber.PACKAGE_AUTHENTICATION_PAGE
         )
 
         self.receive_cargo_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
