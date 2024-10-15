@@ -28,6 +28,12 @@ class ServiceMainPage(QWidget):
             tooltip="Bu buton aracılığı ile sol robotu yönetebilirsiniz."
         )
 
+        self.common_device_management_button = MainButtonComponent(
+            title_html="<h1>Cihaz Yönetimi</h1>",
+            icon_path=':/icons/assets/maintenance.svg',
+            tooltip="Bu buton aracılığı ile robotlardan bağımsız cihazı yönetebilirsiniz."
+        )
+
         self.right_button = MainButtonComponent(
             title_html="<h1>Sağ Robot</h1>",
             icon_path=':/icons/assets/white-arrow-right.svg',
@@ -35,6 +41,7 @@ class ServiceMainPage(QWidget):
         )
 
         h_box.addWidget(self.left_button)
+        h_box.addWidget(self.common_device_management_button)
         h_box.addWidget(self.right_button)
 
         v_box.addLayout(h_box)
@@ -61,4 +68,9 @@ class ServiceMainPage(QWidget):
         self.right_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
             PageNumber.SERVICE_MAIN_PAGE,
             PageNumber.RIGHT_ROBOT_MANAGEMENT_PAGE
+        )
+
+        self.common_device_management_button.mousePressEvent = lambda event: self.stacked_widget.go_by_page_number(
+            PageNumber.SERVICE_MAIN_PAGE,
+            PageNumber.DEVICE_MANAGEMENT_PAGE
         )

@@ -5,7 +5,7 @@ from app.ui.utils import ui_utils
 from app.ui.utils.styles import Styles
 
 
-class ServiceMainHeaderComponent(QtWidgets.QWidget):
+class HeaderComponentWithDeviceStatus(QtWidgets.QWidget):
     back_button_clicked = QtCore.pyqtSignal()
 
     def __init__(self, label_text: str, system_status='gray', internet_status='gray', temperature_status='gray',

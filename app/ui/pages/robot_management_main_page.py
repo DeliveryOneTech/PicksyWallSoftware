@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QWidget, QPushButton, QGridLayout, QSpacerItem, QSiz
 from app.ui.utils.styles import Styles
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.delta_numeric_input_component import DeltaNumericInputComponent
-from app.ui.components.service_main_header_component import ServiceMainHeaderComponent
+from app.ui.components.service_main_header_component import HeaderComponentWithDeviceStatus
 
 
 class RobotManagementMainPage(QWidget):
@@ -17,7 +17,7 @@ class RobotManagementMainPage(QWidget):
 
         label = 'Sol' if caller_page_number == PageNumber.LEFT_ROBOT_MANAGEMENT_PAGE else 'Sağ'
 
-        header = ServiceMainHeaderComponent(label + ' Robot')
+        header = HeaderComponentWithDeviceStatus(label + ' Robot')
 
         if header:
             header.back_button_clicked.connect(lambda: self.stacked_widget.go_by_page_number(
@@ -44,8 +44,8 @@ class RobotManagementMainPage(QWidget):
         self.package_measuring_system_button = QPushButton('Paket Ölçüm Sistemi')
         self.package_measuring_system_button.setStyleSheet(Styles.btn_success(padding="10px"))
 
-        self.restart_button = QPushButton('Cihazı Yeniden Başlat')
-        self.restart_button.setStyleSheet(Styles.btn_danger(padding="10px"))
+        # self.restart_button = QPushButton('Cihazı Yeniden Başlat')
+        # self.restart_button.setStyleSheet(Styles.btn_danger(padding="10px"))
 
         self.x1_axis = DeltaNumericInputComponent('X1 Ekseni')
 
@@ -64,7 +64,7 @@ class RobotManagementMainPage(QWidget):
         grid_layout.addWidget(self.lighting_check_button, 1, 2)
         grid_layout.addWidget(self.relay_check_button, 2, 0)
         grid_layout.addWidget(self.package_measuring_system_button, 2, 1)
-        grid_layout.addWidget(self.restart_button, 2, 2)
+        # grid_layout.addWidget(self.restart_button, 2, 2)
         grid_layout.addWidget(self.x1_axis, 3, 0)
         grid_layout.addWidget(self.z_axis, 3, 1)
         grid_layout.addWidget(self.delivery_cover, 3, 2)
