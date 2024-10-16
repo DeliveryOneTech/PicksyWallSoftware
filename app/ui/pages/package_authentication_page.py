@@ -26,7 +26,7 @@ class PackageAuthenticationPage(QWidget):
             header.back_button_clicked.connect(lambda: stacked_widget.go_by_page_number(
                 PageNumber.PACKAGE_AUTHENTICATION_PAGE, PageNumber.HOME_PAGE
             ))
-            header.set_title("Paket Barkod Numarasını Giriniz.")
+            header.set_title("Barkod Numarasını Giriniz.")
             self.v_box.addWidget(header)
 
         '''
@@ -49,7 +49,7 @@ class PackageAuthenticationPage(QWidget):
         h_box.addItem(spacer2)
         self.v_box.addLayout(h_box)
 
-        self.v_box.addSpacing(70)
+        self.v_box.addSpacing(40)
 
         numeric_keyboard_component = NumericKeyboardComponent()
         numeric_keyboard_component.return_pressed.connect(lambda: self.console_logger.log(self.barcode_number_input.text()))
@@ -60,8 +60,6 @@ class PackageAuthenticationPage(QWidget):
         qr_h_box = QHBoxLayout()
         qr_code_image = QLabel()
         qr_code_image.setPixmap(ui_utils.get_pixmap(':/icons/assets/qr-code.svg'))
-        qr_code_image.setFixedWidth(200)
-        qr_code_image.setFixedHeight(200)
         message_label = QLabel("Veya,\nQR Kodunu Taratınız.")
         message_label.setStyleSheet(Styles.label())
         qr_h_box.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
