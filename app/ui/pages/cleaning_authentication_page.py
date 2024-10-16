@@ -50,7 +50,7 @@ class CleaningAuthenticationPage(QWidget):
         keyboard_component = KeyboardComponent()
         keyboard_component.return_pressed.connect(lambda: stacked_widget.go_by_page_number(
             PageNumber.CLEANING_AUTHENTICATION_PAGE,
-            PageNumber.OTHER_SERVICES_PAGE
+            PageNumber.CLEANING_MAIN_PAGE
         ))
         main_layout.addItem(QSpacerItem(0, 0, QSizePolicy.Minimum, QSizePolicy.Expanding), 4, 0, 1, 4)
         main_layout.addWidget(keyboard_component, 5, 0, 1, 4)
