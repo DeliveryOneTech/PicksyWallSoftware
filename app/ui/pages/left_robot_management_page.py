@@ -1,5 +1,5 @@
 from app.enums.page_number import PageNumber
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.ui.pages.robot_management_main_page import RobotManagementMainPage
 
 

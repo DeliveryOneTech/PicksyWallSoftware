@@ -1,6 +1,6 @@
 from app.enums.page_number import PageNumber
 from PyQt5.QtWidgets import QWidget, QPushButton, QGridLayout, QSpacerItem, QSizePolicy
-from app.ui.utils.styles import Styles
+from app.ui.styles import Styles
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.delta_numeric_input_component import DeltaNumericInputComponent
 from app.ui.components.service_main_header_component import HeaderComponentWithDeviceStatus

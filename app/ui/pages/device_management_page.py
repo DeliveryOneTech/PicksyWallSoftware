@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QSpa
 from app.enums.page_number import PageNumber
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.service_main_header_component import HeaderComponentWithDeviceStatus
-from app.ui.utils.styles import Styles
+from app.ui.styles import Styles
 
 
 class DeviceManagementPage(QWidget):

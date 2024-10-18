@@ -1,6 +1,6 @@
 from datetime import datetime
 from app.data.abstracts.db_model import DbModel
-from app.data.utils.sql_query_generator import SqlQueryGenerator
+from app.lib.utils.sql_query_generator import SqlQueryGenerator
 
 
 class Log(DbModel):

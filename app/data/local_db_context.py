@@ -3,7 +3,7 @@ import sqlite3
 from app.data.entities.log import Log
 from app.data.entities.tray import Tray
 from app.lib.decorators.singleton_decorator import Singleton
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.data.abstracts.local_db_cursor import LocalDbCursor
 from app.data.abstracts.local_db_connection import LocalDbConnection
 

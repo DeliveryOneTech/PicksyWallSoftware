@@ -3,10 +3,10 @@ from awscrt import io, mqtt
 from awsiot import mqtt_connection_builder
 import json
 from app.lib.decorators.singleton_decorator import Singleton
-from app.lib.utils import Utils
+from app.lib.utils.utils import Utils
 from app.enums.log_level import LogLevel
 from app.services.log_service import LogService
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 
 data = Utils.read_all_app_config()["IoTConfiguration"]
 ENDPOINT = data['Endpoint']

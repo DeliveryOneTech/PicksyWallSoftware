@@ -25,7 +25,7 @@ from app.ui.pages.rejection_id_page import RejectionIdPage
 from app.ui.pages.service_main_page import ServiceMainPage
 from app.ui.pages.service_user_authentication_page import ServiceUserAuthenticationPage
 from app.workers.loops.check_internet_connection_loop import CheckInternetConnectionLoop
-from app.ui.utils import resource
+from app.ui import resource
 
 
 class MainWindow(QMainWindow):

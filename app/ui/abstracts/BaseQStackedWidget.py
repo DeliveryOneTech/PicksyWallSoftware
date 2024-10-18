@@ -1,7 +1,7 @@
 import logging
 from PyQt5.QtWidgets import QStackedWidget
 from app.enums.page_number import PageNumber
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.services.log_service import LogService
 
 

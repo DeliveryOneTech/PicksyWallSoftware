@@ -1,8 +1,8 @@
 from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QSizePolicy
 from app.ui.components.status_circle_component import StatusCircleComponent
-from app.ui.utils import ui_utils
-from app.ui.utils.styles import Styles
+from app.lib.utils import ui_utils
+from app.ui.styles import Styles
 
 
 class HeaderComponentWithDeviceStatus(QtWidgets.QWidget):

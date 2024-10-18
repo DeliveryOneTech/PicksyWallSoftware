@@ -2,8 +2,8 @@ import json
 from app.communication.iot.mqtt_context import MqttContext
 from app.communication.iot.mqtt_message_router import MqttMessageRouter
 from app.lib.decorators.singleton_decorator import Singleton
-from app.lib.utils import Utils
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.utils import Utils
+from app.lib.utils.console_logger import ConsoleLogger
 
 
 @Singleton

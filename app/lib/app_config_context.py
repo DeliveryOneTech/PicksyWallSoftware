@@ -2,7 +2,7 @@ import logging
 import os
 import json
 from app.lib.decorators.singleton_decorator import Singleton
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.mutexs.app_config_context_mutex import AppConfigContextMutex
 
 

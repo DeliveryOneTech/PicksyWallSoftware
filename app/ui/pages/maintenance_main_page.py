@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QGridLayout, QVBoxLayout, QHBoxLayout
 from app.enums.page_number import PageNumber
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.main_button_component import MainButtonComponent
 from app.ui.components.picksy_wall_date_time_header_component import PicksyWallDateTimeHeaderComponent

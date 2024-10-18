@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
 import pyautogui
 import pyperclip
-from app.ui.utils.styles import Styles
+from app.ui.styles import Styles
 
 
 class KeyboardComponent(QtWidgets.QWidget):

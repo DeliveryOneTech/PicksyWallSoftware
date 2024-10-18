@@ -1,7 +1,7 @@
 from datetime import datetime
 from app.data.entities.tray import Tray
 from app.data.local_db_context import LocalDbContext
-from app.data.utils.sql_query_generator import SqlQueryGenerator
+from app.lib.utils.sql_query_generator import SqlQueryGenerator
 from app.lib.decorators.singleton_decorator import Singleton
 from app.lib.extensions.boolean_extension import BooleanExtension
 

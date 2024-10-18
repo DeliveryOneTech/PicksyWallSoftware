@@ -1,8 +1,8 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QLabel, QVBoxLayout, QPushButton
-from app.ui.utils.styles import Styles
-from app.ui.utils import ui_utils
+from app.ui.styles import Styles
+from app.lib.utils import ui_utils
 
 
 class ApproveWithCheckboxInputComponent(QtWidgets.QWidget):

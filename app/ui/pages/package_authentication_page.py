@@ -1,10 +1,10 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QLineEdit, QHBoxLayout, QSpacerItem, QSizePolicy, QLabel
 
-from app.ui.utils import ui_utils
-from app.ui.utils.styles import Styles
+from app.lib.utils import ui_utils
+from app.ui.styles import Styles
 from app.enums.page_number import PageNumber
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.components.numeric_keyboard_component import NumericKeyboardComponent
 from app.ui.components.picksy_wall_title_header_component import PicksyWallTitleHeaderComponent

@@ -1,6 +1,6 @@
 from app.communication.iot.routes.base_route import MqttMessageRoute
-from app.lib.console_logger import ConsoleLogger
-from app.lib.utils import Utils
+from app.lib.utils.console_logger import ConsoleLogger
+from app.lib.utils.utils import Utils
 
 
 class TestTopicRoute(MqttMessageRoute):

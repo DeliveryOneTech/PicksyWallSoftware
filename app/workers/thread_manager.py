@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QThread
 from app.lib.decorators.singleton_decorator import Singleton
 from app.workers.abstracts.d1_action import D1Action
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 
 
 @Singleton

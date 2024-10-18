@@ -2,9 +2,9 @@ from PyQt5.QtWidgets import QApplication
 import sys
 from app.communication.iot.mqtt_subscriber import MqttSubscriber
 from app.communication.iot.mqtt_context import MqttContext
-from app.lib.utils import Utils
+from app.lib.utils.utils import Utils
 from app.ui.main_window import MainWindow
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.services.log_service import LogService
 
 

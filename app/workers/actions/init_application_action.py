@@ -1,7 +1,7 @@
 import logging
 from PyQt5.QtCore import pyqtSignal, QThread
 from app.communication.iot.mqtt_subscriber import MqttSubscriber
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.lib.models.d1_result_data_model import D1Result
 from app.workers.abstracts.d1_action import D1Action
 from app.workers.thread_manager import ThreadManager

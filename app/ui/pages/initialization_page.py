@@ -1,10 +1,10 @@
 import logging
 from PyQt5.QtCore import Qt, QPropertyAnimation, QEasingCurve
 from PyQt5.QtWidgets import QWidget, QLabel, QGraphicsOpacityEffect, QSpacerItem, QSizePolicy, QHBoxLayout
-from app.lib.console_logger import ConsoleLogger
+from app.lib.utils.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.enums.page_number import PageNumber
-from app.ui.utils import ui_utils
+from app.lib.utils import ui_utils
 from app.workers.actions.init_application_action import InitApplicationAction
 
 

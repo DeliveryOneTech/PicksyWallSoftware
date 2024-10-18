@@ -1,6 +1,6 @@
 from datetime import datetime
 from app.lib.decorators.singleton_decorator import Singleton
-from app.lib.console_printer import ConsolePrinter as Print
+from app.lib.utils.console_printer import ConsolePrinter as Print
 import logging
 
 
