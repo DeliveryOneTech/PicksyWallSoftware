@@ -1,6 +1,7 @@
 import os.path
 import sqlite3
 from app.data.entities.log import Log
+from app.data.entities.tray import Tray
 from app.lib.decorators.singleton_decorator import Singleton
 from app.lib.console_logger import ConsoleLogger
 from app.data.abstracts.local_db_cursor import LocalDbCursor
@@ -36,6 +37,7 @@ class LocalDbContext:
 
     def create_tables_if_not_exists(self):
         self.cursor.execute(Log.get_create_table_sql_query())
+        self.cursor.execute(Tray.get_create_table_sql_query())
         self.connection.commit()
 
     def run_query(self, query):
