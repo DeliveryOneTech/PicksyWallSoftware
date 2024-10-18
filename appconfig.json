@@ -1,5 +1,6 @@
 {
   "ApplicationName": "PicksyWall Software",
+  "ApplicationMode": "development",
   "Version": "1.0.0",
   "DeviceId": 1000,
   "IoTConfiguration": {
