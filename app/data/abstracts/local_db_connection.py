@@ -1,11 +1,11 @@
 import sqlite3
-from app.mutexs.local_db_mutex import SingletonLocalDbConnectionMutex
+from app.mutexs.local_db_mutex import LocalDbConnectionMutex
 
 
 class LocalDbConnection(sqlite3.Connection):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.connection_mutex = SingletonLocalDbConnectionMutex.getInstance()
+        self.connection_mutex = LocalDbConnectionMutex()
 
     def commit(self):
         self.connection_mutex.lock()

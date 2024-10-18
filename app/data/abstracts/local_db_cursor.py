@@ -1,11 +1,11 @@
 import sqlite3
-from app.mutexs.local_db_mutex import SingletonLocalDbCursorMutex
+from app.mutexs.local_db_mutex import LocalDbCursorMutex
 
 
 class LocalDbCursor(sqlite3.Cursor):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.cursor_mutex = SingletonLocalDbCursorMutex.getInstance()
+        self.cursor_mutex = LocalDbCursorMutex()
 
     def execute(self, sql, parameters=()):
         self.cursor_mutex.lock()
