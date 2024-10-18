@@ -1,4 +1,7 @@
+import logging
+
 from app.lib.models.d1_result_data_model import D1Result
+from app.lib.utils.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.ui.pages.cleaning_authentication_page import CleaningAuthenticationPage
 from app.ui.pages.cleaning_main_page import CleaningMainPage
@@ -114,7 +117,7 @@ class MainWindow(QMainWindow):
             self.setCentralWidget(self.stacked_widget)
 
         except Exception as e:
-            print(e)
+            ConsoleLogger().log(f"{e}", logging.ERROR)
             raise e
 
     __last_internet_state = CheckInternetConnectionLoop.get_internet_connection_state()

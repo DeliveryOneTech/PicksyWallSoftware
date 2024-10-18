@@ -1,4 +1,7 @@
+import logging
 import sqlite3
+
+from app.lib.utils.console_logger import ConsoleLogger
 from app.mutexs.local_db_mutex import LocalDbConnectionMutex
 
 
@@ -12,7 +15,7 @@ class LocalDbConnection(sqlite3.Connection):
         try:
             return super().commit()
         except Exception as e:
-            print(e)
+            ConsoleLogger.log(f"{e}", logging.ERROR)
             return None
         finally:
             self.connection_mutex.unlock()
@@ -22,7 +25,7 @@ class LocalDbConnection(sqlite3.Connection):
         try:
             return super().close()
         except Exception as e:
-            print(e)
+            ConsoleLogger.log(f"{e}", logging.ERROR)
             return None
         finally:
             self.connection_mutex.unlock()
