@@ -8,24 +8,24 @@ class Log(DbModel):
 
     def __init__(self,
                  message: str,
-                 logLevel: int,
-                 logType: int,
-                 createdDateTime: datetime,
+                 log_level: int,
+                 log_type: int,
+                 created_date_time: datetime,
                  id: int = None):
         super().__init__(id)
-        self.logLevel = logLevel
-        self.logType = logType
+        self.log_level = log_level
+        self.log_type = log_type
         self.message = message
-        self.createdDateTime = createdDateTime
+        self.created_date_time = created_date_time
 
     @staticmethod
     def get_column_name_and_sql_type_dict_for_table():
         return {
             'id': 'INTEGER PRIMARY KEY',
             'message': 'TEXT',
-            'logLevel': 'INTEGER',
-            'logType': 'INTEGER',
-            'createdDateTime': 'TEXT'
+            'log_level': 'INTEGER',
+            'log_type': 'INTEGER',
+            'created_date_time': 'TEXT'
         }
 
     @staticmethod
