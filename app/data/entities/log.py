@@ -32,3 +32,7 @@ class Log(DbModel):
     def get_create_table_sql_query() -> str:
         return SqlQueryGenerator.get_create_table_query(Log.table_name,
                                                         Log.get_column_name_and_sql_type_dict_for_table())
+
+    @staticmethod
+    def to_log(row: tuple):
+        return Log(row[1], row[2], row[3], row[4], row[0])

@@ -29,3 +29,7 @@ class Tray(DbModel):
     def get_create_table_sql_query() -> str:
         return SqlQueryGenerator.get_create_table_query(Tray.table_name,
                                                         Tray.get_column_name_and_sql_type_dict_for_table())
+
+    @staticmethod
+    def to_tray(row: tuple):
+        return Tray(row[1], row[2], row[3], row[0])

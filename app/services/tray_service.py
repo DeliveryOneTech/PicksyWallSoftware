@@ -14,12 +14,14 @@ class TrayService:
     def get_all_trays(self):
         query = SqlQueryGenerator.get_select_all_query(Tray.table_name)
         self.__local_db_context.run_query(query)
-        return self.__local_db_context.cursor.fetchall()
+        result_tuple_list = self.__local_db_context.cursor.fetchall()
+        return [Tray.to_tray(row) for row in result_tuple_list]
 
     def get_tray(self, tray_id):
         query, values = SqlQueryGenerator.get_select_query(Tray.table_name, 'id', tray_id)
         self.__local_db_context.cursor.execute(query)
-        return self.__local_db_context.cursor.fetchone()
+        result_tuple = self.__local_db_context.cursor.fetchone()
+        return Tray.to_tray(result_tuple)
 
     def create_tray(self, door_no: str, is_clean: bool) -> object:
         """
