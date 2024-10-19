@@ -12,5 +12,5 @@ class TestTopicRoute(MqttMessageRoute):
         super().__init__()
 
     def handle(self, payload):
-        ConsoleLogger.log(payload)
+        ConsoleLogger().log(payload)
         return payload

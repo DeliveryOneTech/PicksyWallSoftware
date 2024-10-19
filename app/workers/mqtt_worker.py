@@ -1,5 +1,9 @@
+import json
+import logging
+
 from PyQt5.QtCore import QObject, pyqtSignal, QThread
 from app.communication.iot.mqtt_context import MqttContext
+from app.communication.iot.mqtt_message_router import MqttMessageRouter
 from app.enums.thread_name import ThreadName
 from app.lib.utils.console_logger import ConsoleLogger
 from app.lib.utils.utils import Utils
@@ -32,10 +36,16 @@ class MqttWorker(QObject):
     def __callback(self, payload, **kwargs):
         topic = kwargs['topic']
         self.console_logger.log(f'Topic: {topic}, Payload: {payload}')
+        try:
+            json_payload = json.loads(payload)
+        except json.JSONDecodeError:
+            ConsoleLogger().log(f'Error while parsing JSON payload: {payload}', logging.ERROR)
+            json_payload = payload
         self.message_received_signal.emit({
             'topic': topic,
-            'payload': payload
+            'payload': json_payload
         })
+        MqttMessageRouter().route(topic, json_payload)
 
     def unsubscribe_all(self):
         self.call_mqtt_client_if_is_none()
