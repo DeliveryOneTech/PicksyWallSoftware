@@ -13,6 +13,7 @@ class Log(DbModel):
                  created_date_time: datetime,
                  id: int = None):
         super().__init__(id)
+        self.id = id
         self.log_level = log_level
         self.log_type = log_type
         self.message = message

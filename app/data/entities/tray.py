@@ -12,6 +12,7 @@ class Tray(DbModel):
                  created_date_time: datetime,
                  id: int = None):
         super().__init__(id)
+        self.id = id
         self.door_no = door_no
         self.is_clean = is_clean
         self.created_date_time = created_date_time

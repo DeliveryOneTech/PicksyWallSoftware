@@ -20,3 +20,10 @@ class TrayServiceTest(unittest.TestCase):
         result = self.tray_service.create_tray('A1', False)
         result_is_integer = isinstance(result, int)
         self.assertTrue(result_is_integer)
+
+    def test_update_tray(self):
+        all_trays = self.tray_service.get_all_trays()
+        tray = all_trays[0]
+        result = self.tray_service.update_tray(tray.id, 'UPDATED_A1', True)
+        result_is_integer = isinstance(result, int)
+        self.assertTrue(result_is_integer)
