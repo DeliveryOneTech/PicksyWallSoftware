@@ -5,7 +5,6 @@ from app.lib.utils.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 from app.enums.page_number import PageNumber
 from app.lib.utils import ui_utils
-from app.workers.actions.init_application_action import InitApplicationAction
 
 
 class InitializationPage(QWidget):
@@ -15,10 +14,7 @@ class InitializationPage(QWidget):
         self.console_logger = ConsoleLogger()
         self.console_logger.log()
 
-        init_application_action, self.init_application_action_thread = InitApplicationAction().run_in_thread(
-            auto_start=True, run_with_thread_manager=True
-        )
-        init_application_action.result_signal.connect(self.handle_init_application_action_result_signal)
+        self.stacked_widget.mqtt_worker.subscription_result_signal.connect(self.handle_subscription_result_signal)
 
         h_box = QHBoxLayout()
 
@@ -61,17 +57,18 @@ class InitializationPage(QWidget):
         self.animation.setLoopCount(-1)
 
     # LOGIC METHODS
-    def handle_init_application_action_result_signal(self, result):
-        if result.success:
+    def handle_subscription_result_signal(self, result: bool):
+        if result:
             self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE, PageNumber.HOME_PAGE)
         else:
             active_page = PageNumber(self.stacked_widget.currentIndex())
             if active_page is not PageNumber.INITIALIZATION_PAGE:
                 self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE, PageNumber.INITIALIZATION_PAGE)
-            ConsoleLogger().log(result.message, logging.ERROR)
+            ConsoleLogger().log("Subscription failed. Reconnecting...", logging.ERROR)
+            self.mqtt_listener.reconnect()
 
     def on_shown(self):
-        self.init_application_action_thread.start()
+        self.stacked_widget.mqtt_worker_thread.start()
         self.animation.start()
 
     def on_exit(self):

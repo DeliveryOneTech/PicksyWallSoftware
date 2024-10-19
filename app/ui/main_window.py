@@ -1,5 +1,4 @@
 import logging
-
 from app.lib.models.d1_result_data_model import D1Result
 from app.lib.utils.console_logger import ConsoleLogger
 from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget

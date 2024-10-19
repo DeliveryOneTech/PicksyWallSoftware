@@ -3,11 +3,15 @@ from PyQt5.QtWidgets import QStackedWidget
 from app.enums.page_number import PageNumber
 from app.lib.utils.console_logger import ConsoleLogger
 from app.services.log_service import LogService
+from app.workers.mqtt_worker import MqttWorker
 
 
 class BaseQStackedWidget(QStackedWidget):
     def __init__(self):
         super().__init__()
+        self.mqtt_worker, self.mqtt_worker_thread = MqttWorker().run_in_thread(
+            auto_start=False, run_with_thread_manager=False
+        )
 
     def go_by_page_number(self,
                           caller_page_number: PageNumber,

@@ -1,16 +1,15 @@
-from PyQt5.QtWidgets import QApplication
 import sys
-from app.communication.iot.mqtt_subscriber import MqttSubscriber
-from app.communication.iot.mqtt_context import MqttContext
 from app.lib.utils.utils import Utils
+from PyQt5.QtWidgets import QApplication
 from app.ui.main_window import MainWindow
-from app.lib.utils.console_logger import ConsoleLogger
 from app.services.log_service import LogService
+from app.lib.utils.console_logger import ConsoleLogger
+from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 
 
-def __on_close_app():
-    MqttSubscriber().unsubscribe_all()
-    MqttContext().disconnect()
+def __on_close_app(stacked_widget: BaseQStackedWidget):
+    stacked_widget.mqtt_worker.unsubscribe_all()
+    stacked_widget.mqtt_worker.disconnect()
     ConsoleLogger().log("Application is closing.")
     LogService().create_system_log("Application is closing.")
 
@@ -31,5 +30,7 @@ def run() -> int:
     else:
         window.showFullScreen()
 
-    app.aboutToQuit.connect(__on_close_app)
+    app.aboutToQuit.connect(
+        lambda: __on_close_app(window.stacked_widget)
+    )
     return sys.exit(app.exec())
