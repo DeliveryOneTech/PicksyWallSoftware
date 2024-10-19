@@ -21,28 +21,28 @@ class TrayService:
         self.__local_db_context.cursor.execute(query)
         return self.__local_db_context.cursor.fetchone()
 
-    def create_tray(self, default_location_code: str, is_clean: bool) -> object:
+    def create_tray(self, door_no: str, is_clean: bool) -> object:
         """
         Create a tray.
-        :param default_location_code:
+        :param door_no:
         :param is_clean:
         :return: -> lastrowid
         """
-        tray = Tray(default_location_code, BooleanExtension.to_integer(is_clean), datetime.now())
+        tray = Tray(door_no, BooleanExtension.to_integer(is_clean), datetime.now())
         query, values = SqlQueryGenerator.get_insert_query(Tray.table_name, tray.__dict__)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
 
-    def update_tray(self, tray_id, default_location_code: str, is_clean: bool) -> object:
+    def update_tray(self, tray_id, door_no: str, is_clean: bool) -> object:
         """
         Update a tray.
         :param tray_id:
-        :param default_location_code:
+        :param door_no:
         :param is_clean:
         :return: -> lastrowid
         """
-        tray = Tray(default_location_code, BooleanExtension.to_integer(is_clean), datetime.now(), tray_id)
+        tray = Tray(door_no, BooleanExtension.to_integer(is_clean), datetime.now(), tray_id)
         query, values = SqlQueryGenerator.get_update_query(Tray.table_name, tray.__dict__, 'id', tray_id)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()

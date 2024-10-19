@@ -7,12 +7,12 @@ class Tray(DbModel):
     table_name = 'Trays'
 
     def __init__(self,
-                 default_location_code: str,
+                 door_no: str,
                  is_clean: int,
                  created_date_time: datetime,
                  id: int = None):
         super().__init__(id)
-        self.location = default_location_code
+        self.door_no = door_no
         self.is_clean = is_clean
         self.created_date_time = created_date_time
 
@@ -20,7 +20,7 @@ class Tray(DbModel):
     def get_column_name_and_sql_type_dict_for_table():
         return {
             'id': 'INTEGER PRIMARY KEY',
-            'default_location_code': 'TEXT',
+            'door_no': 'TEXT',
             'is_clean': 'INTEGER',
             'created_date_time': 'TEXT'
         }
