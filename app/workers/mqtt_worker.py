@@ -1,6 +1,5 @@
 import json
 import logging
-
 from app.enums.iot_topic import IoTTopic
 from app.lib.utils.utils import Utils
 from app.enums.thread_name import ThreadName
@@ -10,6 +9,8 @@ from app.lib.utils.console_logger import ConsoleLogger
 from app.communication.iot.mqtt_context import MqttContext
 from app.communication.iot.mqtt_message_router import MqttMessageRouter
 
+
+# TODO : Mustafa => İnternet bağlantısı uygulama ilk başlatıldığında yoksa hata veriyor! Düzeltilecek.
 
 class MqttWorker(QObject):
     message_received_signal = pyqtSignal(object)

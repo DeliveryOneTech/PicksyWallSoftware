@@ -12,7 +12,10 @@ def Singleton(cls):
     def get_instance(*args, **kwargs):
         # Eğer sınıfın örneği daha önce oluşturulmamışsa, yeni bir örnek oluşturur.
         if cls not in instances:
-            instances[cls] = cls(*args, **kwargs)
+            try:
+                instances[cls] = cls(*args, **kwargs)
+            except Exception as e:
+                return None
         # Eğer sınıfın örneği daha önce oluşturulmuşsa, o örneği döndürür.
         return instances[cls]
 
