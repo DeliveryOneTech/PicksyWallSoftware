@@ -18,7 +18,7 @@ class TrayService:
         return [Tray.to_tray(row) for row in result_tuple_list]
 
     def get_tray(self, tray_id):
-        query, values = SqlQueryGenerator.get_select_query(Tray.table_name, 'id', tray_id)
+        query, values = SqlQueryGenerator.get_select_query_with_id_filter(Tray.table_name, 'id', tray_id)
         self.__local_db_context.cursor.execute(query)
         result_tuple = self.__local_db_context.cursor.fetchone()
         return Tray.to_tray(result_tuple)
@@ -31,7 +31,7 @@ class TrayService:
         :return: -> lastrowid
         """
         tray = Tray(door_no, BooleanExtension.to_integer(is_clean), datetime.now())
-        query, values = SqlQueryGenerator.get_insert_query(Tray.table_name, tray.__dict__)
+        query, values = SqlQueryGenerator.get_insert_query_with_id_filter(Tray.table_name, tray.__dict__)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
@@ -45,7 +45,7 @@ class TrayService:
         :return: -> lastrowid
         """
         tray = Tray(door_no, BooleanExtension.to_integer(is_clean), datetime.now(), tray_id)
-        query, values = SqlQueryGenerator.get_update_query(Tray.table_name, tray.__dict__, 'id', tray_id)
+        query, values = SqlQueryGenerator.get_update_query_with_id_filter(Tray.table_name, tray.__dict__, 'id', tray_id)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return tray_id
@@ -56,7 +56,7 @@ class TrayService:
         :param tray_id:
         :return:
         """
-        query, values = SqlQueryGenerator.get_delete_query(Tray.table_name, 'id', tray_id)
+        query, values = SqlQueryGenerator.get_delete_query_with_id_filter(Tray.table_name, 'id', tray_id)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid

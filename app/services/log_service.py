@@ -19,7 +19,7 @@ class LogService:
         return [Log.to_log(row) for row in result_tuple_list]
 
     def get_log(self, log_id):
-        query, values = SqlQueryGenerator.get_select_query(Log.table_name, 'id', log_id)
+        query, values = SqlQueryGenerator.get_select_query_with_id_filter(Log.table_name, 'id', log_id)
         self.__local_db_context.cursor.execute(query)
         result_tuple = self.__local_db_context.cursor.fetchone()
         return Log.to_log(result_tuple)
@@ -32,7 +32,7 @@ class LogService:
         :return: -> lastrowid
         """
         system_log = Log(message, logLevel.value, LogType.SYSTEM_LOG.value, datetime.now())
-        query, values = SqlQueryGenerator.get_insert_query(Log.table_name, system_log.__dict__)
+        query, values = SqlQueryGenerator.get_insert_query_with_id_filter(Log.table_name, system_log.__dict__)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
@@ -45,7 +45,7 @@ class LogService:
         :return: -> lastrowid
         """
         mqtt_log = Log(message, logLevel.value, LogType.MQTT_LOG.value, datetime.now())
-        query, values = SqlQueryGenerator.get_insert_query(Log.table_name, mqtt_log.__dict__)
+        query, values = SqlQueryGenerator.get_insert_query_with_id_filter(Log.table_name, mqtt_log.__dict__)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
@@ -58,7 +58,7 @@ class LogService:
         :return: -> lastrowid
         """
         ui_log = Log(message, logLevel.value, LogType.UI_LOG.value, datetime.now())
-        query, values = SqlQueryGenerator.get_insert_query(Log.table_name, ui_log.__dict__)
+        query, values = SqlQueryGenerator.get_insert_query_with_id_filter(Log.table_name, ui_log.__dict__)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
@@ -71,7 +71,7 @@ class LogService:
         :return: -> lastrowid
         """
         exception_log = Log(message, logLevel.value, LogType.EXCEPTION_LOG.value, datetime.now())
-        query, values = SqlQueryGenerator.get_insert_query(Log.table_name, exception_log.__dict__)
+        query, values = SqlQueryGenerator.get_insert_query_with_id_filter(Log.table_name, exception_log.__dict__)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
         return self.__local_db_context.cursor.lastrowid
