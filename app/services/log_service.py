@@ -15,12 +15,14 @@ class LogService:
     def get_all_logs(self):
         query = SqlQueryGenerator.get_select_all_query(Log.table_name)
         self.__local_db_context.run_query(query)
-        return self.__local_db_context.cursor.fetchall()
+        result_tuple_list = self.__local_db_context.cursor.fetchall()
+        return [Log.to_log(row) for row in result_tuple_list]
 
     def get_log(self, log_id):
         query, values = SqlQueryGenerator.get_select_query(Log.table_name, 'id', log_id)
         self.__local_db_context.cursor.execute(query)
-        return self.__local_db_context.cursor.fetchone()
+        result_tuple = self.__local_db_context.cursor.fetchone()
+        return Log.to_log(result_tuple)
 
     def create_system_log(self, message, logLevel=LogLevel.INFO) -> object:
         """

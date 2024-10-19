@@ -10,7 +10,8 @@ class MqttMessageRouter:
         self.routes = [cls() for cls in MqttMessageRoute.__subclasses__()]
 
     def route(self, topic, payload):
-        for route in self.routes:
-            if route.topic == topic:
-                return route.handle(payload)
-        return None
+        route = next((route for route in self.routes if route.topic.value == topic), None)
+        if route:
+            return route.handle(payload)
+        else:
+            return None

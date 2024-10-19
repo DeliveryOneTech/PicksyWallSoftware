@@ -1,6 +1,5 @@
 import logging
 from PyQt5.QtCore import pyqtSignal, QThread
-from app.communication.iot.mqtt_subscriber import MqttSubscriber
 from app.communication.iot.mqtt_context import MqttContext
 from app.enums.log_level import LogLevel
 from app.lib.utils.console_logger import ConsoleLogger
@@ -24,18 +23,11 @@ class CheckInternetConnectionLoop(D1Action):
 
     def execute(self):
         self.is_running = True
-        last_internet_state = self.get_internet_connection_state()
+
         while self.is_running:
             self.is_loading_signal.emit(True)
 
             current_internet_state = self.get_internet_connection_state()
-
-            if (last_internet_state != current_internet_state and
-                    last_internet_state == False):
-                MqttContext().reconnect()
-                MqttSubscriber().subscribe_all()
-
-            last_internet_state = current_internet_state
 
             if not current_internet_state:
                 self.result_signal.emit(D1Result(False))
@@ -70,7 +62,8 @@ class CheckInternetConnectionLoop(D1Action):
             return False
 
     @staticmethod
-    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True, execute_func_params: list = None) -> tuple[D1Action, QThread]:
+    def run_in_thread(auto_start: bool = False, run_with_thread_manager: bool = True,
+                      execute_func_params: list = None) -> tuple[D1Action, QThread]:
         action = CheckInternetConnectionLoop()
         thread = QThread()
         thread.setObjectName(action.thread_name)

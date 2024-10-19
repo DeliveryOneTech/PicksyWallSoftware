@@ -13,6 +13,7 @@ class Log(DbModel):
                  created_date_time: datetime,
                  id: int = None):
         super().__init__(id)
+        self.id = id
         self.log_level = log_level
         self.log_type = log_type
         self.message = message
@@ -32,3 +33,7 @@ class Log(DbModel):
     def get_create_table_sql_query() -> str:
         return SqlQueryGenerator.get_create_table_query(Log.table_name,
                                                         Log.get_column_name_and_sql_type_dict_for_table())
+
+    @staticmethod
+    def to_log(row: tuple):
+        return Log(row[1], row[2], row[3], row[4], row[0])
