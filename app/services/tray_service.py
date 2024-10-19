@@ -46,7 +46,7 @@ class TrayService:
         query, values = SqlQueryGenerator.get_update_query(Tray.table_name, tray.__dict__, 'id', tray_id)
         self.__local_db_context.cursor.execute(query, values)
         self.__local_db_context.connection.commit()
-        return self.__local_db_context.cursor.lastrowid
+        return tray_id
 
     def delete_tray(self, tray_id):
         """
