@@ -34,7 +34,6 @@ class MqttWorker(QObject):
 
     def __callback(self, payload, **kwargs):
         topic = kwargs['topic']
-        self.console_logger.log(f'Topic: {topic}, Payload: {payload}')
         try:
             json_payload = json.loads(payload)
         except json.JSONDecodeError:

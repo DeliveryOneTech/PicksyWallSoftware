@@ -8,8 +8,7 @@ from app.ui.abstracts.BaseQStackedWidget import BaseQStackedWidget
 
 
 def __on_close_app(stacked_widget: BaseQStackedWidget):
-    stacked_widget.mqtt_worker.unsubscribe_all()
-    stacked_widget.mqtt_worker.disconnect()
+    stacked_widget.mqtt_worker.stop()
     ConsoleLogger().log("Application is closing.")
     LogService().create_system_log("Application is closing.")
 
