@@ -125,6 +125,7 @@ class MainWindow(QMainWindow):
         if not result.success:
             self.stacked_widget.go_by_page_number(PageNumber.HOME_PAGE, PageNumber.INITIALIZATION_PAGE)
         elif self.__last_internet_state is False and result.success:
+            self.stacked_widget.mqtt_worker.reconnect()
             self.stacked_widget.go_by_page_number(PageNumber.INITIALIZATION_PAGE, PageNumber.HOME_PAGE)
 
         self.__last_internet_state = result.success
