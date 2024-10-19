@@ -1,5 +1,7 @@
 import json
 import logging
+
+from app.enums.iot_topic import IoTTopic
 from app.lib.utils.utils import Utils
 from app.enums.thread_name import ThreadName
 from app.workers.thread_manager import ThreadManager
@@ -39,6 +41,11 @@ class MqttWorker(QObject):
         except json.JSONDecodeError:
             ConsoleLogger().log(f'Error while parsing JSON payload: {payload}', logging.ERROR)
             json_payload = payload
+        self.publish(IoTTopic.ACK_TOPIC.value, {
+            'date_time': Utils.get_current_date_time_str(),
+            'received_topic': topic,
+            'message': 'Message received successfully',
+        })
         self.message_received_signal.emit({
             'topic': topic,
             'payload': json_payload
