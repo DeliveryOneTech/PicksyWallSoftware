@@ -1,13 +1,12 @@
 import json
 import logging
-
+from app.lib.utils.utils import Utils
+from app.enums.thread_name import ThreadName
+from app.workers.thread_manager import ThreadManager
 from PyQt5.QtCore import QObject, pyqtSignal, QThread
+from app.lib.utils.console_logger import ConsoleLogger
 from app.communication.iot.mqtt_context import MqttContext
 from app.communication.iot.mqtt_message_router import MqttMessageRouter
-from app.enums.thread_name import ThreadName
-from app.lib.utils.console_logger import ConsoleLogger
-from app.lib.utils.utils import Utils
-from app.workers.thread_manager import ThreadManager
 
 
 class MqttWorker(QObject):
@@ -27,7 +26,7 @@ class MqttWorker(QObject):
         ]
 
     def subscribe_all(self):
-        self.call_mqtt_client_if_is_none()
+        self.__create_mqtt_client_if_is_none()
         for topic_name in self.topic_list_for_subscribe:
             self.mqtt_client.subscribe(topic_name, self.__callback)
             self.console_logger.log(f'Subscribed to {topic_name}')
@@ -48,27 +47,27 @@ class MqttWorker(QObject):
         MqttMessageRouter().route(topic, json_payload)
 
     def unsubscribe_all(self):
-        self.call_mqtt_client_if_is_none()
+        self.__create_mqtt_client_if_is_none()
         self.mqtt_client.un_subscribe_all(self.topic_list_for_subscribe)
         self.console_logger.log('Unsubscribed from all topics')
 
     def reconnect(self):
-        self.call_mqtt_client_if_is_none()
+        self.__create_mqtt_client_if_is_none()
         self.mqtt_client.reconnect()
         self.subscribe_all()
-        self.console_logger.log('Reconnected to MQTT broker')
 
     def publish(self, topic, payload):
-        self.call_mqtt_client_if_is_none()
+        self.__create_mqtt_client_if_is_none()
         self.mqtt_client.publish(topic, payload)
 
     def stop(self):
-        self.call_mqtt_client_if_is_none()
+        self.__create_mqtt_client_if_is_none()
         self.unsubscribe_all()
         self.mqtt_client.disconnect()
         self.console_logger.log('Stopped MQTT worker')
 
-    def call_mqtt_client_if_is_none(self):
+    # private methods
+    def __create_mqtt_client_if_is_none(self):
         if self.mqtt_client is None:
             self.mqtt_client = MqttContext()
 
